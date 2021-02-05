@@ -26,15 +26,15 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
 }
 
 /*************Naaaav************/
-.navbar
-{
+
+.navbar {
     padding: 0px !important;
     background-color: #9CD650;
 }
+
 #navbarNavDropdownSecond .navbar-nav .nav-item .nav-link {
     color: #fff;
     font-size: 18;
-   
 }
 
 nav ul a:hover {
@@ -57,6 +57,24 @@ nav li>a.underline:hover:after {
 
 .active {
     color: #808080 !important;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu a::after {
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 6px;
+    top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+    margin-right: .1rem;
 }
 
 /*CAROUSEL*/
@@ -609,4 +627,93 @@ h1 {
 
 .form .register-form {
     display: none;
+}
+
+/*************Projects Pages ***************/
+
+/*html {
+    width: 100%;
+    height: 100%;
+}
+*/
+
+#projects {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #000;
+    background: transparent url(https://abload.de/img/line-texture-bg-overljvj6b.png) 50%/7px auto repeat
+}
+
+#main_project {
+    /*width: 800px;*/
+    background-color: #FFF;
+    padding: 200px 50px 50px 50px;
+    margin: 3em auto;
+    border-radius: 8px;
+    margin-top: 100px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.75);
+    background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.11'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-position: center 175px;
+    background-repeat: no-repeat;
+    line-height: 25px;
+    position: relative;
+    box-sizing: border-box;
+    background-size: 64px;
+}
+
+#main_project p {
+    margin-top: 0px;
+    margin-bottom: 15px;
+    font-size: 17px;
+    color: #4a4a4a;
+}
+
+#main_project div p:last-child {
+    margin-bottom: 25px;
+}
+
+#main_project h1 {
+    font-size: 24px;
+    color: #23282d;
+    padding-bottom: 20px;
+}
+
+#main_project a {
+    color: #6ac6a1;
+    text-decoration: none;
+}
+
+#version {
+    position: absolute;
+    right: 0;
+    top: 45px;
+    background-color: #08d4c4;
+    color: #FFF;
+    height: 42px;
+    font-size: 18px;
+    line-height: 44px;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-shadow: -7px 7px 0px rgba(0, 0, 0, 0.05);
+    border-radius: 5px 0 0 5px;
+}
+
+#copyright {
+    text-align: center;
+    color: #4a4a4a;
+    font-size: 13px;
+    margin-top: 50px;
+}
+
+#copyright a {
+    text-decoration: none;
+    color: #4a4a4a;
+    text-transform: none;
+}
+
+#copyright a:hover {
+    color: #08d4c4;
 }
