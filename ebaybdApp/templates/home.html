@@ -1,0 +1,135 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>পূর্ব বড়ুয়া তরুন সংঘ &#8211; একটি সামাজিক সেচ্ছাসেবী সংগঠন</title>
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <!-------First Nav Start----->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+
+            <div class="me-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        {{date_bd.date}} {{date_bd.month}} {{date_bd.year}} বঙ্গাব্দ {{date_bd.time}}{{date_bd.weekday}}
+
+                    </li>
+                    <li class="nav-item">
+                        <span id="time_span"></span>
+                    </li>
+
+                </ul>
+            </div>
+            <div>
+                পূর্ব বড়ুয়া তরুন সংঘের পক্ষ থেকে আপনাকে স্বাগতম!<br> <a href="tel:01744769331 " class="Blondie">Call Us
+                </a> and <a href="mailto:eastbarua.youthassociation@gmail.com">send e-mail</a>
+            </div>
+            <div class="ms-auto">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+        <!--Marquree-->
+    <div class="w-100">
+        <marquee id='scroll_news'  style="font-family:Book Antiqua; color: #FFFFFF" bgcolor="#000080">
+            <div onMouseOver="document.getElementById('scroll_news').stop();"
+                onMouseOut="document.getElementById('scroll_news').start();"><a href="#">News 1</a> News 2 News 3
+                News 4
+                .......
+                More news here </div>
+        </marquee>
+    </div>
+    </nav>
+    
+
+    <!-----Background Image---->
+    <div id="themeSlider" class="carousel slide" data-bs-ride="carousel">
+
+        <ol class="carousel-indicators">
+            <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+            <li data-target="#themeSlider" data-slide-to="1"></li>
+            <li data-target="#themeSlider" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="imgOverlay"></div>
+                <img src="{% static 'images/20191218_104909-scaled.jpg' %}"
+                    alt="First slide">
+                <div class="carousel-caption">
+                    <h3>First slide</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="imgOverlay"></div>
+                <img src="{% static 'images/20201118_122803-scaled.jpg' %}"
+                    alt="Second slide">
+                <div class="carousel-caption">
+                    <h3>Second slide</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="imgOverlay"></div>
+                <img src="{% static 'images/Bikkho-scaled.jpg' %}"
+                    alt="Third slide">
+                <div class="carousel-caption">
+                    <h3>Third slide</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </div>
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#themeSlider" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#themeSlider" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+
+        <div class="main-text hidden-xs hidden-sm">
+            <div class="col-md-12 text-center">
+                <h1>Static Headline And Content</h1>
+                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                <div class="clearfix"></div>
+                <div class="carousel-btns">
+                    <a class="btn btn-md btn-default" href="">Login</a>
+                    <a class="btn btn-md btn-default" href="">Registration</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-----Background Image end----->
+
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/time.js' %}"></script>
+</body>
+
+</html>
