@@ -15,45 +15,87 @@
 
 <body>
 
-    <!-------First Nav Start----->
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
+            <div class="ml-auto">
+                <a href="#"><img class="navbar-brand" style="max-height: 90px;width: auto ;"
+                        src="{% static 'images/Final.png' %}"></a>
+            </div>
 
-            <div class="me-auto">
+            <button class="navbar-toggler navbar-right" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdownSecond" aria-controls="navbarNavDropdownSecond" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mr-auto" id="navbarNavDropdownSecond">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        {{date_bd.date}} {{date_bd.month}} {{date_bd.year}} বঙ্গাব্দ {{date_bd.time}}{{date_bd.weekday}}
-
+                        <a class="nav-link" aria-current="page" href="#">Covid-19</a>
                     </li>
                     <li class="nav-item">
-                        <span id="time_span"></span>
+                        <a class="nav-link" href="#">প্রথম পাতা</a>
                     </li>
 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDonate" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            দান
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownDonate">
+                            <li><a class="dropdown-item" href="#">দান করুন</a></li>
+                            <li><a class="dropdown-item" href="#">দানের তথ্য পূরন</a></li>
+                            <li><a class="dropdown-item" href="#">ব্যাংকের তথ্য</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuAboutUs" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            আমাদের সম্পর্কে
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAboutUs">
+
+                            <li><a class="dropdown-item" href="#">আমাদের সম্পর্কে</a></li>
+                            <li><a class="dropdown-item" href="#">আমাদের সাথে যোগাযোগ করুন</a></li>
+                            <li><a class="dropdown-item" href="#">আমাদের অভিযান সমূহ</a></li>
+                            <li><a class="dropdown-item" href="#">প্রয়োজনীয় প্রশ্ন ও উত্তর</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMedia" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            মিডিয়া
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMedia">
+                            <li><a class="dropdown-item" href="#">প্রেস বিজ্ঞপ্তি</a></li>
+                            <li><a class="dropdown-item" href="#">ফটো গ্যালারী</a></li>
+                            <li><a class="dropdown-item" href="#">ভিডিও গ্যালারী</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCases" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            প্রকল্প সমূহ
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownCases">
+                            <li><a class="dropdown-item" href="#">বৃক্ষ রোপন কর্মসূচী</a></li>
+                            <li><a class="dropdown-item" href="#">শিক্ষা সহায়তা</a></li>
+                            <li><a class="dropdown-item" href="#">শীত বস্ত্র বিতরন</a></li>
+                            <li><a class="dropdown-item" href="#">অসহায় মানুষেদের চিকিৎসা সেবায় সহযোগিতা প্রদান</a></li>
+                            <li><a class="dropdown-item" href="#">খাদ্য সামগ্রী বিতরন</a></li>
+                            <li><a class="dropdown-item" href="#">খেলা ও ধুলা</a></li>
+                            <li><a class="dropdown-item" href="#">বিভিন্ন উৎসব পালন</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">যোগাযোগ</a>
+                    </li>
                 </ul>
             </div>
-            <div>
-                পূর্ব বড়ুয়া তরুন সংঘের পক্ষ থেকে আপনাকে স্বাগতম!<br> <a href="tel:01744769331 " class="Blondie">Call Us
-                </a> and <a href="mailto:eastbarua.youthassociation@gmail.com">send e-mail</a>
-            </div>
-            <div class="ms-auto">
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                </ul>
-
-            </div>
-
         </div>
-        <!--Marquree-->
+
+    </nav>
     <div class="w-100">
-        <marquee id='scroll_news'  style="font-family:Book Antiqua; color: #FFFFFF" bgcolor="#000080">
+        <marquee id='scroll_news' style="font-family:Book Antiqua; color: #FFFFFF" bgcolor="#000080">
             <div onMouseOver="document.getElementById('scroll_news').stop();"
                 onMouseOut="document.getElementById('scroll_news').start();"><a href="#">News 1</a> News 2 News 3
                 News 4
@@ -61,9 +103,54 @@
                 More news here </div>
         </marquee>
     </div>
-    </nav>
-    
+    <!-------First Nav Start-----
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
 
+        <div class="me-auto">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    {{date_bd.date}} {{date_bd.month}} {{date_bd.year}} বঙ্গাব্দ {{date_bd.time}}{{date_bd.weekday}}
+
+                </li>
+                <li class="nav-item">
+                    <span id="time_span"></span>
+                </li>
+
+            </ul>
+        </div>
+        <div>
+            পূর্ব বড়ুয়া তরুন সংঘের পক্ষ থেকে আপনাকে স্বাগতম!<br> <a href="tel:01744769331 " class="Blondie">Call Us
+            </a> and <a href="mailto:eastbarua.youthassociation@gmail.com">send e-mail</a>
+        </div>
+        <div class="ms-auto">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+    
+    <div class="w-100">
+        <marquee id='scroll_news' style="font-family:Book Antiqua; color: #FFFFFF" bgcolor="#000080">
+            <div onMouseOver="document.getElementById('scroll_news').stop();"
+                onMouseOut="document.getElementById('scroll_news').start();"><a href="#">News 1</a> News 2 News 3
+                News 4
+                .......
+                More news here </div>
+        </marquee>
+    </div>
+</nav>
+-->
     <!-----Background Image---->
     <div id="themeSlider" class="carousel slide" data-bs-ride="carousel">
 
@@ -76,28 +163,27 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="imgOverlay"></div>
-                <img src="{% static 'images/20191218_104909-scaled.jpg' %}"
-                    alt="First slide">
+                <img src="{% static 'images/20191218_104909-scaled.jpg' %}" alt="First slide">
                 <div class="carousel-caption">
-                    <h3>First slide</h3>
+                    <h3>১৫০ টি পরিবারের মাঝে শীত বস্ত্র বিতরন-২০১৯
+                    </h3>
                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="imgOverlay"></div>
-                <img src="{% static 'images/20201118_122803-scaled.jpg' %}"
-                    alt="Second slide">
+                <img src="{% static 'images/20201118_122803-scaled.jpg' %}" alt="Second slide">
                 <div class="carousel-caption">
-                    <h3>Second slide</h3>
+                    <h3>পূর্ব বড়ুয়া তরুণ সংঘের উদ্যোগে মাস্ক বিতরণ ক্যাম্পেইন এ উপস্থিত ছিলেন
+                    </h3>
                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="imgOverlay"></div>
-                <img src="{% static 'images/Bikkho-scaled.jpg' %}"
-                    alt="Third slide">
+                <img src="{% static 'images/Bikkho-scaled.jpg' %}" alt="Third slide">
                 <div class="carousel-caption">
-                    <h3>Third slide</h3>
+                    <h3>পেঁপের চারা বিতরণ </h3>
                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                 </div>
             </div>
@@ -112,23 +198,242 @@
             <span class="visually-hidden">Next</span>
         </a>
 
-        <div class="main-text hidden-xs hidden-sm">
-            <div class="col-md-12 text-center">
-                <h1>Static Headline And Content</h1>
-                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
-                <div class="clearfix"></div>
-                <div class="carousel-btns">
-                    <a class="btn btn-md btn-default" href="">Login</a>
-                    <a class="btn btn-md btn-default" href="">Registration</a>
+        <div class="main-text text-center">
+
+        </div>
+
+    </div>
+    <!-----Background Image end----->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-4 mt-3 text-center">
+                <a href="#"><img class="img-fluid" src="{% static 'images/go-1.png' %}" alt=""></a>
+            </div>
+            <div class="col-12 col-sm-4 mt-3 text-center">
+                <a href="#"><img class="img-fluid" src="{% static 'images/go-2.png' %}" alt=""></a>
+            </div>
+            <div class="col-12 col-sm-4 mt-3 text-center">
+                <a href="#"><img class="img-fluid" src="{% static 'images/go-3.png' %}" alt=""></a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-4 mt-3 text-center">
+                <a href="#"><img class="img-fluid" src="{% static 'images/Untitled-2.jpg-22.jpg' %}" alt=""></a>
+            </div>
+            <div class="col-12 col-sm-4 mt-3 text-center">
+                <a href="#"><img class="img-fluid" src="{% static 'images/coronavirus-cells-banner_1035-18753.jpg' %}"
+                        alt=""></a>
+            </div>
+            <div class="col-12 col-sm-4 mt-3 text-center">
+                <a href="#"><img class="img-fluid" src="{% static 'images/Donate-Blood.jpg' %}" alt=""></a>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col bg-light p-4">
+                <h3>আমাদের সম্পর্কে</h3>
+                <div class="wrapper">
+
+                    <img src="{% static 'images/Final-300x300.png' %}" alt="" class="logo">
+
+                    <p>অরাজনৈতিক, অলাভজনক ও সেচ্ছাসেবী সামাজিক সংগঠন “পূর্ব বড়ুয়া তরুন সংঘ” আমরাই তরুন, আমরাই উদ্যোমি এই
+                        স্লোগান নিয়ে ১৩ এপ্রিল ২০১৭ সালে প্রতিষ্ঠিত হয়। সংগঠনটি তার প্রতিষ্ঠালগ্ন থেকে মেধাবী
+                        শিক্ষার্থীদের সংবর্ধনা,গরীব শিক্ষার্থীদের আর্থিক সহযোগিতা করা,বন্যায় ক্ষতিগ্রস্থদের সাহায্য,
+                        সম্প্রতি করোনা ভাইরাসের কর্মহীন অসহায় মানুষের মাঝে খাদ্য সামগ্রী বিতরন, অসহায় দুঃস্থদের মাঝে
+                        ইফতার সামগ্রীসহ ঈদবস্ত্র বিতরণ, শীতার্থদের মাঝে শীতবস্ত্র বিতরণ, বৃক্ষরোপণ কর্মসূচী,
+                        মাদক-সন্ত্রাস-বাল্যবিবাহ ও সামাজিক অপরাধবিরোধী সচেতনতামূলক সভা, রক্তদান কর্মসূচি
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="sidebar widget p-4">
+                    <h3>সর্বশেষ কার্যক্রম</h3>
+                    <ul>
+                        <li>
+                            <div class="sidebar-thumb">
+                                <img class="animated rollIn"
+                                    src="http://shop.spotlayer.com/demo/soft-mag/demo1/wp-content/uploads/16555399183_33b1b1bc26_o-90x75.jpg"
+                                    alt="" />
+                            </div><!-- .Sidebar-thumb -->
+                            <div class="sidebar-content">
+                                <h5 class="animated bounceInRight"><a href="#">The Complete Guide to Medium
+                                        for Marketers</a></h5>
+                            </div><!-- .Sidebar-thumb -->
+                            <div class="sidebar-meta">
+                                <span class="time"><i class="fa fa-clock-o"></i> Aug 27, 2015</span>
+
+                            </div><!-- .Sidebar-meta ends here -->
+                        </li><!-- .Li ends here -->
+                        <li>
+                            <div class="sidebar-thumb">
+                                <img class="animated rollIn"
+                                    src="http://shop.spotlayer.com/demo/soft-mag/demo1/wp-content/uploads/8S64npOgTu2eWTZIXEfy_DSC_0955-90x75.jpg"
+                                    alt="" />
+                            </div><!-- .Sidebar-thumb -->
+                            <div class="sidebar-content">
+                                <h5 class="animated bounceInRight"><a href="#">Watch Now: How to Manipulate
+                                        the Media</a></h5>
+                            </div><!-- .Sidebar-thumb -->
+                            <div class="sidebar-meta">
+                                <span class="time"><i class="fa fa-clock-o"></i> Aug 27, 2015</span>
+
+                            </div><!-- .Sidebar-meta ends here -->
+                        </li><!-- .Li ends here -->
+                        <li>
+                            <div class="sidebar-thumb">
+                                <img class="animated rollIn"
+                                    src="http://shop.spotlayer.com/demo/soft-mag/demo1/wp-content/uploads/17153174816_a808becb66_o-90x75.jpg"
+                                    alt="" />
+                            </div><!-- .Sidebar-thumb -->
+                            <div class="sidebar-content">
+                                <h5 class="animated bounceInRight"><a href="#">OnePlus Inks First Carrier
+                                        Partnership with Malaysia</a></h5>
+                            </div><!-- .Sidebar-thumb -->
+                            <div class="sidebar-meta">
+                                <span class="time"><i class="fa fa-clock-o"></i> Aug 27, 2015</span>
+
+                            </div><!-- .Sidebar-meta ends here -->
+                        </li><!-- .Li ends here -->
+
+                    </ul><!-- .Ul ends here -->
+                </div><!-- .Widget ends here -->
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-5">
+        <div class="row bg-light">
+            <div class="col">
+                <div class="d-flex justify-content-center p-4">
+                    <h3>আমাদের কার্যক্রম সমূহ</h3>
+                    <ul class="mt-3">
+                        <li>সংগঠনটি সর্বদা অরাজনৈতিক ও সামাজিক স্বেচ্ছাসেবী সংগঠন হিসেবে কাজ করবে।</li>
+                        <li>গরীব ও মেধাবীদের মধ্যে শিক্ষা উপকরণ ও শিক্ষা সহায়তা প্রদান করা।</li>
+                        <li>অসহায় ও দুস্থদের সার্বিক সহায়তা করা।</li>
+                        <li>দুরারোগ্য ও ব্যয়বহুল চিকিৎসার রোগে আক্রান্ত রোগীকে সহায়তা প্রদান।</li>
+                        <li>গরীবদের মাঝে ইফতার সামগ্রী বিতরণ।</li>
+                        <li>যেকোনো প্রাকৃতিক দুর্যোগে ক্ষতিগ্রস্থদের পাশে দাড়ানো।</li>
+                        <li>মাদক,সন্ত্রাস,বাল্যবিবাহ রোধসহ সামাজিক অপরাধসমূহের বিরুদ্ধে সবাইকে সচেতন করা ও খেলাধুলা ও
+                            সামাজিক কাজকর্মে ছাত্র-যুবকদের অংশগ্রহণে সাহায্য করা।</li>
+                        <li>বৃক্ষরোপণ, পরিছন্ন ও পরিবেশবান্ধব কর্মকান্ডে অংশগ্রহণ করা।</li>
+                        <li>সংগঠনের সকল সদস্যদের মধ্যে ভ্রাতৃত্ববন্ধন সৃষ্টি করে ঐক্যবদ্ধভাবে সংগঠনটির লক্ষ্য ও উদ্দেশ্য
+                            বাস্তবায়ন করা এবং কল্যাণময় সবকিছুতে নিজেদের অন্তর্ভুক্ত করা।</li>
+
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    <!-----Background Image end----->
+    <div class="container-fluid mt-5 bg-light">
+        <div class="row">
+            <div class="col-1 d-none d-md-block"></div>
+            <div class="col">
+                <h3>প্রধান উপদেষ্ঠার বানী</h3>
+                <div class="wrapper">
 
+                    <img src="{% static 'images/Final-300x300.png' %}" alt="" class="logo">
 
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+                    <p>আমরা ভালবাসা, আশা এবং সামাজিক ন্যায়বিচার সমবেত একটি পৃথিবীর স্বপ্ন দেখি, যেখানে মানুষ মর্যাদা ও
+                        নিরাপত্তা নিয়ে বাস করবে। সমাজের অনগ্রসর শ্রেণীকে বিশেষভাবে চরম দরিদ্র, গৃহহীন ও অনাথ শিশুদেরকে
+                        শিক্ষা, পুষ্টি ও আশ্রয় সরবরাহের মাধ্যমে তাদের জাতির জন্য সম্পদে পরিণত করা আমাদের প্রধান লক্ষ্য।
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <h3>প্রধান উপদেষ্ঠা</h3>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{% static 'images/FB_IMG_1598079402580-243x300.jpg' %}" class="img-fluid"
+                                alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">জনাব আরমান রহমান</h5>
+                                <p class="card-text">বিভাগীয় প্রধান, ইতিহাস বিভাগ, লালমনিরহাট সরকারি কলেজ।</p>
+                                <p class="card-text"><small class="text-muted">সম্পাদক লালমনিরহাট জেলা রোভার।<br>
+
+                                        ২৯তম বিসিএস ক্যাডার কর্মকর্তা।</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-5 bg-light">
+        <div class="row">
+            <div class="col-1 d-none d-md-block"></div>
+            <div class="col">
+                <h3>সভাপতির বানী</h3>
+                <div class="wrapper">
+
+                    <img src="{% static 'images/Final-300x300.png' %}" alt="" class="logo">
+
+                    <p>সামাজিক জীব হিসেবে সমাজের জন্য,আমাদের আশেপাশের মানুষদের জন্য সামান্য কিছু করার মাঝে তৃপ্তি খুজে
+                        পাওয়ার চেতনা নিয়ে এই সংগঠনের কার্যক্রম পরিচালিত হচ্ছে,আমাদের সংগঠনের সদস্যরা বিশ্বাস করে ভোগে
+                        সুখ নেই ত্যাগেই প্রকৃত সুখ এবং দান করার জন্য ধনী হবার প্রয়োজন নেই সুন্দর ইচ্ছাশক্তিই যথেষ্ট।সবার
+                        ঐক্যবদ্ধ প্রচেষ্টায় সংগঠনটি সেবা ও মানবকল্যানমুখী কর্মকান্ডে সবসময় সক্রিয় থাকবে মর্মে আমি আশা
+                        করি
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <h3>সভাপতি</h3>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{% static 'images/00-300x298.jpg' %}" class="img-fluid" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">মো: সায়হান সৈকত</h5>
+                                <p class="card-text">সভাপতি</p>
+                                <p class="card-text"><small class="text-muted">পূর্ব বড়ুয়া তরুন সংঘ<br>
+
+                                        উদ্যোক্তা, কুলাঘাট ইউনিয়ন ডিজিটাল সেন্টার।</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-5" style="background-color: #ccc;">
+        <h3 class="p-5">ভিডিও গ্যালারী</h3>
+        <div id="carouselVideoControls" class="carousel slide" data-ride="carousel" data-interval="false">
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <div class="carousel-video-inner">
+                        <iframe width="681" height="383" src="https://www.youtube.com/embed/sgouNC8rUhY" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-video-inner">
+                        <iframe width="681" height="383" src="https://www.youtube.com/embed/sgouNC8rUhY" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselVideoControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselVideoControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
     <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
     <script src="{% static 'js/time.js' %}"></script>
 </body>
 
