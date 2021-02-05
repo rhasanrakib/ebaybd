@@ -1,7 +1,62 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
+@import url('https://fonts.googleapis.com/css2?family=Galada&display=swap');
 body {
     background-color: #27496e;
     font-family: "Raleway", sans-serif;
+    overflow-x: hidden;
+}
+
+a:hover, a:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+input:focus, textarea:focus {
+    outline: none !important;
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+    outline: none;
+}
+
+textarea:hover, input:hover, textarea:active, input:active, textarea:focus, input:focus, button:focus, button:active, button:hover, label:focus, .btn:active, .btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+}
+
+/*************Naaaav************/
+.navbar
+{
+    padding: 0px !important;
+    background-color: #9CD650;
+}
+#navbarNavDropdownSecond .navbar-nav .nav-item .nav-link {
+    color: #fff;
+    font-size: 18;
+   
+}
+
+nav ul a:hover {
+    color: #808080 !important;
+}
+
+nav li>a.underline:after {
+    content: '';
+    display: block;
+    height: 1.5px;
+    background: #808080;
+    transform: scaleX(0);
+    transition: transform .3s;
+}
+
+nav li>a.underline:hover:after {
+    transform: scaleX(1);
+    transition: transform .3s;
+}
+
+.active {
+    color: #808080 !important;
 }
 
 /*CAROUSEL*/
@@ -72,7 +127,6 @@ body {
 
 .carousel-control .icon-prev, .carousel-control .fa-chevron-left, .carousel-control .icon-right, .carousel-control .fa-chevron-right {
     border-radius: 50px;
-    
 }
 
 .carousel-control .icon-prev, .carousel-control .fa-chevron-left {
@@ -86,12 +140,6 @@ body {
 .carousel-item h3 {
     color: #FFF;
     border-left: none;
-}
-
-/*Second Nav*/
-
-#navbarNavDropdownSecond .navbar-nav .nav-item .nav-link {
-    color: Red;
 }
 
 /*Wrap text around Image*/
@@ -215,4 +263,350 @@ h1 {
 .carousel-video-inner {
     padding: 1rem;
     text-align: center;
+}
+
+.blog .carousel-indicators {
+    left: 0;
+    top: auto;
+    bottom: -40px;
+}
+
+.blog .carousel-indicators {
+    background: #707070;
+    /*color: red;*/
+}
+
+/****Subscription****/
+
+.subscriptionbox {
+    width: 100%;
+    padding: 20px 35px;
+    margin: 20px auto;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    color: #666;
+    font: 400 13px 'open sans', sans-serif;
+    line-height: 20px !important;
+}
+
+.subscriptionbox h2 {
+    font: 400 30px 'varela round', sans-serif;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #666;
+}
+
+.subscriptionbox .betextarea {
+    background: #222 url(http://www.rhism.com/images/email-icon.png) no-repeat;
+    background-size: 20px;
+    border: none;
+    background-position: 12px 14px;
+    height: 10px;
+    width: 100%;
+    padding: 20px 10px;
+    color: #fff;
+    text-indent: 40px;
+    outline: none;
+    margin-top: 10px;
+}
+
+.subscriptionbox .ratextarea {
+    background-size: 20px;
+    border: none;
+    height: 10px;
+    width: 100%;
+    padding: 20px 10px;
+    color: #fff;
+    text-indent: 40px;
+    outline: none;
+    margin-top: 10px;
+}
+
+.besubmit {
+    padding: 0;
+    height: 40px;
+    line-height: 40px !important;
+    width: 100%;
+    text-align: center;
+    font: 400 15px 'open sans', sans-serif;
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    display: block;
+    text-transform: uppercase;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+}
+
+.besubmit:hover {
+    background: #c0392b;
+}
+
+/*********Footer***********/
+
+.lower-footer {
+    background-color: #26272b;
+    padding: 45px 0 20px;
+    font-size: 15px;
+    line-height: 24px;
+    color: #737373;
+}
+
+.lower-footer hr {
+    border-top-color: #bbb;
+    opacity: 0.5
+}
+
+.lower-footer hr.small {
+    margin: 20px 0
+}
+
+.lower-footer h6 {
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    letter-spacing: 2px
+}
+
+.lower-footer a {
+    color: #737373;
+    text-decoration: none;
+}
+
+.lower-footer a:hover {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+.footer-links {
+    padding-left: 0;
+    list-style: none
+}
+
+.footer-links li {
+    display: block
+}
+
+.footer-links a {
+    color: #737373
+}
+
+.footer-links a:active, .footer-links a:focus, .footer-links a:hover {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+.footer-links.inline li {
+    display: inline-block
+}
+
+.lower-footer .social-icons {
+    text-align: right
+}
+
+.lower-footer .social-icons a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 6px;
+    margin-right: 0;
+    border-radius: 100%;
+    background-color: #33353d
+}
+
+.lower-footer .icon-mail::before {
+    content: '\f0e0';
+    font-family: FontAwesome;
+}
+
+.lower-footer .icon-phone::before {
+    content: '\f095';
+    font-family: FontAwesome;
+}
+
+.copyright-text {
+    margin: 0
+}
+
+@media (max-width:991px) {
+    .lower-footer [class^=col-] {
+        margin-bottom: 30px
+    }
+}
+
+@media (max-width:767px) {
+    .lower-footer {
+        padding-bottom: 0
+    }
+    .lower-footer .copyright-text, .lower-footer .social-icons {
+        text-align: center
+    }
+}
+
+.social-icons {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none
+}
+
+.social-icons li {
+    display: inline-block;
+    margin-bottom: 4px
+}
+
+.social-icons li.title {
+    margin-right: 15px;
+    text-transform: uppercase;
+    color: #96a2b2;
+    font-weight: 700;
+    font-size: 13px
+}
+
+.social-icons a {
+    background-color: #eceeef;
+    color: #818a91;
+    font-size: 16px;
+    display: inline-block;
+    line-height: 44px;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    margin-right: 8px;
+    border-radius: 100%;
+    -webkit-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear
+}
+
+.social-icons a:active, .social-icons a:focus, .social-icons a:hover {
+    color: #fff;
+    background-color: #29aafe
+}
+
+.social-icons.size-sm a {
+    line-height: 34px;
+    height: 34px;
+    width: 34px;
+    font-size: 14px
+}
+
+.social-icons a.facebook:hover {
+    background-color: #3b5998
+}
+
+.social-icons a.twitter:hover {
+    background-color: #00aced
+}
+
+.social-icons a.insta:hover {
+    background-color: #b8310f
+}
+
+.social-icons a.dribbble:hover {
+    background-color: #ea4c89
+}
+
+@media (max-width:767px) {
+    .social-icons li.title {
+        display: block;
+        margin-right: 0;
+        font-weight: 600
+    }
+}
+
+/**************Login Modal*****************/
+
+#loginModal .modal-content {
+    width: auto;
+    max-width: 360px;
+    height: auto;
+}
+
+#loginModal .modal-body {
+    height: 353px;
+    width: 360px;
+    padding: none;
+}
+
+.modal-body1 {
+    height: 406px !important;
+}
+
+.icon_login::before {
+    content: '\f09c';
+    font-family: FontAwesome;
+}
+
+.icon_reg::before {
+    content: '\f234';
+    font-family: FontAwesome;
+}
+
+/*body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6), url(https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/cats_and_excessive_meowing_ref_guide/1800x1200_cats_and_excessive_meowing_ref_guide.jpg));
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}*/
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: rgba(7, 40, 195, 0.8);
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+}
+
+.form input {
+    outline: 1;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form button {
+    text-transform: uppercase;
+    outline: 0;
+    background: #4caf50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.form button:hover, .form button:active {
+    background: #43a047;
+}
+
+.form .message {
+    margin: 0 0 15px;
+    color: aliceblue;
+    font-size: 12px;
+}
+
+.form .message a {
+    text-decoration: none;
+    color: #4caf50;
+}
+
+.form .register-form {
+    display: none;
 }

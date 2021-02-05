@@ -1,78 +1,201 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
-    {% block styles %}
-      
-    {% endblock styles %}
-      
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/all.css' %}">
+
+  {% block styles %}
+
+  {% endblock styles %}
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-light sticky-top">
+    <div class="container-fluid">
+      <div class="ml-auto">
+        <a href="#"><img class="navbar-brand" style="max-height: 90px;width: auto ;"
+            src="{% static 'images/Final.png' %}"></a>
+      </div>
+
+      <button class="navbar-toggler navbar-right" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdownSecond" aria-controls="navbarNavDropdownSecond" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdownSecond">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link underline" aria-current="page" href="#">Covid-19</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline" href="{% url 'home' %}">প্রথম পাতা</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDonate" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              দান
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownDonate">
+              <li><a class="dropdown-item" href="#">দান করুন</a></li>
+              <li><a class="dropdown-item" href="#">দানের তথ্য পূরন</a></li>
+              <li><a class="dropdown-item" href="#">ব্যাংকের তথ্য</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuAboutUs" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              আমাদের সম্পর্কে
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAboutUs">
+
+              <li><a class="dropdown-item" href="#">আমাদের সম্পর্কে</a></li>
+              <li><a class="dropdown-item" href="#">আমাদের সাথে যোগাযোগ করুন</a></li>
+              <li><a class="dropdown-item" href="#">আমাদের অভিযান সমূহ</a></li>
+              <li><a class="dropdown-item" href="#">প্রয়োজনীয় প্রশ্ন ও উত্তর</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMedia" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              মিডিয়া
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMedia">
+              <li><a class="dropdown-item" href="#">প্রেস বিজ্ঞপ্তি</a></li>
+              <li><a class="dropdown-item" href="#">ফটো গ্যালারী</a></li>
+              <li><a class="dropdown-item" href="#">ভিডিও গ্যালারী</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCases" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              প্রকল্প সমূহ
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCases">
+              <li><a class="dropdown-item" href="{% url 'projects' %}">বৃক্ষ রোপন কর্মসূচী</a></li>
+              <li><a class="dropdown-item" href="#">শিক্ষা সহায়তা</a></li>
+              <li><a class="dropdown-item" href="#">শীত বস্ত্র বিতরন</a></li>
+              <li><a class="dropdown-item" href="#">অসহায় মানুষেদের চিকিৎসা সেবায় সহযোগিতা প্রদান</a></li>
+              <li><a class="dropdown-item" href="#">খাদ্য সামগ্রী বিতরন</a></li>
+              <li><a class="dropdown-item" href="#">খেলা ও ধুলা</a></li>
+              <li><a class="dropdown-item" href="#">বিভিন্ন উৎসব পালন</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline" href="#">যোগাযোগ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline" href="#" role="button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+          </li>
+        </ul>
+      </div>
+      <div class="ms-auto d-none d-lg-block">
+        <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+                {{date_bd.date}} {{date_bd.month}} {{date_bd.year}} বঙ্গাব্দ {{date_bd.time}}{{date_bd.weekday}}<br>
+                <span id="time_span"></span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
+                
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+
+        </ul>
+    </div>
+    </div>
+  </nav>
+  {% block container %}
+
+  {% endblock container %}
+  <!-- Site footer -->
+  <footer class="lower-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>আমাদের কার্যক্রম</h6>
+          <p class="text-justify">অরাজনৈতিক, অলাভজনক ও সেচ্ছাসেবী সামাজিক সংগঠন “পূর্ব বড়ুয়া তরুন সংঘ” আমরাই তরুন, আমরাই
+            উদ্যোমি এই স্লোগান নিয়ে ১৩ এপ্রিল ২০১৭ সালে প্রতিষ্ঠিত হয়। সংগঠনটি তার প্রতিষ্ঠালগ্ন থেকে মেধাবী
+            শিক্ষার্থীদের সংবর্ধনা,গরীব শিক্ষার্থীদের আর্থিক সহযোগিতা করা,বন্যায় ক্ষতিগ্রস্থদের সাহায্য, সম্প্রতি করোনা
+            ভাইরাসের কর্মহীন অসহায় মানুষের মাঝে খাদ্য সামগ্রী বিতরন, অসহায় দুঃস্থদের মাঝে ইফতার সামগ্রীসহ ঈদবস্ত্র
+            বিতরণ, শীতার্থদের মাঝে শীতবস্ত্র বিতরণ, বৃক্ষরোপণ কর্মসূচী, মাদক-সন্ত্রাস-বাল্যবিবাহ ও সামাজিক অপরাধবিরোধী
+            সচেতনতামূলক সভা, রক্তদান কর্মসূচি</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>পরিদর্শন</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/category/c-language/">বৃক্ষ রোপন কর্মসূচী</a></li>
+            <li><a href="http://scanfcode.com/category/front-end-development/">চিকিৎসা সহায়তা</a></li>
+            <li><a href="http://scanfcode.com/category/back-end-development/">খাদ্য সহায়তা</a></li>
+            <li><a href="http://scanfcode.com/category/java-programming-language/">শিক্ষা সহায়তা</a></li>
+            <li><a href="http://scanfcode.com/category/android/">ফটো গ্যালারী</a></li>
+            <li><a href="http://scanfcode.com/category/templates/">ভিডিও গ্যালারী</a></li>
+            <li><a href="http://scanfcode.com/category/templates/">প্রেস বিজ্ঞপ্তি</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>সাহায্য</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/about/">প্রতিষ্ঠানের সূচনা</a></li>
+            <li><a href="http://scanfcode.com/contact/">প্রয়োজনীয় প্রশ্ন ও উত্তর</a></li>
+            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">উপদেষ্ঠা</a></li>
+            <li><a href="http://scanfcode.com/privacy-policy/">
+                কার্যকরী কমিটি</a></li>
+            <li><a href="http://scanfcode.com/sitemap/">দান করুন</a></li>
+            <li><a href="http://scanfcode.com/sitemap/">ব্যাংকের তথ্য</a></li>
+            <li><a href="http://scanfcode.com/sitemap/">যোগাযোগ</a></li>
           </ul>
         </div>
       </div>
-    </nav>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <span>যোগাযোগ করুন</span>
+          <p class="copyright-text">পূর্ব বড়ুয়া তরুন সংঘ<br>
+            ডাকঘর- কুলাঘাট, উপজেলা ও জেলা- লামনিরহাট।
+          </p>
+          <p><strong><span class="icon-mail"><a href="mailto:eastbarua.youthassociation@gmail.com">
+                  eastbarua.youthassociation@gmail.com</a></span></strong></p>
+          <p><strong><span class="icon-mail"><a href="mailto:info@ebyabd.com"> info@ebyabd.com</a> </span></strong></p>
+          <p><strong><span class="icon-mail"> <a href="mailto:support@ebyabd.com">
+                  support@ebyabd.com</a></span></strong></p>
+          <p><strong><span class="icon-phone"><a href="tel:+8801744769331"></a> 01744769331</span></strong></p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="https://www.facebook.com/EBYAssociation/"><i
+                  class="fab fa-facebook-f"></i></a></li>
+            <li><a class="twitter" href="http://ebyabd.com/#"><i class="fab fa-twitter"></i></a></li>
+            <li><a class="insta" href="http://ebyabd.com/#"><i class="fab fa-instagram-square"></i></a></li>
           </ul>
         </div>
       </div>
-    </nav>
-    {% block container %}
-      
-    {% endblock container %}
-    
-    {% block js %}
-    {% endblock js %}
-      
-      
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.js' %}"></script>
-  </body>
+      <hr>
+    </div>
+    <div class="container">
+      <p class="copyright-text">
+        পূর্ব বড়ুয়া তরুন সংঘ ©  All rights reserved.  <a href="#">শর্তবালী</a> and <a href="#">Privacy</a>
+      </p>
+    </div>
+  </footer>
+  {% block js %}
+  {% endblock js %}
+  {% include 'login_modal.html' %}
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/time.js' %}"></script>
+</body>
+
 </html>
