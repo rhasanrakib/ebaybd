@@ -47,4 +47,3 @@ class Projects(models.Model):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.project_title
 
-    
