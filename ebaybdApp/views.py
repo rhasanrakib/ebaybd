@@ -10,3 +10,6 @@ def project_view(request,title):
     project_list = Projects.objects.get(project_title=title)
     print(project_list)
     return render(request, 'projects.html',{'context':project_list})  
+
+def contactus_view(request):
+    return render(request, 'contactus.html')
