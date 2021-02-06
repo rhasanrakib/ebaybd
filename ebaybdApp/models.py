@@ -12,7 +12,8 @@ class Projects(models.Model):
     project_title = models.CharField(max_length=100, help_text=' প্রকল্পের শিরোনাম দিন ')
     description = HTMLField(help_text=' বর্ন্না লিখুন ',blank=True)
     created_date = models.DateTimeField('date created', default=timezone.now)
-    slug = AutoSlugField(populate_from='title')
+    slug = AutoSlugField(populate_from='project_title')
+    
     slide_image1 = ResizedImageField(size=[500, 500],
         upload_to='images/', help_text='News Picture(*Automatic convert into 500*500 )', blank=True)
     slide_image2 = ResizedImageField(size=[500, 500],
@@ -30,6 +31,8 @@ class Projects(models.Model):
     def slugify_function(self, content):
         return content.replace('_', '-').lower()
     
+    def __unicode__(self):
+        return self.project_title
     
     # Metadata
     class Meta:
@@ -38,7 +41,7 @@ class Projects(models.Model):
     # Methods
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
-        return reverse('Projects', args=[str(slug)])
+        return reverse("projects", kwargs={'title': self.slug})
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""

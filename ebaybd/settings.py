@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'ebaybdApp.context_processors.contain_date',
+                'ebaybdApp.context_processors.project',
             ],
         },
     },

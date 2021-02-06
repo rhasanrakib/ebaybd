@@ -87,13 +87,20 @@
               প্রকল্প সমূহ
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCases">
-              <li><a class="dropdown-item" href="{% url 'projects' %}">বৃক্ষ রোপন কর্মসূচী</a></li>
+              
+              {% for i in context_project %}
+              <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>  
+              {% endfor %}
+                
+              
+              <!--
               <li><a class="dropdown-item" href="#">শিক্ষা সহায়তা</a></li>
               <li><a class="dropdown-item" href="#">শীত বস্ত্র বিতরন</a></li>
               <li><a class="dropdown-item" href="#">অসহায় মানুষেদের চিকিৎসা সেবায় সহযোগিতা প্রদান</a></li>
               <li><a class="dropdown-item" href="#">খাদ্য সামগ্রী বিতরন</a></li>
               <li><a class="dropdown-item" href="#">খেলা ও ধুলা</a></li>
               <li><a class="dropdown-item" href="#">বিভিন্ন উৎসব পালন</a></li>
+              -->
             </ul>
           </li>
           <li class="nav-item">
