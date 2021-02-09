@@ -20,7 +20,7 @@ Ebyabd uses a number of open source projects to work properly:
 
 * [Bootstrap 5](https://getbootstrap.com/) - great UI boilerplate for modern web apps!
 * [Django](https://www.djangoproject.com/) - awesome web-based text editor
-* [jQuery] - duh
+* [jQuery](https://jquery.com/) - duh
 
 
 ### Installation
