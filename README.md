@@ -1,8 +1,7 @@
 # ebyabd
- *[Herokuapp](https://ebyabd.herokuapp.com/) 
 
+[![Heroku](http://heroku-badge.herokuapp.com/?app=heroku-badge&root=projects.html)](https://ebyabd.herokuapp.com/)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 This is a Django based project for a Volunteer Organization named পূর্ব বড়ুয়া তরুন সংঘ
 
