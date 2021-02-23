@@ -17,62 +17,33 @@
             {{context.description|safe}}
 
         </div>
+        
         <div id="carouselProjectsIndicators" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
 
-                {% if context.slide_image1.url and context.slide_image1.url.strip %}
-                <li data-bs-target="#carouselProjectsIndicators" data-bs-slide-to="0" class="active"></li>
-                {% endif %}
-                {% if context.slide_image2.url and context.slide_image2.url.strip %}
-                <li data-bs-target="#carouselProjectsIndicators" data-bs-slide-to="1"></li>
-                {% endif %}
-                {% if context.slide_image3.url and context.slide_image3.url.strip %}
-                <li data-bs-target="#carouselProjectsIndicators" data-bs-slide-to="2"></li>
-                {% endif %}
-                {% if context.slide_image4.url and context.slide_image4.url.strip %}
-                <li data-bs-target="#carouselProjectsIndicators" data-bs-slide-to="3"></li>
-                {% endif %}
-                {% if context.slide_image5.url and context.slide_image5.url.strip %}
-                <li data-bs-target="#carouselProjectsIndicators" data-bs-slide-to="4"></li>
-                {% endif %}
-
+                {% for p in photos %}
+                <li data-bs-target="#carouselProjectsIndicators" data-bs-slide-to="{{forloop.counter0}}" class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+                {% endfor %}
+    
             </ol>
             <div class="carousel-inner">
-                {% if context.slide_image1.url and context.slide_image1.url.strip %}
-                <div class="carousel-item active">
-                    <img src="{{context.slide_image1.url}}" class="d-block w-100" alt="...">
+                {% for p in photos %}
+                <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                    <img src="{{p.image.url}}" class="d-block w-100" alt="slide images">
                 </div>
-                {% endif %}
-                {% if context.slide_image2.url and context.slide_image2.url.strip %}
-                <div class="carousel-item">
-                    <img src="{{context.slide_image2.url}}" class="d-block w-100" alt="...">
-                </div>
-                {% endif %}
-                {% if context.slide_image3.url and context.slide_image3.url.strip %}
-                <div class="carousel-item">
-                    <img src="{{context.slide_image3.url}}" class="d-block w-100" alt="...">
-                </div>
-                {% endif %}
-                {% if context.slide_image4.url and context.slide_image4.url.strip %}
-                <div class="carousel-item">
-                    <img src="{{context.slide_image4.url}}" class="d-block w-100" alt="...">
-                </div>
-                {% endif %}
-                {% if context.slide_image5.url and context.slide_image5.url.strip %}
-                <div class="carousel-item">
-                    <img src="{{context.slide_image5.url}}" class="d-block w-100" alt="...">
-                </div>
-                {% endif %}
+                {% endfor %}
+                
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+            <a class="carousel-control-prev" href="#carouselProjectsIndicators" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+            <a class="carousel-control-next" href="#carouselProjectsIndicators" role="button" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </a>
         </div>
+        
         <div id="copyright">
             পূর্ব বড়ুয়া তরুন সংঘ © All rights reserved
         </div>

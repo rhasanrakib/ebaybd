@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from . models import Projects
+from django.shortcuts import render,get_object_or_404
+from . models import Projects,Image_for_projects,Covid19,Image_for_covid19
 
 def home_view(request):
     
@@ -7,9 +7,19 @@ def home_view(request):
 
 
 def project_view(request,title):
-    project_list = Projects.objects.get(project_title=title)
-    print(project_list)
-    return render(request, 'projects.html',{'context':project_list})  
+    #project_list = Projects.objects.get(project_title=title)
+    #print(project_list)
+    project_list=get_object_or_404(Projects,project_title=title)
+    photos = Image_for_projects.objects.filter(modelForImage=project_list)
+    return render(request, 'projects.html',{'context':project_list,'photos':photos})  
+
+def covid19_view(request):
+    #project_list = Projects.objects.get(project_title=title)
+    #print(project_list)
+    project_list=Covid19.objects.all()
+    photos = Image_for_covid19.objects.all()
+    return render(request, 'projects.html',{'context':project_list,'photos':photos})  
+
 
 def contactus_view(request):
     return render(request, 'contactus.html')

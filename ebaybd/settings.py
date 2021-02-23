@@ -82,12 +82,8 @@ WSGI_APPLICATION = 'ebaybd.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'de3ols22d6f1nt',
-        'USER': 'pzpuawggkfnytz',
-        'PASSWORD': 'a989074d13ff72b654e0dd5e9dfdae3f356ed14799ca762a1ddd8860dd5fbba3',
-        'HOST': 'ec2-54-211-77-238.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
