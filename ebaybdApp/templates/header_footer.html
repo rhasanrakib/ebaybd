@@ -61,13 +61,13 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAboutUs">
               <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">কমিটি</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">উপদেষ্ঠা</a></li>
-                  <li><a class="dropdown-item" href="#">কার্যকরী কমিটি</a></li>
-                  <li><a class="dropdown-item" href="#">স্বেচ্ছাসেবক</a></li>
+                  <li><a class="dropdown-item" href="{% url 'committee' title='advisor' %}">উপদেষ্ঠা</a></li>
+                  <li><a class="dropdown-item" href="{% url 'committee' title='executive' %}">কার্যকরী কমিটি</a></li>
+                  <li><a class="dropdown-item" href="{% url 'committee' title='volunteer' %}">স্বেচ্ছাসেবক</a></li>
                 </ul>
               </li>
               <li><a class="dropdown-item" href="#">আমাদের সম্পর্কে</a></li>
-              <li><a class="dropdown-item" href="#">আমাদের সাথে যোগাযোগ করুন</a></li>
+              <li><a class="dropdown-item" href="{% url 'contactus' %}">আমাদের সাথে যোগাযোগ করুন</a></li>
               <li><a class="dropdown-item" href="#">আমাদের অভিযান সমূহ</a></li>
               <li><a class="dropdown-item" href="#">প্রয়োজনীয় প্রশ্ন ও উত্তর</a></li>
             </ul>
@@ -94,15 +94,6 @@
               <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>  
               {% endfor %}
                 
-              
-              <!--
-              <li><a class="dropdown-item" href="#">শিক্ষা সহায়তা</a></li>
-              <li><a class="dropdown-item" href="#">শীত বস্ত্র বিতরন</a></li>
-              <li><a class="dropdown-item" href="#">অসহায় মানুষেদের চিকিৎসা সেবায় সহযোগিতা প্রদান</a></li>
-              <li><a class="dropdown-item" href="#">খাদ্য সামগ্রী বিতরন</a></li>
-              <li><a class="dropdown-item" href="#">খেলা ও ধুলা</a></li>
-              <li><a class="dropdown-item" href="#">বিভিন্ন উৎসব পালন</a></li>
-              -->
             </ul>
           </li>
           <li class="nav-item">

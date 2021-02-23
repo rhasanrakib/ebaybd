@@ -44,7 +44,7 @@ class Image_for_projects(models.Model):
     modelForImage = models.ForeignKey(Projects, on_delete=models.CASCADE)
 
     image = ResizedImageField(size=[500, 500],
-                              upload_to='images/', help_text='Picture *Automatic convert into 500*500 pixel', blank=True)
+                              upload_to='images/', help_text='Picture *Automatic convert into 500*500 pixel', blank=True,quality=-1)
 
 
 class Covid19(models.Model):
@@ -77,7 +77,7 @@ class Image_for_covid19(models.Model):
     modelForImage = models.ForeignKey(Covid19, on_delete=models.CASCADE)
 
     image = ResizedImageField(size=[500, 500],
-                              upload_to='images/', help_text='Picture *Automatic convert into 500*500 pixel', blank=True)
+                              upload_to='images/', help_text='Picture *Automatic convert into 500*500 pixel', blank=True,quality=-1)
 
 
 class Donate(models.Model):
@@ -124,11 +124,15 @@ class ExecutiveCommittee(models.Model):
     designation = models.CharField(
         max_length=100, help_text=' পদবী ')
     occupation = models.CharField(
-        max_length=100, help_text=' পেশা ')
+        max_length=100, help_text=' পেশা ',blank=True)
     organization = models.CharField(
-        max_length=100, help_text=' প্রতিষ্ঠান ')
+        max_length=100, help_text=' প্রতিষ্ঠান ',blank=True)
+    phone = models.CharField(
+        max_length=100, help_text=' ফোন নম্বর ',blank=True)
+    Address = models.CharField(
+        max_length=100, help_text=' ঠিকানা ',blank=True)
     image = ResizedImageField(
-        upload_to='images/', help_text='Profile Picture', blank=True)
+        upload_to='images/', help_text='Profile Picture', blank=True,quality=-1)
 
     def __str__(self):
         s = str(self.serial)+" "+self.name
@@ -148,11 +152,15 @@ class AdvisorCommittee(models.Model):
     designation = models.CharField(
         max_length=100, help_text=' পদবী ')
     occupation = models.CharField(
-        max_length=100, help_text=' পেশা ')
+        max_length=100, help_text=' পেশা ',blank=True)
     organization = models.CharField(
-        max_length=100, help_text=' প্রতিষ্ঠান ')
+        max_length=100, help_text=' প্রতিষ্ঠান ',blank=True)
+    phone = models.CharField(
+        max_length=100, help_text=' ফোন নম্বর ',blank=True)
+    Address = models.CharField(
+        max_length=100, help_text=' ঠিকানা ',blank=True)
     image = ResizedImageField(
-        upload_to='images/', help_text='Profile Picture', blank=True)
+        upload_to='images/', help_text='Profile Picture', blank=True,quality=-1)
 
     def __str__(self):
         s = str(self.serial)+" "+self.name
@@ -170,13 +178,17 @@ class VolunteerCommittee(models.Model):
     name = models.CharField(
         max_length=100, help_text=' নাম  ')
     designation = models.CharField(
-        max_length=100, help_text=' পদবী ')
+        max_length=100, help_text=' পদবী ' , default='স্বেচ্ছাসেবক')
     occupation = models.CharField(
-        max_length=100, help_text=' পেশা ')
+        max_length=100, help_text=' পেশা ',blank=True)
     organization = models.CharField(
-        max_length=100, help_text=' প্রতিষ্ঠান ')
-    image = ResizedImageField(
-        upload_to='images/', help_text='Profile Picture', blank=True)
+        max_length=100, help_text=' প্রতিষ্ঠান ',blank=True)
+    phone = models.CharField(
+        max_length=100, help_text=' ফোন নম্বর ',blank=True)
+    Address = models.CharField(
+        max_length=100, help_text=' ঠিকানা ',blank=True)
+    image=models.ImageField(upload_to='images/',help_text='Profile Picture', blank=True)
+    
 
     def __str__(self):
         s = str(self.serial)+" "+self.name
