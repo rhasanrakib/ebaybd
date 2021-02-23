@@ -16,7 +16,7 @@ def project_view(request,title):
 def covid19_view(request):
     #project_list = Projects.objects.get(project_title=title)
     #print(project_list)
-    project_list=Covid19.objects.all()
+    project_list=Covid19.objects.first()
     photos = Image_for_covid19.objects.all()
     return render(request, 'projects.html',{'context':project_list,'photos':photos})  
 

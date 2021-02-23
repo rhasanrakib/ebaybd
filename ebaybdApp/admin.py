@@ -39,4 +39,3 @@ class Projects_Images(admin.ModelAdmin):
 class Covid19_Images(admin.ModelAdmin):
     pass
 
-

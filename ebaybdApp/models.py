@@ -21,7 +21,7 @@ class Projects(models.Model):
     
     # Auto Slug
     def slugify_function(self, content):
-        return content.replace('_', '-').lower()
+        return content.replace('_', '-')
 
     def __unicode__(self):
         return self.project_title
@@ -45,6 +45,8 @@ class Image_for_projects(models.Model):
 
     image = ResizedImageField(size=[500, 500],
                               upload_to='images/', help_text='Picture *Automatic convert into 500*500 pixel', blank=True)
+
+
 
 class Covid19(models.Model):
     """A typical class defining a model, derived from the Model class."""
