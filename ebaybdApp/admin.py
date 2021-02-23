@@ -1,8 +1,10 @@
 from django.contrib import admin
-from . models import Projects,Image_for_projects,Covid19,Image_for_covid19
+from . models import Projects,Image_for_projects,Covid19,Image_for_covid19,Donate,ExecutiveCommittee,AdvisorCommittee,VolunteerCommittee
 
-#admin.site.register(Projects)
-#admin.site.register(Image_for_projects)
+admin.site.register(Donate)
+admin.site.register(ExecutiveCommittee)
+admin.site.register(AdvisorCommittee)
+admin.site.register(VolunteerCommittee)
 
 #Show the images models Inline
 class Projects_Images(admin.StackedInline):

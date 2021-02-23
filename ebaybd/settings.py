@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'ebaybdApp.context_processors.contain_date',
                 'ebaybdApp.context_processors.project',
+                'ebaybdApp.context_processors.donate',
             ],
         },
     },

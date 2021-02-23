@@ -1,7 +1,7 @@
 
 import bangla
 import time
-from . models import Projects
+from . models import Projects,Donate
 
 def contain_date(request):
     bangla_date = bangla.get_date()
@@ -9,3 +9,7 @@ def contain_date(request):
 def project(request):
     project_list = Projects.objects.all()
     return {'context_project':project_list}
+
+def donate(request):
+    donate_list = Donate.objects.all()
+    return {'context_donate':donate_list}

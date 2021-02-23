@@ -45,10 +45,12 @@
               data-bs-toggle="dropdown" aria-expanded="false">
               দান
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownDonate">
-              <li><a class="dropdown-item" href="#">দান করুন</a></li>
-              <li><a class="dropdown-item" href="#">দানের তথ্য পূরন</a></li>
-              <li><a class="dropdown-item" href="#">ব্যাংকের তথ্য</a></li>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCases">
+              
+              {% for i in context_donate %}
+              <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>  
+              {% endfor %}
+              <li><a class="dropdown-item" href="#">দানের তথ্য পূরণ করুন </a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
