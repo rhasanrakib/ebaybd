@@ -6,7 +6,11 @@ urlpatterns = [
     path('project/<str:title>/',views.project_view, name='projects'),
     path('donate/<str:title>/',views.donate_view, name='donate'),
     path('committee/<str:title>/',views.committee_view, name='committee'),
+    path('about/<str:title>/',views.aboutus_view, name='about'),
     path('covid19/',views.covid19_view, name='Covid19'),
+    path('photo_gallery/',views.photo_gallery_view, name='photo_gallery'),
+    path('videos/',views.video_gallery_view, name='videos'),
     path('যোগাযোগ/',views.contactus_view, name='contactus'),
+    path('recent_news/',views.recent_news_view, name='recent_news'),
 
 ]

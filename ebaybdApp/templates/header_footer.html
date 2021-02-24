@@ -46,9 +46,9 @@
               দান
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCases">
-              
+
               {% for i in context_donate %}
-              <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>  
+              <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
               {% endfor %}
               <li><a class="dropdown-item" href="#">দানের তথ্য পূরণ করুন </a></li>
             </ul>
@@ -66,10 +66,10 @@
                   <li><a class="dropdown-item" href="{% url 'committee' title='volunteer' %}">স্বেচ্ছাসেবক</a></li>
                 </ul>
               </li>
-              <li><a class="dropdown-item" href="#">আমাদের সম্পর্কে</a></li>
+              {% for i in context_aboutus %}
+              <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
+              {% endfor %}
               <li><a class="dropdown-item" href="{% url 'contactus' %}">আমাদের সাথে যোগাযোগ করুন</a></li>
-              <li><a class="dropdown-item" href="#">আমাদের অভিযান সমূহ</a></li>
-              <li><a class="dropdown-item" href="#">প্রয়োজনীয় প্রশ্ন ও উত্তর</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -78,9 +78,9 @@
               মিডিয়া
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMedia">
-              <li><a class="dropdown-item" href="#">প্রেস বিজ্ঞপ্তি</a></li>
-              <li><a class="dropdown-item" href="#">ফটো গ্যালারী</a></li>
-              <li><a class="dropdown-item" href="#">ভিডিও গ্যালারী</a></li>
+              <li><a class="dropdown-item" href="{% url 'recent_news' %}">প্রেস বিজ্ঞপ্তি</a></li>
+              <li><a class="dropdown-item" href="{% url 'photo_gallery' %}">ফটো গ্যালারী</a></li>
+              <li><a class="dropdown-item" href="{% url 'videos' %}">ভিডিও গ্যালারী</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -89,11 +89,11 @@
               প্রকল্প সমূহ
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCases">
-              
+
               {% for i in context_project %}
-              <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>  
+              <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
               {% endfor %}
-                
+
             </ul>
           </li>
           <li class="nav-item">

@@ -70,6 +70,7 @@ TEMPLATES = [
                 'ebaybdApp.context_processors.contain_date',
                 'ebaybdApp.context_processors.project',
                 'ebaybdApp.context_processors.donate',
+                'ebaybdApp.context_processors.aboutus',
             ],
         },
     },

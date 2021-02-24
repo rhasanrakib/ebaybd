@@ -17,22 +17,23 @@
             {{context.description|safe}}
 
         </div>
-        
+
         <div id="carouselProjectsIndicators" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
 
                 {% for p in photos %}
-                <li data-bs-target="#carouselProjectsIndicators" data-bs-slide-to="{{forloop.counter0}}" class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+                <li data-bs-target="#carouselProjectsIndicators" data-bs-slide-to="{{forloop.counter0}}"
+                    class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
                 {% endfor %}
-    
+
             </ol>
             <div class="carousel-inner">
                 {% for p in photos %}
                 <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-                    <img src="{{p.image.url}}" class="d-block w-100" alt="slide images">
+                    <img src="{{p.image.url}}" style="max-height: 450px;" class="d-block w-100" alt="slide images">
                 </div>
                 {% endfor %}
-                
+
             </div>
             <a class="carousel-control-prev" href="#carouselProjectsIndicators" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -44,6 +45,42 @@
             </a>
         </div>
         
+        {% if  videos %}
+            
+        
+            
+        <div id="carouselVideoControls" class="carousel slide"  data-interval="false">
+            
+            <div class="carousel-inner">
+                <div class="carousel-video-inner">
+                    {% for v in videos %}
+                    <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                        <iframe width="681" height="383" src="{{v.external_video_storage}}" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+            
+            
+            <a class="carousel-control-prev" href="#carouselVideoControls" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselVideoControls" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+            
+                
+            
+        </div>
+        {% endif %}
+
         <div id="copyright">
             পূর্ব বড়ুয়া তরুন সংঘ © All rights reserved
         </div>

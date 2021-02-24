@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from . models import Projects, Image_for_projects, Covid19, Image_for_covid19, Donate, AdvisorCommittee, ExecutiveCommittee, VolunteerCommittee
+from . models import *
 
 
 def home_view(request):
@@ -28,6 +28,10 @@ def donate_view(request, title):
     # print(project_list)
     return render(request, 'projects.html', {'context': donate_list})
 
+def aboutus_view(request, title):
+    aboutus_list = About_Us.objects.get(project_title=title)
+    # print(project_list)
+    return render(request, 'projects.html', {'context': aboutus_list})
 
 def committee_view(request, title):
     committee=""
@@ -46,3 +50,19 @@ def committee_view(request, title):
 
 def contactus_view(request):
     return render(request, 'contactus.html')
+def photo_gallery_view(request):
+    photos = Image_for_Photo_Gallery.objects.all()
+    project_title={
+        'project_title':"ফটো গ্যালারী",
+    }
+    return render(request, 'projects.html', {'context': project_title, 'photos': photos})
+
+def video_gallery_view(request):
+    videos = Link_for_Video_Gallery.objects.all()
+    project_title={
+        'project_title':"ভিডিও গ্যালারী",
+    }
+    return render(request, 'projects.html', {'context': project_title, 'videos': videos})
+
+def recent_news_view(request):
+    return render(request, 'news.html')

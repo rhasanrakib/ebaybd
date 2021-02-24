@@ -631,8 +631,6 @@ h1 {
 
 /*************Projects Pages ***************/
 
-
-
 #projects {
     width: 100%;
     height: 100%;
@@ -714,11 +712,34 @@ h1 {
     color: #08d4c4;
 }
 
+#carouselVideoControls .carousel-control-next-icon {
+    color: white;
+    background-color: black;
+}
+
+#carouselVideoControls .carousel-control-prev-icon {
+    color: white;
+    background-color: black;
+}
+
 /******Contactus*****/
-.bgfixedimg
-{
+
+.bgfixedimg {
     background-image: url("../images/home-slider-1.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+}
+
+/****************News ***************************/
+#news-container
+{
+    background-color: #fff;
+}
+#news-container .card {
+	width: 100%
+}
+#news-container a
+{
+    text-decoration: none;
 }
