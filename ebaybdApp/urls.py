@@ -12,5 +12,6 @@ urlpatterns = [
     path('videos/',views.video_gallery_view, name='videos'),
     path('যোগাযোগ/',views.contactus_view, name='contactus'),
     path('recent_news/',views.recent_news_view, name='recent_news'),
+    path('recent_news/<str:title>/',views.news_view, name='newsdetails'),
 
 ]

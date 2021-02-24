@@ -3,14 +3,14 @@ from . models import *
 
 
 def home_view(request):
-
-    return render(request, 'home.html')
+    news_list = Recent_News.objects.all()
+    return render(request, 'home.html',{'news':news_list})
 
 
 def project_view(request, title):
     #project_list = Projects.objects.get(project_title=title)
     # print(project_list)
-    project_list = get_object_or_404(Projects, project_title=title)
+    project_list = get_object_or_404(Projects, slug=title)
     photos = Image_for_projects.objects.filter(modelForImage=project_list)
     return render(request, 'projects.html', {'context': project_list, 'photos': photos})
 
@@ -24,12 +24,12 @@ def covid19_view(request):
 
 
 def donate_view(request, title):
-    donate_list = Donate.objects.get(project_title=title)
+    donate_list = Donate.objects.get(slug=title)
     # print(project_list)
     return render(request, 'projects.html', {'context': donate_list})
 
 def aboutus_view(request, title):
-    aboutus_list = About_Us.objects.get(project_title=title)
+    aboutus_list = About_Us.objects.get(slug=title)
     # print(project_list)
     return render(request, 'projects.html', {'context': aboutus_list})
 
@@ -65,4 +65,10 @@ def video_gallery_view(request):
     return render(request, 'projects.html', {'context': project_title, 'videos': videos})
 
 def recent_news_view(request):
-    return render(request, 'news.html')
+    news_list = Recent_News.objects.all()
+    return render(request, 'pressbriefing.html',{'news':news_list})
+
+def news_view(request,title):
+    news_list = Recent_News.objects.all().exclude(slug=title)
+    news = get_object_or_404(Recent_News, slug=title)
+    return render(request, 'news.html',{'news':news,'sug':news_list})

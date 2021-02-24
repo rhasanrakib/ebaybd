@@ -322,7 +322,7 @@ class Recent_News(models.Model):
     # Methods
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
-        return reverse("recent_news", kwargs={'title': self.slug})
+        return reverse("newsdetails", kwargs={'title': self.slug})
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""

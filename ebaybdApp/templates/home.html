@@ -118,51 +118,31 @@
             <div class="sidebar widget p-4">
                 <h3>সর্বশেষ কার্যক্রম</h3>
                 <ul>
-                    <li>
+
+                    {% for i in news %}
+
+                    {% if forloop.counter < 4 %} <li>
                         <div class="sidebar-thumb">
-                            <img class="animated rollIn"
-                                src="http://shop.spotlayer.com/demo/soft-mag/demo1/wp-content/uploads/16555399183_33b1b1bc26_o-90x75.jpg"
-                                alt="" />
+                            {% if i.image1 %}
+                            <img src="{{k.image1.url}}" style="max-height: 300px;" class="img-fluid">
+                            {% else %}
+                            <img src="{% static 'images/Final.png' %}" style="max-height: 300px;" class="img-fluid">
+
+                            {% endif %}
                         </div><!-- .Sidebar-thumb -->
                         <div class="sidebar-content">
-                            <h5 class="animated bounceInRight"><a href="#">The Complete Guide to Medium
-                                    for Marketers</a></h5>
+                            <h5 class="animated bounceInRight"><a href="{{i.get_absolute_url}}">
+                                    <h6>{{i.title}}</h6>
+                                </a></h5>
                         </div><!-- .Sidebar-thumb -->
                         <div class="sidebar-meta">
                             <span class="time"><i class="fa fa-clock-o"></i> Aug 27, 2015</span>
 
                         </div><!-- .Sidebar-meta ends here -->
-                    </li><!-- .Li ends here -->
-                    <li>
-                        <div class="sidebar-thumb">
-                            <img class="animated rollIn"
-                                src="http://shop.spotlayer.com/demo/soft-mag/demo1/wp-content/uploads/8S64npOgTu2eWTZIXEfy_DSC_0955-90x75.jpg"
-                                alt="" />
-                        </div><!-- .Sidebar-thumb -->
-                        <div class="sidebar-content">
-                            <h5 class="animated bounceInRight"><a href="#">Watch Now: How to Manipulate
-                                    the Media</a></h5>
-                        </div><!-- .Sidebar-thumb -->
-                        <div class="sidebar-meta">
-                            <span class="time"><i class="fa fa-clock-o"></i> Aug 27, 2015</span>
+                        </li><!-- .Li ends here -->
+                        {% endif %}
+                        {% endfor %}
 
-                        </div><!-- .Sidebar-meta ends here -->
-                    </li><!-- .Li ends here -->
-                    <li>
-                        <div class="sidebar-thumb">
-                            <img class="animated rollIn"
-                                src="http://shop.spotlayer.com/demo/soft-mag/demo1/wp-content/uploads/17153174816_a808becb66_o-90x75.jpg"
-                                alt="" />
-                        </div><!-- .Sidebar-thumb -->
-                        <div class="sidebar-content">
-                            <h5 class="animated bounceInRight"><a href="#">OnePlus Inks First Carrier
-                                    Partnership with Malaysia</a></h5>
-                        </div><!-- .Sidebar-thumb -->
-                        <div class="sidebar-meta">
-                            <span class="time"><i class="fa fa-clock-o"></i> Aug 27, 2015</span>
-
-                        </div><!-- .Sidebar-meta ends here -->
-                    </li><!-- .Li ends here -->
 
                 </ul><!-- .Ul ends here -->
             </div><!-- .Widget ends here -->
@@ -310,22 +290,26 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <a href="#">
-                                    <img src="{% static 'images/123194794_405258353976011_1780211379764436847_n.jpg' %}" alt="Image" style="max-width:100%;">
+                                    <img src="{% static 'images/123194794_405258353976011_1780211379764436847_n.jpg' %}"
+                                        alt="Image" style="max-width:100%;">
                                 </a>
                             </div>
                             <div class="col-md-3">
                                 <a href="#">
-                                    <img src="{% static 'images/123270999_347084419724907_2057958549407391501_n.jpg' %}" alt="Image" style="max-width:100%;">
+                                    <img src="{% static 'images/123270999_347084419724907_2057958549407391501_n.jpg' %}"
+                                        alt="Image" style="max-width:100%;">
                                 </a>
                             </div>
                             <div class="col-md-3">
                                 <a href="#">
-                                    <img src="{% static 'images/123463502_3561787297215396_6934336209828262397_n.jpg' %}" alt="Image" style="max-width:100%;">
+                                    <img src="{% static 'images/123463502_3561787297215396_6934336209828262397_n.jpg' %}"
+                                        alt="Image" style="max-width:100%;">
                                 </a>
                             </div>
                             <div class="col-md-3">
                                 <a href="#">
-                                    <img src="{% static 'images/123188282_1038829403260249_2551925143377316523_n.jpg' %}" alt="Image" style="max-width:100%;">
+                                    <img src="{% static 'images/123188282_1038829403260249_2551925143377316523_n.jpg' %}"
+                                        alt="Image" style="max-width:100%;">
                                 </a>
                             </div>
                         </div>
@@ -336,22 +320,26 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <a href="#">
-                                    <img src="{% static 'images/123178086_655225608526960_8846219585287794881_n.jpg' %}" alt="Image" style="max-width:100%;">
+                                    <img src="{% static 'images/123178086_655225608526960_8846219585287794881_n.jpg' %}"
+                                        alt="Image" style="max-width:100%;">
                                 </a>
                             </div>
                             <div class="col-md-3">
                                 <a href="#">
-                                    <img src="{% static 'images/123194794_405258353976011_1780211379764436847_n.jpg' %}" alt="Image" style="max-width:100%;">
+                                    <img src="{% static 'images/123194794_405258353976011_1780211379764436847_n.jpg' %}"
+                                        alt="Image" style="max-width:100%;">
                                 </a>
                             </div>
                             <div class="col-md-3">
                                 <a href="#">
-                                    <img src="{% static 'images/123270999_347084419724907_2057958549407391501_n.jpg' %}" alt="Image" style="max-width:100%;">
+                                    <img src="{% static 'images/123270999_347084419724907_2057958549407391501_n.jpg' %}"
+                                        alt="Image" style="max-width:100%;">
                                 </a>
                             </div>
                             <div class="col-md-3">
                                 <a href="#">
-                                    <img src="{% static 'images/123188282_1038829403260249_2551925143377316523_n.jpg' %}" alt="Image" style="max-width:100%;">
+                                    <img src="{% static 'images/123188282_1038829403260249_2551925143377316523_n.jpg' %}"
+                                        alt="Image" style="max-width:100%;">
                                 </a>
                             </div>
                         </div>

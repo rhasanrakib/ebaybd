@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block styles %}
-<title>{{context.project_title}} -পূর্ব বড়ুয়া তরুন সংঘ</title>
+<title>{{news.title}} -পূর্ব বড়ুয়া তরুন সংঘ</title>
 {% endblock styles %}
 
 {% block container %}
@@ -15,35 +15,29 @@
         <div class="row">
             <div class="col-lg-8">
                 <!-- the actual blog post: title/author/date/content -->
-                <h3>Title</h3>
+                <h3>{{news.title}}</h3>
                 <br>
-                <p class="lead"><i class="fa fa-user"></i>
+                <p class="lead"><i class="fa fa-user"> {{news.reporter_name}}</i>
                 </p>
                 <hr>
-                <p><i class="fas fa-calendar"></i> Posted on August 24, 2014 at 9:00 PM</p>
-                <p><i class="fa fa-tags"></i> Tags: <a href=""><span class="badge badge-info">Bootstrap</span></a> <a
-                        href=""><span class="badge badge-info">Web</span></a> <a href=""><span
-                            class="badge badge-info">CSS</span></a> <a href=""><span
-                            class="badge badge-info">HTML</span></a></p>
+                <p><i class="fas fa-calendar"></i> Posted on {{news.created_date}}</p>
+                <p><i class="fa fa-tags"></i> Tags: <span class="badge bg-info text-dark">{{news.tag}}</span></p>
                 <hr>
+                {{news.description|safe}}
 
-
-                <p class="lead">Welcome to Bootstrap Blog Template! This is a blog template example, built with
-                    Bootstrap. Contains "tools" that would be needed in a post.</p>
-                <p>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum
-                    dolor.</p>
-                <p>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum
-                    dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
-                    Lorem ipsum dolor.</p>
-                <p>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum
-                    dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
-                    Lorem ipsum dolor.</p>
-                <p>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum
-                    dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
-                    Lorem ipsum dolor.</p>
                 <br />
-                <img src="http://placehold.it/600x600" class="img-responsive">
-
+                
+                {% if news.image1 %}
+                <img src="{{news.image1.url}}" class="img-fluid">
+                {% endif %}
+                
+                {% if news.image2 %}
+                <img src="{{news.image2.url}}" class="img-fluid">
+                {% endif %}
+                {% if news.image3 %}
+                <img src="{{news.image3.url}}" class="img-fluid">
+                {% endif %}
+                
                 <br />
                 <hr>
                 <!-- the comment box -->
@@ -75,24 +69,40 @@
                 <br><br><br><br>
                 <div class="card my-4">
                     <div class='card-body'>
-                        <h4><i class="fa fa-book"></i> You may like:</h4>
+                        <h4><i class="fa fa-book"></i> You May Also Like:</h4>
                         <div class="row">
+                            
+                            {% for k in sug %}  
+                            
+                            {% if forloop.counter < 4 %}
+                                
                             <div class="col-lg-12 m-2">
-                                <a href="#">
+                                <a href="{{k.get_absolute_url}}">
                                     <div class="thumb rounded" style="background-color:#fff;">
 
-                                        <img src="http://placehold.it/500x330" class="img-fluid " alt="smaple image">
+                                       
+                                        {% if k.image1 %}
+                                        <img src="{{k.image1.url}}" style="max-height: 300px;" class="img-fluid">
+                                        {% else %}
+                                        <img src="{% static 'images/Final.png' %}" style="max-height: 300px;" class="img-fluid">
+                                        
+                                        {% endif %}
+                                          
 
                                         <div class="thumb thumb-caption">
                                             <figcaption>
-                                                <h3>Title: Idea name</h3>
+                                                <h6>{{k.title}}</h6>
 
                                             </figcaption>
                                         </div>
                                     </div>
                                 </a>
                             </div>
+                            {% endif %}
 
+                                
+                            
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
