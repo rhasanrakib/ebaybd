@@ -732,14 +732,33 @@ h1 {
 }
 
 /****************News ***************************/
-#news-container
+
+#news-container {
+    background-color: #fff;
+}
+
+#news-container .card {
+    width: 100%
+}
+
+#news-container a {
+    text-decoration: none;
+}
+/*****************tabs-for-our-causes*******************/
+
+#tabs-for-our-causes
 {
     background-color: #fff;
 }
-#news-container .card {
-	width: 100%
-}
-#news-container a
+/***************Register**************/
+.helptext
 {
-    text-decoration: none;
+    font-size: 9 !important;
+    color: #3366cc;
+}
+
+label.required::after
+{
+    content: ' *';
+    color: red;
 }

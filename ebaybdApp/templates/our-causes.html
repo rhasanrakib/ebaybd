@@ -1,0 +1,39 @@
+{% extends 'header_footer.html' %}
+{% load static %}
+
+{% block styles %}
+<title>প্রকল্প -পূর্ব বড়ুয়া তরুন সংঘ</title>
+<style>
+
+</style>
+{% endblock styles %}
+
+{% block container %}
+
+<div class="container-fluid" id="tabs-for-our-causes">
+    <br>
+    <h3 class="mb-5">প্রকল্প সমূহ</h3>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            
+            {% for i in projects %}
+            <button class="nav-link {% if forloop.counter0 == 0 %} active{% endif %}" id="nav-{{forloop.counter0}}" data-bs-toggle="tab" data-bs-target="#tab-content-{{forloop.counter0}}" type="button" role="tab" aria-controls="tab-content-{{forloop.counter0}}" aria-selected="true">{{i.project_title}}</button>
+            {% endfor %}
+                
+          
+        </div>
+      </nav>
+      <div class="tab-content mt-5 p-5" id="nav-tabContent">
+        {% for i in projects %}
+        
+        <div class="tab-pane fade {% if forloop.counter0 == 0 %}show active{% endif %}" id="tab-content-{{forloop.counter0}}" role="tabpanel" aria-labelledby="nav-{{forloop.counter0}}-tab">{{i.description | safe}}</div>
+        {% endfor %} 
+      </div>
+      
+    <div id="copyright">
+        পূর্ব বড়ুয়া তরুন সংঘ © All rights reserved
+        
+    </div>
+</div>
+
+{%endblock container%}

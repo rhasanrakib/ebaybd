@@ -327,3 +327,31 @@ class Recent_News(models.Model):
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.title
+
+class VolunteerRegistration(models.Model):
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Others'),
+    )
+    RELIGION_CHOICES=(
+        ('I','Islam'),
+        ('H','Hindu'),
+        ('B','Buddha'),
+        ('C','Chirstian'),
+    )
+    First_Name= models.CharField(max_length=100,blank=False)
+    Last_Name= models.CharField(max_length=100,blank=False)
+    email = models.EmailField(blank=False)
+    phone = models.CharField(max_length=11)
+    image = ResizedImageField(size=[300,300],upload_to='volunteers/', help_text='Size will 300*300', quality=-1,blank=True)
+    gender= models.CharField(max_length=1, choices=GENDER_CHOICES,blank=True)
+    religion= models.CharField(max_length=1, choices=RELIGION_CHOICES,blank=True)
+    date_of_birth = models.DateField(blank=True)
+    district = models.CharField(max_length=20)
+    address = models.TextField()
+    about_you= models.TextField(blank=True)
+    def __str__(self):
+        """String for representing the MyModelName object (in Admin site etc.)."""
+        return self.First_Name
+        

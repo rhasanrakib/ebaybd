@@ -1,0 +1,26 @@
+{% extends 'header_footer.html' %}
+{% load static %}
+
+{% block styles %}
+<title>স্বেচ্ছাসেবক নিবন্ধন - পূর্ব বড়ুয়া তরুন সংঘ </title>
+
+{% endblock styles %}
+
+{% block container %}
+<div class="container-fluid" style="background-color: #fff;">
+    <div class="container py-5">
+        <h3>স্বেচ্ছাসেবক নিবন্ধন</h3>
+        <br>
+        <form action="{% url 'volunteerRegistration' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+                {{form.as_p}}    
+            
+            <input type="submit" class="btn btn-secondary" value="Submit">
+        </form>
+    </div>
+</div>
+<script>
+    $('.required').prev("label").addClass('required');
+    
+</script>
+{% endblock container %}

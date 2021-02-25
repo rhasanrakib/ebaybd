@@ -13,5 +13,7 @@ urlpatterns = [
     path('যোগাযোগ/',views.contactus_view, name='contactus'),
     path('recent_news/',views.recent_news_view, name='recent_news'),
     path('recent_news/<str:title>/',views.news_view, name='newsdetails'),
+    path('our_causes/',views.our_causes_view, name='our_causes'),
+    path('volunteer_registration/',views.volunteerRegistration_view, name='volunteerRegistration'),
 
 ]

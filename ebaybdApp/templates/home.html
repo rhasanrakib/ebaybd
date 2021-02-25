@@ -21,38 +21,25 @@
 <div id="themeSlider" class="carousel slide" data-bs-ride="carousel">
 
     <ol class="carousel-indicators">
-        <li data-bs-target="#themeSlider" data-bs-slide-to="0" class="active"></li>
-        <li data-bs-target="#themeSlider" data-bs-slide-to="1"></li>
-        <li data-bs-target="#themeSlider" data-bs-slide-to="2"></li>
+        {% for p in photos %}
+        <li data-bs-target="#themeSlider" data-bs-slide-to="{{forloop.counter0}}" class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+        {% endfor %}
+        
     </ol>
 
     <div class="carousel-inner">
-        <div class="carousel-item active">
+        {% for p in photos %}
+        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
             <div class="imgOverlay"></div>
-            <img src="{% static 'images/20191218_104909-scaled.jpg' %}" alt="First slide">
+            <img src="{{p.image.url}}" alt="First slide">
             <div class="carousel-caption">
-                <h3>১৫০ টি পরিবারের মাঝে শীত বস্ত্র বিতরন-২০১৯
+                <h3>{{p.title}}
                 </h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                <p>{{p.subtitle}}</p>
             </div>
         </div>
-        <div class="carousel-item">
-            <div class="imgOverlay"></div>
-            <img src="{% static 'images/20201118_122803-scaled.jpg' %}" alt="Second slide">
-            <div class="carousel-caption">
-                <h3>পূর্ব বড়ুয়া তরুণ সংঘের উদ্যোগে মাস্ক বিতরণ ক্যাম্পেইন এ উপস্থিত ছিলেন
-                </h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="imgOverlay"></div>
-            <img src="{% static 'images/Bikkho-scaled.jpg' %}" alt="Third slide">
-            <div class="carousel-caption">
-                <h3>পেঁপের চারা বিতরণ </h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-        </div>
+        {% endfor %}
+        
     </div>
 
     <a class="carousel-control-prev" href="#themeSlider" role="button" data-bs-slide="prev">
@@ -74,10 +61,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-4 mt-3 text-center">
-            <a href="#"><img class="img-fluid" src="{% static 'images/go-1.png' %}" alt=""></a>
+            <a href="{% url 'our_causes' %}"><img class="img-fluid" src="{% static 'images/go-1.png' %}" alt="our_causes"></a>
         </div>
         <div class="col-12 col-sm-4 mt-3 text-center">
-            <a href="#"><img class="img-fluid" src="{% static 'images/go-2.png' %}" alt=""></a>
+            <a href="{% url 'volunteerRegistration' %}"><img class="img-fluid" src="{% static 'images/go-2.png' %}" alt="Join With Us"></a>
         </div>
         <div class="col-12 col-sm-4 mt-3 text-center">
             <a href="#"><img class="img-fluid" src="{% static 'images/go-3.png' %}" alt=""></a>
@@ -124,7 +111,7 @@
                     {% if forloop.counter < 4 %} <li>
                         <div class="sidebar-thumb">
                             {% if i.image1 %}
-                            <img src="{{k.image1.url}}" style="max-height: 300px;" class="img-fluid">
+                            <img src="{{i.image1.url}}" style="max-height: 300px;" class="img-fluid">
                             {% else %}
                             <img src="{% static 'images/Final.png' %}" style="max-height: 300px;" class="img-fluid">
 
@@ -404,7 +391,7 @@
                             হওয়ার সুযোগ অফিসের কাজ থেকে মাঠকর্মী পর্যায় পর্যন্ত প্রসারিত। আপনার যদি অবহেলিত
                             সম্প্রদায়কে দেওয়ার মত সময় ও কাজ করার প্রতিশ্রুতি থাকে, তাহলে আমাদের টিমে আপনাকে
                             স্বাগত জানাতে অপেক্ষা করছি</small></p>
-                    <a href="#" class="btn btn-primary">নিবন্ধন করুন</a>
+                    <a href="{% url 'volunteerRegistration' %}" class="btn btn-primary">নিবন্ধন করুন</a>
                 </div>
             </div>
         </div>
