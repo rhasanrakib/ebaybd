@@ -160,6 +160,44 @@ nav li>a.underline:hover:after {
     border-left: none;
 }
 
+/**********************Lower Projects pic carousel*****************************/
+
+@media (max-width: 768px) {
+    #recipeCarousel.carousel-inner .carousel-item>div {
+        display: none;
+    }
+    #recipeCarousel.carousel-inner .carousel-item>div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active, .carousel-inner .carousel-item-next, .carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+/****************Video Carousel********************/
+
+#carouselVideoControls .carousel-inner .carousel-item.active, 
+#carouselVideoControls .carousel-inner .carousel-item-next, 
+#carouselVideoControls .carousel-inner .carousel-item-prev {
+    display: block !important;
+}
+
+/* display 3 */
+
+@media (min-width: 768px) {
+    #recipeCarousel.carousel-inner .carousel-item-right.active, #recipeCarousel.carousel-inner .carousel-item-next {
+        transform: translateX(33.333%);
+    }
+    #recipeCarousel.carousel-inner .carousel-item-left.active, #recipeCarousel.carousel-inner .carousel-item-prev {
+        transform: translateX(-33.333%);
+    }
+}
+
+#recipeCarousel.carousel-inner .carousel-item-right, #recipeCarousel.carousel-inner .carousel-item-left {
+    transform: translateX(0);
+}
+
 /*Wrap text around Image*/
 
 .wrapper {
@@ -744,21 +782,21 @@ h1 {
 #news-container a {
     text-decoration: none;
 }
+
 /*****************tabs-for-our-causes*******************/
 
-#tabs-for-our-causes
-{
+#tabs-for-our-causes {
     background-color: #fff;
 }
+
 /***************Register**************/
-.helptext
-{
+
+.helptext {
     font-size: 9 !important;
     color: #3366cc;
 }
 
-label.required::after
-{
+label.required::after {
     content: ' *';
     color: red;
 }

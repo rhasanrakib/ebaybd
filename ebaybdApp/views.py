@@ -5,8 +5,11 @@ from .forms import *
 
 def home_view(request):
     news_list = Recent_News.objects.all()
+    project_list = Projects.objects.exclude(bannerImage="")
+    videos = Link_for_Video_Gallery.objects.filter(show_on_homepage=True)
     photos = Image_for_Photo_Gallery.objects.filter(show_in_homepage=True)
-    return render(request, 'home.html', {'news': news_list, 'photos': photos})
+    quotes = Quotes.objects.all()
+    return render(request, 'home.html', {'news': news_list, 'photos': photos,'projects':project_list,'videos':videos,'quotes':quotes})
 
 
 def project_view(request, title):

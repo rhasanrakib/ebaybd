@@ -13,6 +13,8 @@ class Projects(models.Model):
     # Fields
     project_title = models.CharField(
         max_length=100, help_text=' প্রকল্পের শিরোনাম দিন ')
+    bannerImage = ResizedImageField(
+        upload_to='images/', help_text='এই ছবিটি আপলোড করলে তা হোমপেইজের শেষের অংশের স্লাইডে যুক্ত হবে। সেটি না করতে চাইলে ফাকা রাখুন ', blank=True, quality=-1)
     description = HTMLField(help_text=' বর্ন্না লিখুন ', blank=True)
     created_date = models.DateTimeField('date created', default=timezone.now)
     slug = AutoSlugField(populate_from='project_title')
@@ -301,11 +303,14 @@ class Recent_News(models.Model):
     reporter_name = models.CharField(
         max_length=100, help_text='রিপর্টারের নাম ')
     tag = models.CharField(
-        max_length=20, help_text='ট্যাগ লিখুন ',default="News")
+        max_length=20, help_text='ট্যাগ লিখুন ', default="News")
     description = HTMLField(help_text=' বর্ন্না লিখুন ', blank=True)
-    image1 = ResizedImageField(upload_to='news/', help_text='Optional images', quality=-1,blank=True)
-    image2 = ResizedImageField(upload_to='news/', help_text='Optional images', quality=-1,blank=True)
-    image3 = ResizedImageField(upload_to='news/', help_text='Optional images', quality=-1,blank=True)
+    image1 = ResizedImageField(
+        upload_to='news/', help_text='Optional images', quality=-1, blank=True)
+    image2 = ResizedImageField(
+        upload_to='news/', help_text='Optional images', quality=-1, blank=True)
+    image3 = ResizedImageField(
+        upload_to='news/', help_text='Optional images', quality=-1, blank=True)
     slug = AutoSlugField(populate_from='title')
 
     # Auto Slug
@@ -328,30 +333,55 @@ class Recent_News(models.Model):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.title
 
+
 class VolunteerRegistration(models.Model):
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
         ('O', 'Others'),
     )
-    RELIGION_CHOICES=(
-        ('I','Islam'),
-        ('H','Hindu'),
-        ('B','Buddha'),
-        ('C','Chirstian'),
+    RELIGION_CHOICES = (
+        ('I', 'Islam'),
+        ('H', 'Hindu'),
+        ('B', 'Buddha'),
+        ('C', 'Chirstian'),
     )
-    First_Name= models.CharField(max_length=100,blank=False)
-    Last_Name= models.CharField(max_length=100,blank=False)
+    First_Name = models.CharField(max_length=100, blank=False)
+    Last_Name = models.CharField(max_length=100, blank=False)
     email = models.EmailField(blank=False)
     phone = models.CharField(max_length=11)
-    image = ResizedImageField(size=[300,300],upload_to='volunteers/', help_text='Size will 300*300', quality=-1,blank=True)
-    gender= models.CharField(max_length=1, choices=GENDER_CHOICES,blank=True)
-    religion= models.CharField(max_length=1, choices=RELIGION_CHOICES,blank=True)
+    image = ResizedImageField(size=[300, 300], upload_to='volunteers/',
+                              help_text='Size will be 300*300', quality=-1, blank=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
+    religion = models.CharField(
+        max_length=1, choices=RELIGION_CHOICES, blank=True)
     date_of_birth = models.DateField(blank=True)
     district = models.CharField(max_length=20)
     address = models.TextField()
-    about_you= models.TextField(blank=True)
+    about_you = models.TextField(blank=True)
+
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.First_Name
-        
+
+
+class Quotes(models.Model):
+    serial = models.IntegerField(unique=True, blank=False)
+    name = models.CharField(
+        max_length=100, help_text=' নাম  ')
+    designation = models.CharField(
+        max_length=100, help_text=' পদবী ')
+    occupation = models.CharField(
+        max_length=100, help_text=' পেশা ', blank=True)
+    organization = models.CharField(
+        max_length=100, help_text=' প্রতিষ্ঠান ', blank=True)
+    image = ResizedImageField(
+        upload_to='Quotes/', help_text='Profile Picture', blank=True, quality=-1)
+    description = HTMLField(help_text=' বানী লিখুন ', blank=True)
+
+    def __str__(self):
+        s = str(self.serial)+" "+self.name
+        return s
+
+    class Meta:
+        ordering = ['serial']
