@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, re
 from . models import *
 from .forms import *
 from django.contrib import messages
-
+from django.core.validators import RegexValidator
 
 def home_view(request):
     news_list = Recent_News.objects.all()

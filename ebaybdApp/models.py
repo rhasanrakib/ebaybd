@@ -5,7 +5,7 @@ from tinymce.models import HTMLField
 from django.urls import reverse
 from django_resized import ResizedImageField
 from django.core.exceptions import ValidationError
-
+from django.core.validators import RegexValidator
 
 class Projects(models.Model):
     """A typical class defining a model, derived from the Model class."""
@@ -125,8 +125,8 @@ class ExecutiveCommittee(models.Model):
         max_length=100, help_text=' পেশা ', blank=True)
     organization = models.CharField(
         max_length=100, help_text=' প্রতিষ্ঠান ', blank=True)
-    phone = models.CharField(
-        max_length=100, help_text=' ফোন নম্বর ', blank=True)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    phone = models.CharField(validators=[phone_regex], max_length=14, help_text=' ফোন নম্বর ',blank=True) # validators should be a list
     Address = models.CharField(
         max_length=100, help_text=' ঠিকানা ', blank=True)
     image = ResizedImageField(
@@ -153,8 +153,8 @@ class AdvisorCommittee(models.Model):
         max_length=100, help_text=' পেশা ', blank=True)
     organization = models.CharField(
         max_length=100, help_text=' প্রতিষ্ঠান ', blank=True)
-    phone = models.CharField(
-        max_length=100, help_text=' ফোন নম্বর ', blank=True)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    phone = models.CharField(validators=[phone_regex], max_length=14, help_text=' ফোন নম্বর ',blank=True) # validators should be a list
     Address = models.CharField(
         max_length=100, help_text=' ঠিকানা ', blank=True)
     image = ResizedImageField(
@@ -181,8 +181,9 @@ class VolunteerCommittee(models.Model):
         max_length=100, help_text=' পেশা ', blank=True)
     organization = models.CharField(
         max_length=100, help_text=' প্রতিষ্ঠান ', blank=True)
-    phone = models.CharField(
-        max_length=100, help_text=' ফোন নম্বর ', blank=True)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    phone = models.CharField(validators=[phone_regex], max_length=14, help_text=' ফোন নম্বর ',blank=True) # validators should be a list
+    
     Address = models.CharField(
         max_length=100, help_text=' ঠিকানা ', blank=True)
     image = models.ImageField(
@@ -349,7 +350,8 @@ class VolunteerRegistration(models.Model):
     First_Name = models.CharField(max_length=100, blank=False)
     Last_Name = models.CharField(max_length=100, blank=False)
     email = models.EmailField(blank=False)
-    phone = models.CharField(max_length=11)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    phone = models.CharField(validators=[phone_regex], max_length=14) # validators should be a list
     image = ResizedImageField(size=[300, 300], upload_to='volunteers/',
                               help_text='Size will be 300*300', quality=-1, blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
@@ -397,7 +399,8 @@ class BloodDonerRegistration(models.Model):
         ('O-', 'O-(NE)'),
     )
     Name = models.CharField(max_length=100, blank=False)
-    phone = models.CharField(max_length=11)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    phone = models.CharField(validators=[phone_regex], max_length=14) # validators should be a list
     bloodGroup = models.CharField(
         max_length=2, choices=GROUP_CHOICES)
     date_of_birth = models.DateField(help_text='Must be 18 years')
@@ -412,7 +415,9 @@ class Application(models.Model):
     created_date = models.DateTimeField('date created', default=timezone.now)
     Name = models.CharField(max_length=100)
     email = models.EmailField(blank=True)
-    phone = models.CharField(max_length=11)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    phone = models.CharField(validators=[phone_regex], max_length=14) # validators should be a list
+    
     subject=models.CharField(max_length=100)
     text = models.TextField()
 
