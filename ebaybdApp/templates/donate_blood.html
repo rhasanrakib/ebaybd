@@ -1,0 +1,66 @@
+{% extends 'header_footer.html' %}
+{% load static %}
+
+{% block styles %}
+<title>রক্ত দিন জীবন বাঁচান -পূর্ব বড়ুয়া তরুন সংঘ</title>
+{% endblock styles %}
+
+{% block container %}
+<div class="container-fluid">
+    <div id="main_project">
+
+        <div id="version">
+            রক্ত দিন জীবন বাঁচান
+        </div>
+        <div class="mb-5">
+            <a href="{% url 'doner_reg' %}" class="btn btn-light border">Register as a Doner</a>
+            <div class="input-group mb-3" style="float: right;max-width: 18rem;">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username"
+                    aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Search</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr style="background-color: cadetblue;">
+
+                        <th scope="col">নাম</th>
+                        <th scope="col">রক্তের গ্রুপ </th>
+                        <th scope="col">রক্ত দানের শেষ তারিখ </th>
+                        <th scope="col">মোবাইল নম্বর </th>
+                        <th scope="col">ঠিকানা</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for i in context %}
+                    <tr>
+                        <td>{{i.Name}}</td>
+                        <td>{{i.bloodGroup}}
+                        </td>
+                        <td>{{i.lastDonationDate}}
+                        </td>
+                        <td>{{i.phone}} </td>
+                        <td>
+                            {{i.address}}
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+
+
+                </tbody>
+            </table>
+        </div>
+        <div id="copyright">
+            পূর্ব বড়ুয়া তরুন সংঘ © All rights reserved
+        </div>
+
+    </div>
+</div>
+{% endblock container %}

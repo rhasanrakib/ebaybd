@@ -15,5 +15,7 @@ urlpatterns = [
     path('recent_news/<str:title>/',views.news_view, name='newsdetails'),
     path('our_causes/',views.our_causes_view, name='our_causes'),
     path('volunteer_registration/',views.volunteerRegistration_view, name='volunteerRegistration'),
+    path('donate_blood_list/',views.donate_blood_view, name='donate_blood'),
+    path('donate_blood_register/',views.doner_reg_view, name='doner_reg'),
 
 ]

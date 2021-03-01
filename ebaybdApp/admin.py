@@ -12,6 +12,7 @@ admin.site.register(About_Us)
 admin.site.register(Recent_News)
 admin.site.register(VolunteerRegistration)
 admin.site.register(Quotes)
+admin.site.register(BloodDonerRegistration)
 
 #Show the images models Inline
 class Projects_Images(admin.StackedInline):

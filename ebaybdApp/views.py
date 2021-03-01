@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect,redirect
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from . models import *
 from .forms import *
 
@@ -9,7 +9,7 @@ def home_view(request):
     videos = Link_for_Video_Gallery.objects.filter(show_on_homepage=True)
     photos = Image_for_Photo_Gallery.objects.filter(show_in_homepage=True)
     quotes = Quotes.objects.all()
-    return render(request, 'home.html', {'news': news_list, 'photos': photos,'projects':project_list,'videos':videos,'quotes':quotes})
+    return render(request, 'home.html', {'news': news_list, 'photos': photos, 'projects': project_list, 'videos': videos, 'quotes': quotes})
 
 
 def project_view(request, title):
@@ -94,13 +94,34 @@ def our_causes_view(request):
 
 def volunteerRegistration_view(request):
     if request.method == 'POST':
-        form = VolunteerReg(request.POST,request.FILES)
-        print(form)
+        form = VolunteerReg(request.POST, request.FILES)
+        # print(form)
         if form.is_valid():
             form.save()
             form = VolunteerReg()
-            return render(request, 'volunteer_form.html', {'form': form})
-            
+            return redirect("home")
+
     else:
         form = VolunteerReg()
         return render(request, 'volunteer_form.html', {'form': form})
+
+
+def donate_blood_view(request):
+    donar = BloodDonerRegistration.objects.all()
+    return render(request, 'donate_blood.html', {'context': donar})
+
+
+def doner_reg_view(request):
+
+    if request.method == 'POST':
+        form = BloodDonerReg(request.POST, request.FILES)
+        print(form)
+        if form.is_valid():
+            form.save()
+            form = BloodDonerReg()
+            donar = BloodDonerRegistration.objects.all()
+            return redirect('donate_blood')
+
+    else:
+        form = BloodDonerReg()
+        return render(request, 'doner_form.html', {'form': form})

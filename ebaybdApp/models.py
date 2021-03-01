@@ -355,7 +355,7 @@ class VolunteerRegistration(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
     religion = models.CharField(
         max_length=1, choices=RELIGION_CHOICES, blank=True)
-    date_of_birth = models.DateField(blank=True)
+    date_of_birth = models.DateField(blank=True,null=True)
     district = models.CharField(max_length=20)
     address = models.TextField()
     about_you = models.TextField(blank=True)
@@ -385,3 +385,25 @@ class Quotes(models.Model):
 
     class Meta:
         ordering = ['serial']
+
+class BloodDonerRegistration(models.Model):
+    
+    GROUP_CHOICES = (
+        ('A+', 'A+(VE)'),
+        ('A-', 'A-(NE)'),
+        ('B+', 'B+(VE)'),
+        ('B-', 'B-(NE)'),
+        ('O+', 'O+(VE)'),
+        ('O-', 'O-(NE)'),
+    )
+    Name = models.CharField(max_length=100, blank=False)
+    phone = models.CharField(max_length=11)
+    bloodGroup = models.CharField(
+        max_length=2, choices=GROUP_CHOICES)
+    date_of_birth = models.DateField(help_text='Must be 18 years')
+    address = models.TextField()
+    lastDonationDate=models.DateField(blank=True,null=True)
+
+    def __str__(self):
+        """String for representing the MyModelName object (in Admin site etc.)."""
+        return self.Name
