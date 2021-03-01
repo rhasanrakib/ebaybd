@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from . models import *
 from .forms import *
+from django.contrib import messages
 
 
 def home_view(request):
@@ -9,7 +10,23 @@ def home_view(request):
     videos = Link_for_Video_Gallery.objects.filter(show_on_homepage=True)
     photos = Image_for_Photo_Gallery.objects.filter(show_in_homepage=True)
     quotes = Quotes.objects.all()
-    return render(request, 'home.html', {'news': news_list, 'photos': photos, 'projects': project_list, 'videos': videos, 'quotes': quotes})
+
+    if request.method == 'POST':
+        form = ApplicationForm(request.POST)
+        # print(form)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfuly Submitted')
+            form = ApplicationForm()
+            return redirect("home")
+        else:
+            messages.warning(request, 'Fail to Submit')
+            return redirect("home")
+
+    else:
+
+        form = ApplicationForm
+        return render(request, 'home.html', {'news': news_list, 'photos': photos, 'projects': project_list, 'videos': videos, 'quotes': quotes, 'form': form})
 
 
 def project_view(request, title):
@@ -57,7 +74,20 @@ def committee_view(request, title):
 
 
 def contactus_view(request):
-    return render(request, 'contactus.html')
+    if request.method == 'POST':
+        form = ApplicationForm(request.POST)
+        # print(form)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfuly Submitted')
+            form = ApplicationForm()
+            return redirect("contactus")
+        else:
+            messages.warning(request, 'Fail to Submit')
+            return redirect("contactus")
+    else:
+        form = ApplicationForm()
+        return render(request, 'contactus.html',{'form':form})
 
 
 def photo_gallery_view(request):

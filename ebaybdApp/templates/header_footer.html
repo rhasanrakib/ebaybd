@@ -140,10 +140,7 @@
         <div class="col-xs-6 col-md-3">
           <h6>পরিদর্শন</h6>
           <ul class="footer-links">
-            <li><a href="http://scanfcode.com/category/c-language/">বৃক্ষ রোপন কর্মসূচী</a></li>
-            <li><a href="http://scanfcode.com/category/front-end-development/">চিকিৎসা সহায়তা</a></li>
-            <li><a href="http://scanfcode.com/category/back-end-development/">খাদ্য সহায়তা</a></li>
-            <li><a href="http://scanfcode.com/category/java-programming-language/">শিক্ষা সহায়তা</a></li>
+            
             <li><a href="{% url 'photo_gallery' %}">ফটো গ্যালারী</a></li>
             <li><a href="{% url 'videos' %}">ভিডিও গ্যালারী</a></li>
             <li><a href="{% url 'recent_news' %}">প্রেস বিজ্ঞপ্তি</a></li>
@@ -153,13 +150,21 @@
         <div class="col-xs-6 col-md-3">
           <h6>সাহায্য</h6>
           <ul class="footer-links">
-            <li><a href="http://scanfcode.com/about/">প্রতিষ্ঠানের সূচনা</a></li>
-            <li><a href="http://scanfcode.com/contact/">প্রয়োজনীয় প্রশ্ন ও উত্তর</a></li>
-            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">উপদেষ্ঠা</a></li>
-            <li><a href="http://scanfcode.com/privacy-policy/">
+            
+            <li><a href="{% url 'committee' title='advisor' %}">উপদেষ্ঠা</a></li>
+            <li><a href="{% url 'committee' title='executive' %}">
                 কার্যকরী কমিটি</a></li>
-            <li><a href="http://scanfcode.com/sitemap/">দান করুন</a></li>
-            <li><a href="http://scanfcode.com/sitemap/">ব্যাংকের তথ্য</a></li>
+                
+                {% for i in context_donate %}
+                <li><a href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
+                
+                {% endfor %}
+                
+                {% for i in context_aboutus %}
+                <li><a href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
+                {% endfor %}
+                    
+            
             <li><a href="{% url 'contactus' %}">যোগাযোগ</a></li>
           </ul>
         </div>

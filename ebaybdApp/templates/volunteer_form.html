@@ -13,14 +13,14 @@
         <br>
         <form action="{% url 'volunteerRegistration' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-                {{form.as_p}}    
-            
+            {{form.as_p}}
+
             <input type="submit" class="btn btn-secondary" value="Submit">
         </form>
     </div>
 </div>
 <script>
     $('.required').prev("label").addClass('required');
-    
+
 </script>
 {% endblock container %}

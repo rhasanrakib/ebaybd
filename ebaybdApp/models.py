@@ -407,3 +407,15 @@ class BloodDonerRegistration(models.Model):
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.Name
+
+class Application(models.Model):
+    created_date = models.DateTimeField('date created', default=timezone.now)
+    Name = models.CharField(max_length=100)
+    email = models.EmailField(blank=True)
+    phone = models.CharField(max_length=11)
+    subject=models.CharField(max_length=100)
+    text = models.TextField()
+
+    def __str__(self):
+        strs = str(self.created_date)+" "+self.Name
+        return strs

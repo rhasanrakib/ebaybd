@@ -14,29 +14,18 @@
                 <div class="subscriptionbox p-5">
                     <h2>আমাদের একটি বার্তা দিন</h2>
 
-                    <form id="feedform" method="post" target="popupwindow">
-                        <div class="mb-3">
-
-                            <input type="text" class="form-control" id="name" placeholder="আপনার নাম..">
-                        </div>
-                        <div class="mb-3">
-
-                            <input type="email" class="form-control" id="mail" placeholder="আপনার ইমেইল..">
-                        </div>
-                        <div class="mb-3">
-
-                            <input type="text" class="form-control" id="Phone" placeholder="আপনার মোবাইল..">
-                        </div>
-                        <div class="mb-3">
-
-                            <input type="text" class="form-control" id="subject" placeholder="বিষয় ..">
-                        </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" id="Textarea1" rows="3"
-                                placeholder="এখানে লিখুন.."></textarea>
-                        </div>
-                        <input type="submit" value="পাঠান" class="form-control">
-                    </form>
+                    {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="alert-box {{ message.tags }} " {% endif %}> {{ message }} </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form method="POST" action="{% url 'contactus' %}" id="application-form">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value="পাঠান" class="form-control">
+                </form>
                 </div>
             </div>
         </div>
@@ -69,5 +58,7 @@
         </div>
     </div>
 </div>
-
+<script>
+    $('#application-form label').hide();
+</script>
 {%endblock container%}
