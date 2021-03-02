@@ -1,7 +1,5 @@
 from django.urls import path
 from . import views
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
 
@@ -22,4 +20,3 @@ urlpatterns = [
     path('donate_blood_register/',views.doner_reg_view, name='doner_reg'),
 
 ]
-+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
