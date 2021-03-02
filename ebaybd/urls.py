@@ -22,7 +22,5 @@ urlpatterns = [
     path('admin_panel/', admin.site.urls),
     path('', include('ebaybdApp.urls')),
     path('tinymce/', include('tinymce.urls')),
-]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
