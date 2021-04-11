@@ -1,6 +1,6 @@
 from django import forms
 
-from . models import VolunteerRegistration, BloodDonerRegistration, Application
+from . models import VolunteerRegistration, BloodDonerRegistration, Application,DonationInformation
 
 
 class VolunteerReg(forms.ModelForm):
@@ -52,3 +52,17 @@ class ApplicationForm(forms.ModelForm):
             'text': forms.Textarea(attrs={'class': "form-control required", 'Placeholder': 'এখানে লিখুন '}),
 
         }
+class DonationInfoForm(forms.ModelForm):
+
+    class Meta:
+        model = DonationInformation
+        fields = ['name', 'account_number','donar_address', 'phone']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'আপনার নাম লিখুন '}),
+            'account_number': forms.TextInput(attrs={'class': 'form-control', 'Placeholder': 'যে একাউন্ট থেকে টাকা পাঠানো হয়েছে তা লিখুন '}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'Placeholder': '১১ ডিজিটের মোবাইল নম্বর দিন Ex. 01xxxxxxxxx'}),
+            'donar_address': forms.Textarea(attrs={'class': "form-control", 'Placeholder': 'ঠিকানা লিখুন'}),
+
+        }
+

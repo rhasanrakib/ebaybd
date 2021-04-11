@@ -10,10 +10,15 @@
 <div class="container-fluid" id="projects">
     <div id="main_project">
         <div id="version">
-            {{context.project_title}}
+            <div class="version-text">
+                {{context.project_title}}
+            </div>
+            
         </div>
         <div>
+            <!--
             <h1>{{context.project_title}}</h1>
+            -->
             {{context.description|safe}}
 
         </div>

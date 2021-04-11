@@ -7,7 +7,9 @@ from django_resized import ResizedImageField
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 
+
 class Projects(models.Model):
+
     """A typical class defining a model, derived from the Model class."""
 
     # Fields
@@ -17,23 +19,19 @@ class Projects(models.Model):
         upload_to='images/', help_text='এই ছবিটি আপলোড করলে তা হোমপেইজের শেষের অংশের স্লাইডে যুক্ত হবে। সেটি না করতে চাইলে ফাকা রাখুন ', blank=True, quality=-1)
     description = HTMLField(help_text=' বর্ন্না লিখুন ', blank=True)
     created_date = models.DateTimeField('date created', default=timezone.now)
-    slug = AutoSlugField(populate_from='project_title')
-
-    # Auto Slug
-    def slugify_function(self, content):
-        return content.replace('_', '-')
 
     def __unicode__(self):
         return self.project_title
 
     # Metadata
+
     class Meta:
         ordering = ['-created_date']
 
     # Methods
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
-        return reverse("projects", kwargs={'title': self.slug})
+        return reverse("projects", kwargs={'pk': str(self.id)})
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
@@ -86,15 +84,11 @@ class Donate(models.Model):
         max_length=100, help_text=' প্রকল্পের শিরোনাম দিন ')
     description = HTMLField(help_text=' বর্ন্না লিখুন ', blank=True)
     created_date = models.DateTimeField('date created', default=timezone.now)
-    slug = AutoSlugField(populate_from='project_title')
+    #slug = AutoSlugField(populate_from='project_title')
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.project_title
-
-    # Auto Slug
-    def slugify_function(self, content):
-        return content.replace('_', '-')
 
     def __unicode__(self):
         return self.project_title
@@ -106,7 +100,7 @@ class Donate(models.Model):
     # Methods
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
-        return reverse("donate", kwargs={'title': self.slug})
+        return reverse("donate", kwargs={'pk': str(self.id)})
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
@@ -125,8 +119,10 @@ class ExecutiveCommittee(models.Model):
         max_length=100, help_text=' পেশা ', blank=True)
     organization = models.CharField(
         max_length=100, help_text=' প্রতিষ্ঠান ', blank=True)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
-    phone = models.CharField(validators=[phone_regex], max_length=14, help_text=' ফোন নম্বর ',blank=True) # validators should be a list
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    phone = models.CharField(validators=[phone_regex], max_length=14,
+                             help_text=' ফোন নম্বর ', blank=True)  # validators should be a list
     Address = models.CharField(
         max_length=100, help_text=' ঠিকানা ', blank=True)
     image = ResizedImageField(
@@ -153,8 +149,10 @@ class AdvisorCommittee(models.Model):
         max_length=100, help_text=' পেশা ', blank=True)
     organization = models.CharField(
         max_length=100, help_text=' প্রতিষ্ঠান ', blank=True)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
-    phone = models.CharField(validators=[phone_regex], max_length=14, help_text=' ফোন নম্বর ',blank=True) # validators should be a list
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    phone = models.CharField(validators=[phone_regex], max_length=14,
+                             help_text=' ফোন নম্বর ', blank=True)  # validators should be a list
     Address = models.CharField(
         max_length=100, help_text=' ঠিকানা ', blank=True)
     image = ResizedImageField(
@@ -181,9 +179,11 @@ class VolunteerCommittee(models.Model):
         max_length=100, help_text=' পেশা ', blank=True)
     organization = models.CharField(
         max_length=100, help_text=' প্রতিষ্ঠান ', blank=True)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
-    phone = models.CharField(validators=[phone_regex], max_length=14, help_text=' ফোন নম্বর ',blank=True) # validators should be a list
-    
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    phone = models.CharField(validators=[phone_regex], max_length=14,
+                             help_text=' ফোন নম্বর ', blank=True)  # validators should be a list
+
     Address = models.CharField(
         max_length=100, help_text=' ঠিকানা ', blank=True)
     image = models.ImageField(
@@ -207,15 +207,10 @@ class About_Us(models.Model):
         max_length=100, help_text='  শিরোনাম দিন ')
     description = HTMLField(help_text=' বর্ন্না লিখুন ', blank=True)
     created_date = models.DateTimeField('date created', default=timezone.now)
-    slug = AutoSlugField(populate_from='project_title')
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.project_title
-
-    # Auto Slug
-    def slugify_function(self, content):
-        return content.replace('_', '-')
 
     def __unicode__(self):
         return self.project_title
@@ -226,8 +221,7 @@ class About_Us(models.Model):
 
     # Methods
     def get_absolute_url(self):
-        """Returns the url to access a particular instance of MyModelName."""
-        return reverse("about", kwargs={'title': self.slug})
+        return reverse("about", kwargs={'pk': str(self.id)})
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
@@ -247,7 +241,7 @@ class Photo_Gallery(models.Model):
         if not self.pk and Photo_Gallery.objects.exists():
             # if you'll not check for self.pk
             # then error will also raised in update of exists model
-            raise ValidationError('There is can be only one Covid19 instance')
+            raise ValidationError('There is can be only one instance')
         return super(Photo_Gallery, self).save(*args, **kwargs)
 
 
@@ -257,8 +251,8 @@ class Image_for_Photo_Gallery(models.Model):
         max_length=100, help_text=' প্শিরোনাম দিন ', blank=True)
     subtitle = models.CharField(
         max_length=100, help_text=' প্শিরোনাম দিন ', blank=True)
-    image = ResizedImageField(size=[500, 500],
-                              upload_to='albums/', help_text='Picture *Automatic convert into 500*500 pixel', quality=-1)
+    image = ResizedImageField(
+        upload_to='albums/', help_text='Picture', quality=-1)
     show_in_homepage = models.BooleanField()
 
     def __unicode__(self):
@@ -312,11 +306,6 @@ class Recent_News(models.Model):
         upload_to='news/', help_text='Optional images', quality=-1, blank=True)
     image3 = ResizedImageField(
         upload_to='news/', help_text='Optional images', quality=-1, blank=True)
-    slug = AutoSlugField(populate_from='title')
-
-    # Auto Slug
-    def slugify_function(self, content):
-        return content.replace('_', '-')
 
     def __unicode__(self):
         return self.title
@@ -328,7 +317,7 @@ class Recent_News(models.Model):
     # Methods
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
-        return reverse("newsdetails", kwargs={'title': self.slug})
+        return reverse("newsdetails", kwargs={'pk': str(self.id)})
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
@@ -350,14 +339,16 @@ class VolunteerRegistration(models.Model):
     First_Name = models.CharField(max_length=100, blank=False)
     Last_Name = models.CharField(max_length=100, blank=False)
     email = models.EmailField(blank=False)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
-    phone = models.CharField(validators=[phone_regex], max_length=14) # validators should be a list
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    # validators should be a list
+    phone = models.CharField(validators=[phone_regex], max_length=14)
     image = ResizedImageField(size=[300, 300], upload_to='volunteers/',
                               help_text='Size will be 300*300', quality=-1, blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
     religion = models.CharField(
         max_length=1, choices=RELIGION_CHOICES, blank=True)
-    date_of_birth = models.DateField(blank=True,null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
     district = models.CharField(max_length=20)
     address = models.TextField()
     about_you = models.TextField(blank=True)
@@ -388,8 +379,9 @@ class Quotes(models.Model):
     class Meta:
         ordering = ['serial']
 
+
 class BloodDonerRegistration(models.Model):
-    
+
     GROUP_CHOICES = (
         ('A+', 'A+(VE)'),
         ('A-', 'A-(NE)'),
@@ -399,28 +391,48 @@ class BloodDonerRegistration(models.Model):
         ('O-', 'O-(NE)'),
     )
     Name = models.CharField(max_length=100, blank=False)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
-    phone = models.CharField(validators=[phone_regex], max_length=14) # validators should be a list
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    # validators should be a list
+    phone = models.CharField(validators=[phone_regex], max_length=14)
     bloodGroup = models.CharField(
         max_length=2, choices=GROUP_CHOICES)
     date_of_birth = models.DateField(help_text='Must be 18 years')
     address = models.TextField()
-    lastDonationDate=models.DateField(blank=True,null=True)
+    lastDonationDate = models.DateField(blank=True, null=True)
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.Name
 
+
 class Application(models.Model):
     created_date = models.DateTimeField('date created', default=timezone.now)
     Name = models.CharField(max_length=100)
     email = models.EmailField(blank=True)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
-    phone = models.CharField(validators=[phone_regex], max_length=14) # validators should be a list
-    
-    subject=models.CharField(max_length=100)
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    # validators should be a list
+    phone = models.CharField(validators=[phone_regex], max_length=14)
+
+    subject = models.CharField(max_length=100)
     text = models.TextField()
 
     def __str__(self):
         strs = str(self.created_date)+" "+self.Name
+        return strs
+
+class DonationInformation(models.Model):
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+    name=models.CharField(max_length=100)
+    account_number= models.CharField(max_length=100)
+    donar_address=models.TextField(blank =True)
+    phone=models.CharField(validators=[phone_regex], max_length=14,blank =True)
+    created_date = models.DateTimeField('date created', default=timezone.now)
+    class Meta:
+        ordering = ['-created_date']
+
+    def __str__(self):
+        strs = self.account_number+" "+self.name
         return strs

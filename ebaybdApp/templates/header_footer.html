@@ -51,7 +51,7 @@
               {% for i in context_donate %}
               <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
               {% endfor %}
-              <li><a class="dropdown-item" href="#">দানের তথ্য পূরণ করুন </a></li>
+              <li><a class="dropdown-item" href="{% url 'doner_info_submit' %}">দানের তথ্য পূরণ করুন </a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -180,9 +180,9 @@
           </p>
           <p><strong><span class="icon-mail"><a href="mailto:eastbarua.youthassociation@gmail.com">
                   eastbarua.youthassociation@gmail.com</a></span></strong></p>
-          <p><strong><span class="icon-mail"><a href="mailto:info@ebyabd.com"> info@ebyabd.com</a> </span></strong></p>
-          <p><strong><span class="icon-mail"> <a href="mailto:support@ebyabd.com">
-                  support@ebyabd.com</a></span></strong></p>
+          <p><strong><span class="icon-mail"><a href="mailto:info@ebyabd.org"> info@ebyabd.org</a> </span></strong></p>
+          <p><strong><span class="icon-mail"> <a href="mailto:support@ebyabd.org">
+                  support@ebyabd.org</a></span></strong></p>
           <p><strong><span class="icon-phone"><a href="tel:+8801744769331"></a> 01744769331</span></strong></p>
         </div>
 

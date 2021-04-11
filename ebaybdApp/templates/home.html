@@ -7,59 +7,67 @@
 {% endblock styles %}
 
 {% block container %}
-<!--
-<div class="w-100">
-    <marquee id='scroll_news' style="font-family:Book Antiqua; color: #FFFFFF" bgcolor="#000080">
-        <div onMouseOver="document.getElementById('scroll_news').stop();"
-            onMouseOut="document.getElementById('scroll_news').start();"><a href="#">News 1</a> News 2 News 3
-            News 4
-            .......
-            More news here </div>
-    </marquee>
-</div>
--->
-<!-----Background Image---->
-<div id="themeSlider" class="carousel slide" data-bs-ride="carousel">
 
-    <ol class="carousel-indicators">
-        {% for p in photos %}
-        <li data-bs-target="#themeSlider" data-bs-slide-to="{{forloop.counter0}}"
-            class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
-        {% endfor %}
-
-    </ol>
-
-    <div class="carousel-inner">
-        {% for p in photos %}
-        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-            <div class="imgOverlay"></div>
-            <img src="{{p.image.url}}" style="max-height: 90vh;" alt="First slide">
-            <div class="carousel-caption">
-                <h3>{{p.title}}
-                </h3>
-                <p>{{p.subtitle}}</p>
+<section>
+    <div style="width: 10%;z-index: 2;position: absolute;background-color: red;min-height: 35px;">
+        <span style="color: #fff;">
+            সর্বশেষ 
+        </span>
+    </div>
+    <div style="z-index: 2;position: absolute;opacity: 70%; width: 90%;right: 0;">
+        <marquee id='scroll_news'>
+            <div onMouseOver="document.getElementById('scroll_news').stop();"
+                onMouseOut="document.getElementById('scroll_news').start();">
+                {% for i in news %}
+                <a href="{{i.get_absolute_url}}">{{i.title}}</a>
+                <span style="margin-right:1rem ;"></span>
+                {% endfor %}
             </div>
+        </marquee>
+    </div>
+
+    <!-----Background Image---->
+    <div id="themeSlider" class="carousel slide" data-bs-ride="carousel">
+
+        <ol class="carousel-indicators">
+            {% for p in photos %}
+            <li data-bs-target="#themeSlider" data-bs-slide-to="{{forloop.counter0}}"
+                class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+            {% endfor %}
+
+        </ol>
+
+        <div class="carousel-inner">
+            {% for p in photos %}
+            <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                <div class="imgOverlay"></div>
+                <img src="{{p.image.url}}" style="max-height: 90vh;" alt="First slide">
+                <div class="carousel-caption">
+                    <h3>{{p.title}}
+                    </h3>
+                    <p>{{p.subtitle}}</p>
+                </div>
+            </div>
+            {% endfor %}
+
         </div>
-        {% endfor %}
+
+        <a class="carousel-control-prev" href="#themeSlider" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#themeSlider" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+
+        <div class="main-text text-center">
+
+        </div>
 
     </div>
-
-    <a class="carousel-control-prev" href="#themeSlider" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#themeSlider" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </a>
-
-    <div class="main-text text-center">
-
-    </div>
-
-</div>
-<!-----Background Image end----->
-
+    <!-----Background Image end----->
+</section>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-4 mt-3 text-center">
@@ -77,6 +85,7 @@
     </div>
 </div>
 <div class="container-fluid">
+    <!--
     <div class="row">
         <div class="col-12 col-sm-4 mt-3 text-center">
             <a href="#"><img style="max-width:370px;max-height:140px" class="img-fluid"
@@ -91,6 +100,7 @@
                     src="{% static 'images/Donate-Blood.jpg' %}" alt="blood donation"></a>
         </div>
     </div>
+    -->
     <div class="row mt-5">
         <div class="col bg-light p-4">
             <h3>আমাদের সম্পর্কে</h3>
@@ -172,7 +182,7 @@
     <div class="row">
         <div class="col-1 d-none d-md-block"></div>
         <div class="col">
-            <h3>{{i.designation}} বানী</h3>
+            <h3>{{i.designation}}র বানী</h3>
             <div class="wrapper">
 
                 <img src="{% static 'images/Final-300x300.png' %}" alt="" class="logo">
@@ -183,12 +193,21 @@
             </div>
         </div>
         <div class="col">
-            <h3>{{i.designation}}</h3>
+            <h3 style="margin-bottom:4rem">{{i.designation}}</h3>
             <div class="card mb-3">
                 <div class="row g-0">
+                    {% if i.image %}
                     <div class="col-md-4">
                         <img src="{{i.image.url}}" class="img-fluid" alt="{{i.designation}}">
                     </div>
+                    {%else%}
+
+                    <div class="col-md-4">
+                        <img src="{% static 'images/avatar-1577909_1280.png' %}" class="img-fluid"
+                            alt="{{i.designation}}">
+                    </div>
+                    {% endif %}
+
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">{{i.name}}</h5>
@@ -203,7 +222,7 @@
 </div>
 {% endfor %}
 
-
+{% if videos %}
 <div class="container-fluid mt-5" style="background-color: #ccc;">
     <h3 class="p-5">ভিডিও গ্যালারী</h3>
     <div id="carouselVideoControls" class="carousel slide" data-interval="false">
@@ -232,7 +251,9 @@
         </a>
     </div>
 </div>
+{% endif %}
 <!--All the project list start-->
+{% if projects %}
 <div class="container-fluid text-center my-3">
 
     <div class="row mx-auto my-auto">
@@ -266,6 +287,7 @@
     </div>
 
 </div>
+{% endif %}
 <!--All the project list end-->
 <div class="cointainer-fluid mt-5 bg-light">
     <div class="row">

@@ -29,10 +29,10 @@ def home_view(request):
         return render(request, 'home.html', {'news': news_list, 'photos': photos, 'projects': project_list, 'videos': videos, 'quotes': quotes, 'form': form})
 
 
-def project_view(request, title):
+def project_view(request, pk):
     #project_list = Projects.objects.get(project_title=title)
     # print(project_list)
-    project_list = get_object_or_404(Projects, slug=title)
+    project_list = get_object_or_404(Projects, id=pk)
     photos = Image_for_projects.objects.filter(modelForImage=project_list)
     return render(request, 'projects.html', {'context': project_list, 'photos': photos})
 
@@ -45,14 +45,32 @@ def covid19_view(request):
     return render(request, 'projects.html', {'context': project_list, 'photos': photos})
 
 
-def donate_view(request, title):
-    donate_list = Donate.objects.get(slug=title)
+def donate_view(request, pk):
+    
+    donate_list = Donate.objects.get(id=pk)
     # print(project_list)
     return render(request, 'projects.html', {'context': donate_list})
 
+def donarForm_view(request):
+    if request.method == 'POST':
+        form = DonationInfoForm(request.POST)
+        # print(form)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfuly Submitted')
+            form = DonationInfoForm()
+            return redirect("doner_info_submit")
+        else:
+            messages.warning(request, 'Fail to Submit')
+            return redirect("doner_info_submit")
 
-def aboutus_view(request, title):
-    aboutus_list = About_Us.objects.get(slug=title)
+    else:
+        form = DonationInfoForm
+        return render(request, 'donarform.html', {'form': form})
+
+
+def aboutus_view(request, pk):
+    aboutus_list = About_Us.objects.get(id=pk)
     # print(project_list)
     return render(request, 'projects.html', {'context': aboutus_list})
 
@@ -111,9 +129,9 @@ def recent_news_view(request):
     return render(request, 'pressbriefing.html', {'news': news_list})
 
 
-def news_view(request, title):
-    news_list = Recent_News.objects.all().exclude(slug=title)
-    news = get_object_or_404(Recent_News, slug=title)
+def news_view(request, pk):
+    news_list = Recent_News.objects.all().exclude(id=pk)
+    news = get_object_or_404(Recent_News, id=pk)
     return render(request, 'news.html', {'news': news, 'sug': news_list})
 
 

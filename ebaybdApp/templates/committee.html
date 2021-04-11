@@ -9,7 +9,10 @@
 <div class="container-fluid" id="projects">
     <div id="main_project">
         <div id="version">
-            {{title}}
+            <div class="version-text">
+                {{title}}
+            </div>
+           
         </div>
 
         <div class="table-responsive">
@@ -34,10 +37,15 @@
                         {{i.organization}}
                     </td>
                     <td>{{i.phone}} <br> {{i.address}}</td>
+                    {% if i.image %}
                     <td>
                         <img src="{{i.image.url}}" alt="Profile Pic" style="max-width: 100px;max-height: 100px;" class="img-fluid">
                     </td>
-                    
+                    {%else%}
+                    <td>
+                        <img src="{% static 'images/avatar-1577909_1280.png' %}" alt="Profile Pic" style="max-width: 100px;max-height: 100px;" class="img-fluid">
+                    </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
                     

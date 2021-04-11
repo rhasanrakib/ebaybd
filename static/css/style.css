@@ -11,6 +11,16 @@ a:hover, a:focus {
     text-decoration: none;
 }
 
+#scroll_news {
+    background-color: rgb(58, 55, 55);
+    min-height: 35px;
+}
+
+#scroll_news a {
+    text-decoration: none;
+    color: #fff;
+}
+
 input:focus, textarea:focus {
     outline: none !important;
 }
@@ -177,9 +187,7 @@ nav li>a.underline:hover:after {
 
 /****************Video Carousel********************/
 
-#carouselVideoControls .carousel-inner .carousel-item.active, 
-#carouselVideoControls .carousel-inner .carousel-item-next, 
-#carouselVideoControls .carousel-inner .carousel-item-prev {
+#carouselVideoControls .carousel-inner .carousel-item.active, #carouselVideoControls .carousel-inner .carousel-item-next, #carouselVideoControls .carousel-inner .carousel-item-prev {
     display: block !important;
 }
 
@@ -410,11 +418,11 @@ h1 {
 /*********Footer***********/
 
 .lower-footer {
-    background-color: #26272b;
+    background-color: #9CD650;
     padding: 45px 0 20px;
     font-size: 15px;
     line-height: 24px;
-    color: #737373;
+    color: #fff;
 }
 
 .lower-footer hr {
@@ -435,7 +443,7 @@ h1 {
 }
 
 .lower-footer a {
-    color: #737373;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -454,7 +462,7 @@ h1 {
 }
 
 .footer-links a {
-    color: #737373
+    color: #fff
 }
 
 .footer-links a:active, .footer-links a:focus, .footer-links a:hover {
@@ -530,7 +538,7 @@ h1 {
 
 .social-icons a {
     background-color: #eceeef;
-    color: #818a91;
+    color: #fff;
     font-size: 16px;
     display: inline-block;
     line-height: 44px;
@@ -720,8 +728,13 @@ h1 {
 
 #version {
     position: absolute;
-    right: 0;
+    left: 50%;
     top: 45px;
+    
+}
+#version .version-text
+{
+    position: relative; left: -50%;
     background-color: #08d4c4;
     color: #FFF;
     height: 42px;
@@ -800,12 +813,14 @@ label.required::after {
     content: ' *';
     color: red;
 }
+
 /**************Message ********************/
+
 li.alert-box {
-	padding: 15px;
+    padding: 15px;
     margin-bottom: 20px;
     border: 1px solid transparent;
-    border-radius: 4px;  
+    border-radius: 4px;
     list-style: none;
 }
 
@@ -813,19 +828,16 @@ li.success {
     color: #3c763d;
     background-color: #dff0d8;
     border-color: #d6e9c6;
-
 }
 
 li.failure {
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
-
 }
 
 li.warning {
     color: #8a6d3b;
     background-color: #fcf8e3;
     border-color: #faebcc;
-    
 }
