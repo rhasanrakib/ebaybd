@@ -436,3 +436,37 @@ class DonationInformation(models.Model):
     def __str__(self):
         strs = self.account_number+" "+self.name
         return strs
+
+class UpcomingEvents(models.Model):
+    event_date=models.DateTimeField(help_text="YYYY/MM/DD HH:MM:SS(International format)")
+    title = models.CharField(max_length=200)
+    place = models.CharField(max_length=200)
+    description = HTMLField(help_text=' Description ', blank=True)
+
+    def get_absolute_url(self): 
+        return reverse('events_details', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        strs = str(self.event_date)+" "+self.title
+        return strs
+    class Meta:
+        ordering = ['-event_date']
+
+class FundRaise(models.Model):
+    created_date = models.DateTimeField('date created', default=timezone.now)
+    title = models.CharField(max_length=200)
+    quote = models.CharField(max_length=200,blank=True)
+    description = HTMLField(help_text=' Description ', blank=True)
+    targeted_amount = models.IntegerField(default=0)
+    raised_amount = models.IntegerField(default=1)
+    image = models.ImageField(upload_to="images")
+    active = models.BooleanField()
+
+    @property
+    def percentage(self):
+        return int((self.raised_amount/self.targeted_amount) * 100)
+
+    def __str__(self):
+        return self.title
+    class Meta:
+        ordering = ['-created_date']

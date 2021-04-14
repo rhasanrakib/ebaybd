@@ -1,0 +1,57 @@
+{% extends 'header_footer.html' %}
+{% load static %}
+
+{% block styles %}
+<title>আসন্ন কার্যাবলী -পূর্ব বড়ুয়া তরুন সংঘ</title>
+{% endblock styles %}
+
+{% block container %}
+
+<div class="container-fluid" id="projects">
+    <div id="main_project">
+        <div id="version">
+            <div class="version-text">
+                আসন্ন কার্যাবলী
+            </div>
+
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr style="background-color: cadetblue;">
+                        <th scope="col">তারিখ</th>
+                        <th scope="col">সময়</th>
+                        <th scope="col">শিরোনাম </th>
+                        <th scope="col">স্থান </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for i in context %}
+                    
+                        <tr>
+                            
+                            <th>{{ i.event_date|date:"d-m-Y" }}
+                            </th>
+                            <td>{{i.event_date|date:"h:i A"}}</td>
+                            <td>
+                                <a href="{{i.get_absolute_url}}" style="color: black;">{{i.title}}</a>
+                            </td>
+                            <td>{{i.place}}</td>
+                       
+                        </tr>
+                    
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="copyright">
+            পূর্ব বড়ুয়া তরুন সংঘ © All rights reserved
+        </div>
+
+    </div>
+</div>
+
+{%endblock container%}

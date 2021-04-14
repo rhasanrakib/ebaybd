@@ -3,13 +3,16 @@ from . models import *
 from .forms import *
 from django.contrib import messages
 from django.core.validators import RegexValidator
+from datetime import datetime
 
 def home_view(request):
+
     news_list = Recent_News.objects.all()
     project_list = Projects.objects.exclude(bannerImage="")
     videos = Link_for_Video_Gallery.objects.filter(show_on_homepage=True)
     photos = Image_for_Photo_Gallery.objects.filter(show_in_homepage=True)
     quotes = Quotes.objects.all()
+    fund = FundRaise.objects.filter(active=True)
 
     if request.method == 'POST':
         form = ApplicationForm(request.POST)
@@ -26,7 +29,7 @@ def home_view(request):
     else:
 
         form = ApplicationForm
-        return render(request, 'home.html', {'news': news_list, 'photos': photos, 'projects': project_list, 'videos': videos, 'quotes': quotes, 'form': form})
+        return render(request, 'home.html', {'news': news_list, 'photos': photos, 'projects': project_list, 'videos': videos, 'quotes': quotes, 'form': form,'fund':fund})
 
 
 def project_view(request, pk):
@@ -173,3 +176,12 @@ def doner_reg_view(request):
     else:
         form = BloodDonerReg()
         return render(request, 'doner_form.html', {'form': form})
+
+def upcoming_events_view(request):
+    today = datetime.today()
+    objects = UpcomingEvents.objects.filter(event_date__gte=today)
+    return render(request,'upcoming_events.html',{'context':objects})
+
+def events_details_view(request, pk):
+    objects =get_object_or_404(UpcomingEvents, id=pk)
+    return render(request,'events_details.html',{'context':objects})

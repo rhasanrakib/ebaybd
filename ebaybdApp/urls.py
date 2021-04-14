@@ -18,5 +18,7 @@ urlpatterns = [
     path('volunteer_registration/',views.volunteerRegistration_view, name='volunteerRegistration'),
     path('donate_blood_list/',views.donate_blood_view, name='donate_blood'),
     path('donate_blood_register/',views.doner_reg_view, name='doner_reg'),
-    path('donar-info-submit-form/',views.donarForm_view, name='doner_info_submit')
+    path('donar-info-submit-form/',views.donarForm_view, name='doner_info_submit'),
+    path('upcoming_events/',views.upcoming_events_view, name='upcoming_events'),
+    path('events_details/<int:pk>/',views.events_details_view, name='events_details')
 ]

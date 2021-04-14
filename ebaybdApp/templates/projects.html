@@ -22,7 +22,9 @@
             {{context.description|safe}}
 
         </div>
-
+        
+        {% if photos %}
+            
         <div id="carouselProjectsIndicators" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
 
@@ -49,7 +51,7 @@
                 <span class="visually-hidden">Next</span>
             </a>
         </div>
-        
+        {% endif %}
         {% if  videos %}
             
         
