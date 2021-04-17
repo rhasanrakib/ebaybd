@@ -2,71 +2,69 @@
 {% load static %}
 
 {% block styles %}
+
 <title>পূর্ব বড়ুয়া তরুন সংঘ &#8211; একটি সামাজিক সেচ্ছাসেবী সংগঠন</title>
 
 {% endblock styles %}
 
 {% block container %}
 
-<section>
-    <div style="width: 10%;z-index: 2;position: absolute;background-color: red;min-height: 35px;">
-        <span style="color: #fff;">
-            সর্বশেষ
-        </span>
-    </div>
-    <div style="z-index: 2;position: absolute;opacity: 70%; width: 90%;right: 0;">
-        <marquee id='scroll_news'>
-            <div onMouseOver="document.getElementById('scroll_news').stop();"
-                onMouseOut="document.getElementById('scroll_news').start();">
-                {% for i in news %}
-                <a href="{{i.get_absolute_url}}">{{i.title}}</a>
-                <span style="margin-right:1rem ;"></span>
-                {% endfor %}
-            </div>
-        </marquee>
-    </div>
 
-    <!-----Background Image---->
-    <div id="themeSlider" class="carousel slide" data-bs-ride="carousel">
-
-        <ol class="carousel-indicators">
-            {% for p in photos %}
-            <li data-bs-target="#themeSlider" data-bs-slide-to="{{forloop.counter0}}"
-                class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
-            {% endfor %}
-
-        </ol>
-
-        <div class="carousel-inner">
-            {% for p in photos %}
-            <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-                <div class="imgOverlay"></div>
-                <img src="{{p.image.url}}" style="max-height: 90vh;" alt="First slide">
-                <div class="carousel-caption">
-                    <h3>{{p.title}}
-                    </h3>
-                    <p>{{p.subtitle}}</p>
-                </div>
-            </div>
-            {% endfor %}
-
+<section id="news" style="display: block;">
+    <div class="ln_wrapper">
+        <div class="ln_left">
+            <p>সর্বশেষ</p>
         </div>
-
-        <a class="carousel-control-prev" href="#themeSlider" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#themeSlider" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </a>
-
-        <div class="main-text text-center">
-
+        <div class="ln_left_arrow"></div>
+        <div class="ln_right marquee" data-duration=20000>
+            {% for i in news %}
+            <a href="{{i.get_absolute_url}}">{{i.title}}</a>
+            {% endfor %}
         </div>
+    </div>
+</section>
+
+<!-----Background Image---->
+<div id="themeSlider" class="carousel slide" data-bs-ride="carousel">
+
+    <ol class="carousel-indicators">
+        {% for p in photos %}
+        <li data-bs-target="#themeSlider" data-bs-slide-to="{{forloop.counter0}}"
+            class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+        {% endfor %}
+
+    </ol>
+
+    <div class="carousel-inner">
+        {% for p in photos %}
+        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+            <div class="imgOverlay"></div>
+            <img src="{{p.image.url}}" style="max-height: 90vh;" alt="First slide">
+            <div class="carousel-caption">
+                <h3>{{p.title}}
+                </h3>
+                <p>{{p.subtitle}}</p>
+            </div>
+        </div>
+        {% endfor %}
 
     </div>
-    <!-----Background Image end----->
+
+    <a class="carousel-control-prev" href="#themeSlider" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#themeSlider" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+
+    <div class="main-text text-center">
+
+    </div>
+
+</div>
+<!-----Background Image end----->
 </section>
 <div class="container-fluid">
     <div class="row">
@@ -221,6 +219,7 @@
     </div>
 </div>
 {% endfor %}
+
 <!--Fund Raise-->
 
 {% if fund %}
@@ -232,8 +231,7 @@
     <div class="row p-0" style="margin: none;">
         <div class="col-12 col-md-6 m-0 p-0">
             <div class="fund-image" style="background: url('{{i.image.url}}');">
-                <div style="position: relative;background-color: rgba(6, 28, 38, 0.5);height: 100%;"
-                    class="w-100">
+                <div style="position: relative;background-color: rgba(6, 28, 38, 0.5);height: 100%;" class="w-100">
 
 
                     <div class="p-2 p-md-4" style="color: #fff;z-index: 2;position: relative">
@@ -247,7 +245,7 @@
                         <p class="mt-1">{{i.description|safe}}</p>
                     </div>
                     <div class="text-center w-100">
-                        <a href="#" class="btn btn-primary">দান করুন </a>
+                        <a href="{{i.url_field.get_absolute_url}}" class="btn btn-primary">দান করুন </a>
                     </div>
                 </div>
             </div>
@@ -265,7 +263,7 @@
 
                             <div class="progress-circle-container text-center">
                                 <div class="progress-circle progress-{{i.percentage}}">
-                                    <span>
+                                    <span style="color: {% if i.percentage < 26 %}red{% endif %}{% if i.percentage < 51 %}#ff6673{% endif %}{% if i.percentage > 50 and i.percentage < 75 %}yellow{% endif %}{% if i.percentage > 74 %}#66b8ff{% endif %};">
                                         <div class="d-flex justify-content-center align-items-center w-100 h-100">
                                             {{i.percentage}}% <br>
                                             সম্পূর্ণ
@@ -297,7 +295,7 @@
                     </div>
 
                     <div class="text-center w-100 mt-3">
-                        <a href="#" class="btn btn-primary">দান করুন </a>
+                        <a href="{{i.url_field.get_absolute_url}}" class="btn btn-primary">দান করুন </a>
                     </div>
                 </div>
             </div>
@@ -423,6 +421,10 @@
         </div>
     </div>
 </div>
+
+{% endblock container %}
+
+{% block js %}
 <script type="text/javascript">
 
     $('#application-form label').hide();
@@ -446,4 +448,19 @@
     });
 
 </script>
-{% endblock container %}
+<script>
+
+    $('.marquee').marquee({
+        pauseOnHover: true
+    });
+
+    $(document).scroll(function () {
+        var y = $(this).scrollTop();
+        if (y <= 20) {
+            $('#news').fadeIn();
+        } else {
+            $('#news').fadeOut();
+        }
+    });
+</script>
+{% endblock js %}

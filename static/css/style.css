@@ -16,9 +16,86 @@ a:hover, a:focus {
     min-height: 35px;
 }
 
-#scroll_news a {
+/**Scroll News**/
+
+/*#scroll_news a {
     text-decoration: none;
     color: #fff;
+}
+*/
+
+#news {
+    position: fixed;
+    margin-top: -50px;
+    z-index: 100;
+    width: 100%;
+    left: 0
+}
+
+.ln_wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    margin: 50px auto 0
+}
+
+.ln_left {
+    width: 10%;
+    min-width: 120px;
+    float: left;
+    background: #f13035;
+    text-align: center
+}
+
+.ln_left p {
+    margin: 0;
+    padding: 7px 0;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600
+}
+
+.ln_left_arrow {
+    width: 0;
+    height: 0;
+    border-top: 19.5px solid transparent;
+    border-bottom: 19.5px solid transparent;
+    border-left: 15px solid #f13035;
+    position: absolute;
+    left: 10%;
+    z-index: 100;
+    top: 0
+}
+
+.ln_right {
+    width: 90%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .31);
+    position: absolute;
+    right: 0;
+    height: 36px;
+}
+
+.ln_right a {
+    display: inline-block;
+    overflow: hidden;
+    padding: 5px 0;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: inherit;
+    text-decoration: none;
+    margin-left: 2rem;
+}
+
+@media screen and (max-width:650px) {
+    .ln_left_arrow {
+        display: none
+    }
+    .ln_right {
+        z-index: -100
+    }
 }
 
 input:focus, textarea:focus {
@@ -245,7 +322,7 @@ nav li>a.underline:hover:after {
     /* Do not repeat the image */
     background-size: cover !important;
     /* Resize the background image to cover the entire container */
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, .2);
 }
 
 /**Circlular Progressbar**/

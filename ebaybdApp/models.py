@@ -461,6 +461,8 @@ class FundRaise(models.Model):
     raised_amount = models.IntegerField(default=1)
     image = models.ImageField(upload_to="images")
     active = models.BooleanField()
+    url_field=models.ForeignKey(Donate,on_delete=models.SET_NULL,blank=True,
+    null=True)
 
     @property
     def percentage(self):
