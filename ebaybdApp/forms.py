@@ -1,23 +1,24 @@
 from django import forms
 
-from . models import VolunteerRegistration, BloodDonerRegistration, Application,DonationInformation
+from . models import VolunteerRegistration, BloodDonerRegistration, Application, DonationInformation
 
 
 class VolunteerReg(forms.ModelForm):
     class Meta:
         model = VolunteerRegistration
-        fields = '__all__'
+        fields = ['name', 'email', 'phone', 'occupation', 'organization',
+                  'image', 'gender', 'religion', 'date_of_birth', 'address', 'about_you']
 
         widgets = {
-            'First_Name': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Input your first name'}),
-            'Last_Name': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Input your last name'}),
+            'name': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Input your  name'}),
+            'occupation': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Occupation'}),
+            'organization': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Organization'}),
             'email': forms.EmailInput(attrs={'class': 'form-control required', 'Placeholder': 'Input your email'}),
             'phone': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Ex. 01xxxxxxxxx'}),
             'image': forms.FileInput(attrs={'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
             'religion': forms.Select(attrs={'class': 'form-control'}),
             'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'district': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Ex. Lalmonirhat'}),
             'address': forms.Textarea(attrs={'class': "form-control required"}),
             'about_you': forms.Textarea(attrs={'class': "form-control required"}),
         }
@@ -52,11 +53,13 @@ class ApplicationForm(forms.ModelForm):
             'text': forms.Textarea(attrs={'class': "form-control required", 'Placeholder': 'এখানে লিখুন '}),
 
         }
+
+
 class DonationInfoForm(forms.ModelForm):
 
     class Meta:
         model = DonationInformation
-        fields = ['name', 'account_number','donar_address', 'phone']
+        fields = ['name', 'account_number', 'donar_address', 'phone']
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'আপনার নাম লিখুন '}),
@@ -65,4 +68,3 @@ class DonationInfoForm(forms.ModelForm):
             'donar_address': forms.Textarea(attrs={'class': "form-control", 'Placeholder': 'ঠিকানা লিখুন'}),
 
         }
-

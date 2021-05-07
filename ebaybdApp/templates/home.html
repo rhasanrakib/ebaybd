@@ -123,7 +123,7 @@
 
                     {% for i in news %}
 
-                    {% if forloop.counter < 4 %} <li>
+                    <li>
                         <div class="sidebar-thumb">
                             {% if i.image1 %}
                             <img src="{{i.image1.url}}" style="max-height: 300px;" class="img-fluid">
@@ -141,16 +141,138 @@
                             <span class="time"><i class="fa fa-clock-o"></i>{{i.created_date}}</span>
 
                         </div><!-- .Sidebar-meta ends here -->
-                        </li><!-- .Li ends here -->
-                        {% endif %}
-                        {% endfor %}
+                    </li><!-- .Li ends here -->
+
+                    {% endfor %}
 
 
                 </ul><!-- .Ul ends here -->
+
+                <!--Pagination Start here-->
+                <nav aria-label="Page navigation recent-news-pagination">
+                    {% if news.has_other_pages %}
+                    <ul class="pagination justify-content-center">
+                        {% if news.has_previous %}
+                        <li class="page-item"><a class="page-link"
+                                href="?page={{ news.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                        {% endif %}
+                        {% for i in news.paginator.page_range %}
+                        {% if news.number == i %}
+                        <li class="page-item active" aria-current="page"><span class="page-link">{{i}}</span></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if news.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ news.next_page_number }}">&raquo;</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </nav>
+                <!--Pagination end here-->
             </div><!-- .Widget ends here -->
+
         </div>
     </div>
 </div>
+
+
+
+<!--Fund Raise-->
+
+{% if fund %}
+
+{% for i in fund %}
+
+<div class="container-fluid my-5" style="background-color: #fff;">
+
+    <div class="row p-0" style="margin: none;">
+        <div class="col-12 col-md-6 m-0 p-0">
+            <div class="fund-image" style="background: url('{{i.image.url}}');">
+                <div style="position: relative;background-color: rgba(6, 28, 38, 0.5);height: 100%;" class="w-100">
+
+
+                    <div class="p-2 p-md-4" style="color: #fff;z-index: 2;position: relative">
+                        <div class="text-center" style="color: #fff; font-size: 1.5rem;font-weight: 900;">
+                            {{i.title}}
+                        </div>
+                        <div class="text-center mt-1" style="color: red; font-size: 1.2rem;">
+                            {{i.quote}}
+                        </div>
+
+                        <p class="mt-1">{{i.description|safe}}</p>
+                    </div>
+                    <div class="text-center w-100">
+                        <a href="{{i.url_field.get_absolute_url}}" class="btn btn-primary">দান করুন </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card border-0">
+                <div class="card-body">
+                    <div class="w-100 d-flex justify-content-center">
+                        <div class="d-flex justify-content-between" style="max-width: 20rem;">
+                            <div class="d-flex align-items-end">
+                                <p>সংগ্রহ</p>
+
+                            </div>
+
+                            <div class="progress-circle-container text-center">
+                                <div class="progress-circle progress-{{i.percentage}}">
+                                    <span
+                                        style="color: {% if i.percentage > -1 and i.percentage < 26 %}red{% endif %}{% if i.percentage > 25 and i.percentage < 51 %}#ff6673{% endif %}{% if i.percentage > 50 and i.percentage < 75 %}yellow{% endif %}{% if i.percentage > 74 %}#66b8ff{% endif %};">
+                                        <div class="d-flex justify-content-center align-items-center w-100 h-100">
+                                            {{i.percentage}}% <br>
+                                            সম্পূর্ণ
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-end">
+                                <p>লক্ষ্য </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-100 d-flex justify-content-center">
+                        <div class="d-flex justify-content-between" style="max-width: 20rem;">
+                            <div class="d-flex align-items-end">
+                                <p>{{i.raised_amount}}</p>
+
+                            </div>
+                            <div style="width: 216px;">
+
+                            </div>
+                            <div class="d-flex align-items-end">
+                                <p>{{i.targeted_amount}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center w-100 mt-3">
+                        <a href="{{i.url_field.get_absolute_url}}" class="btn btn-primary">দান করুন </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+
+<!--Our works-->
 <div class="container-fluid mt-5">
     <div class="row bg-light">
         <div class="col">
@@ -219,93 +341,6 @@
     </div>
 </div>
 {% endfor %}
-
-<!--Fund Raise-->
-
-{% if fund %}
-
-{% for i in fund %}
-
-<div class="container-fluid my-5" style="background-color: #fff;">
-
-    <div class="row p-0" style="margin: none;">
-        <div class="col-12 col-md-6 m-0 p-0">
-            <div class="fund-image" style="background: url('{{i.image.url}}');">
-                <div style="position: relative;background-color: rgba(6, 28, 38, 0.5);height: 100%;" class="w-100">
-
-
-                    <div class="p-2 p-md-4" style="color: #fff;z-index: 2;position: relative">
-                        <div class="text-center" style="color: #fff; font-size: 1.5rem;font-weight: 900;">
-                            {{i.title}}
-                        </div>
-                        <div class="text-center mt-1" style="color: red; font-size: 1.2rem;">
-                            {{i.quote}}
-                        </div>
-
-                        <p class="mt-1">{{i.description|safe}}</p>
-                    </div>
-                    <div class="text-center w-100">
-                        <a href="{{i.url_field.get_absolute_url}}" class="btn btn-primary">দান করুন </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="card border-0">
-                <div class="card-body">
-                    <div class="w-100 d-flex justify-content-center">
-                        <div class="d-flex justify-content-between" style="max-width: 20rem;">
-                            <div class="d-flex align-items-end">
-                                <p>সংগ্রহ</p>
-
-                            </div>
-
-                            <div class="progress-circle-container text-center">
-                                <div class="progress-circle progress-{{i.percentage}}">
-                                    <span style="color: {% if i.percentage < 26 %}red{% endif %}{% if i.percentage < 51 %}#ff6673{% endif %}{% if i.percentage > 50 and i.percentage < 75 %}yellow{% endif %}{% if i.percentage > 74 %}#66b8ff{% endif %};">
-                                        <div class="d-flex justify-content-center align-items-center w-100 h-100">
-                                            {{i.percentage}}% <br>
-                                            সম্পূর্ণ
-                                        </div>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-end">
-                                <p>লক্ষ্য </p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-100 d-flex justify-content-center">
-                        <div class="d-flex justify-content-between" style="max-width: 20rem;">
-                            <div class="d-flex align-items-end">
-                                <p>{{i.raised_amount}}</p>
-
-                            </div>
-                            <div style="width: 216px;">
-
-                            </div>
-                            <div class="d-flex align-items-end">
-                                <p>{{i.targeted_amount}}</p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center w-100 mt-3">
-                        <a href="{{i.url_field.get_absolute_url}}" class="btn btn-primary">দান করুন </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% endfor %}
-
-{% endif %}
 
 {% if videos %}
 <div class="container-fluid mt-5" style="background-color: #ccc;">

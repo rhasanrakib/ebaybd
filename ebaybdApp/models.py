@@ -6,6 +6,7 @@ from django.urls import reverse
 from django_resized import ResizedImageField
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
+from django.db.models.signals import post_save
 
 
 class Projects(models.Model):
@@ -336,27 +337,39 @@ class VolunteerRegistration(models.Model):
         ('B', 'Buddha'),
         ('C', 'Chirstian'),
     )
-    First_Name = models.CharField(max_length=100, blank=False)
-    Last_Name = models.CharField(max_length=100, blank=False)
+    name = models.CharField(max_length=100, blank=False)
+
     email = models.EmailField(blank=False)
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
     # validators should be a list
     phone = models.CharField(validators=[phone_regex], max_length=14)
+    designation = models.CharField(
+        max_length=100, help_text=' পদবী ', default='স্বেচ্ছাসেবক')
+    occupation = models.CharField(
+        max_length=100,  blank=True)
+    organization = models.CharField(
+        max_length=100, blank=True)
     image = ResizedImageField(size=[300, 300], upload_to='volunteers/',
                               help_text='Size will be 300*300', quality=-1, blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
     religion = models.CharField(
         max_length=1, choices=RELIGION_CHOICES, blank=True)
     date_of_birth = models.DateField(blank=True, null=True)
-    district = models.CharField(max_length=20)
+
     address = models.TextField()
     about_you = models.TextField(blank=True)
+    accepted = models.BooleanField(default=False)
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.First_Name
 
+
+def postVolunteerRegistration(sender, **kwargs):
+    print("Request finished!")
+
+post_save.connect(postVolunteerRegistration, sender=VolunteerRegistration)
 
 class Quotes(models.Model):
     serial = models.IntegerField(unique=True, blank=False)
@@ -422,14 +435,17 @@ class Application(models.Model):
         strs = str(self.created_date)+" "+self.Name
         return strs
 
+
 class DonationInformation(models.Model):
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
-    name=models.CharField(max_length=100)
-    account_number= models.CharField(max_length=100)
-    donar_address=models.TextField(blank =True)
-    phone=models.CharField(validators=[phone_regex], max_length=14,blank =True)
+    name = models.CharField(max_length=100)
+    account_number = models.CharField(max_length=100)
+    donar_address = models.TextField(blank=True)
+    phone = models.CharField(
+        validators=[phone_regex], max_length=14, blank=True)
     created_date = models.DateTimeField('date created', default=timezone.now)
+
     class Meta:
         ordering = ['-created_date']
 
@@ -437,32 +453,36 @@ class DonationInformation(models.Model):
         strs = self.account_number+" "+self.name
         return strs
 
+
 class UpcomingEvents(models.Model):
-    event_date=models.DateTimeField(help_text="YYYY/MM/DD HH:MM:SS(International format)")
+    event_date = models.DateTimeField(
+        help_text="YYYY/MM/DD HH:MM:SS(International format)")
     title = models.CharField(max_length=200)
     place = models.CharField(max_length=200)
     description = HTMLField(help_text=' Description ', blank=True)
 
-    def get_absolute_url(self): 
+    def get_absolute_url(self):
         return reverse('events_details', kwargs={'pk': self.pk})
 
     def __str__(self):
         strs = str(self.event_date)+" "+self.title
         return strs
+
     class Meta:
         ordering = ['-event_date']
+
 
 class FundRaise(models.Model):
     created_date = models.DateTimeField('date created', default=timezone.now)
     title = models.CharField(max_length=200)
-    quote = models.CharField(max_length=200,blank=True)
+    quote = models.CharField(max_length=200, blank=True)
     description = HTMLField(help_text=' Description ', blank=True)
     targeted_amount = models.IntegerField(default=0)
     raised_amount = models.IntegerField(default=1)
     image = models.ImageField(upload_to="images")
     active = models.BooleanField()
-    url_field=models.ForeignKey(Donate,on_delete=models.SET_NULL,blank=True,
-    null=True)
+    url_field = models.ForeignKey(Donate, on_delete=models.SET_NULL, blank=True,
+                                  null=True)
 
     @property
     def percentage(self):
@@ -470,5 +490,6 @@ class FundRaise(models.Model):
 
     def __str__(self):
         return self.title
+
     class Meta:
         ordering = ['-created_date']

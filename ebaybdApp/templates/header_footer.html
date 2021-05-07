@@ -100,10 +100,22 @@
           <li class="nav-item">
             <a class="nav-link underline" href="{% url 'contactus' %}">যোগাযোগ</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link underline" href="#" role="button" data-bs-toggle="modal"
-              data-bs-target="#loginModal">Login</a>
+          <li class="nav-item {% if user.is_authenticated %} dropdown {% endif %}">
+            {% if user.is_authenticated %}
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUserName" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              {{user.username}}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownUserName">
+              <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+              
+            </ul>
+            {% else %}
+            <a class="nav-link underline" href="{% url 'login' %}">Login</a>
+            {% endif %}
           </li>
+         
         </ul>
       </div>
       <div class="ms-auto d-none d-lg-block">
@@ -140,7 +152,7 @@
         <div class="col-xs-6 col-md-3">
           <h6>পরিদর্শন</h6>
           <ul class="footer-links">
-            
+
             <li><a href="{% url 'photo_gallery' %}">ফটো গ্যালারী</a></li>
             <li><a href="{% url 'videos' %}">ভিডিও গ্যালারী</a></li>
             <li><a href="{% url 'recent_news' %}">প্রেস বিজ্ঞপ্তি</a></li>
@@ -150,21 +162,21 @@
         <div class="col-xs-6 col-md-3">
           <h6>সাহায্য</h6>
           <ul class="footer-links">
-            
+
             <li><a href="{% url 'committee' title='advisor' %}">উপদেষ্ঠা</a></li>
             <li><a href="{% url 'committee' title='executive' %}">
                 কার্যকরী কমিটি</a></li>
-                
-                {% for i in context_donate %}
-                <li><a href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
-                
-                {% endfor %}
-                
-                {% for i in context_aboutus %}
-                <li><a href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
-                {% endfor %}
-                    
-            
+
+            {% for i in context_donate %}
+            <li><a href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
+
+            {% endfor %}
+
+            {% for i in context_aboutus %}
+            <li><a href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
+            {% endfor %}
+
+
             <li><a href="{% url 'contactus' %}">যোগাযোগ</a></li>
           </ul>
         </div>
@@ -203,9 +215,9 @@
       </p>
     </div>
   </footer>
-  
-  {% include 'login_modal.html' %}
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
   <script src="{% static 'js/time.js' %}"></script>
   <script src="{% static 'js/marque.js' %}"></script>
   {% block js %}

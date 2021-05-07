@@ -327,10 +327,6 @@ nav li>a.underline:hover:after {
 
 /**Circlular Progressbar**/
 
-body {
-    font-family: 'Open Sans Condensed', sans-serif;
-}
-
 h1 {
     color: #63B8FF;
     text-align: center;
@@ -1183,13 +1179,6 @@ h1 {
     font-family: FontAwesome;
 }
 
-/*body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6), url(https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/cats_and_excessive_meowing_ref_guide/1800x1200_cats_and_excessive_meowing_ref_guide.jpg));
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-}*/
-
 .form {
     position: relative;
     z-index: 1;
@@ -1407,4 +1396,46 @@ li.warning {
     color: #8a6d3b;
     background-color: #fcf8e3;
     border-color: #faebcc;
+}
+
+/*****************Dashboard******************/
+
+#dashboard_wrapper {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#dashboard_wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+    #dashboard_wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
 }

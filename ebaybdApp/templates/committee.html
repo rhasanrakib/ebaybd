@@ -30,8 +30,16 @@
 
                     {% for i in context %}
                     <tr>
+                        
+                        {% if title == "স্বেচ্ছাসেবক" %}
+                        <th>{{forloop.counter}}
+                        </th>
+                        {% else %}
                         <th>{{i.serial}}
                         </th>
+                        {% endif %}
+                            
+                        
                         <td>{{i.name}}</td>
                         <td>{{i.designation}} <br>
                             {{i.organization}}
