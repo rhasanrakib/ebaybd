@@ -17,6 +17,7 @@ admin.site.register(Application)
 admin.site.register(DonationInformation)
 admin.site.register(UpcomingEvents)
 admin.site.register(FundRaise)
+admin.site.register(Misc)
 
 #Show the images models Inline
 class Projects_Images(admin.StackedInline):

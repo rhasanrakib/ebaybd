@@ -1,0 +1,77 @@
+{% load static %}
+
+<div class="container-fluid">
+
+    <div class="row ">
+        <div class="col bg-light p-0 p-md-4 mt-5">
+            <h3>আমাদের সম্পর্কে</h3>
+            <div class="wrapper">
+
+                <img src="{% static 'images/Final-300x300.png' %}" alt="" class="logo img-fluid">
+                
+            </div>
+            
+        </div>
+        <div class="col bg-light p-0 p-md-4 mt-5">
+            <div id="about"></div>
+            
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+<!--Our works-->
+<div class="container-fluid mt-5">
+    <div class="row bg-light">
+        <div class="col">
+            <div class="d-flex justify-content-center p-0 p-md-4">
+                <h3 class="mb-3">আমাদের কার্যক্রম সমূহ</h3>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row bg-light">
+        <div class="col">
+            <div >
+                <div id="ourworks">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-5 ">
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{% static 'images/20200902_155857-1536x708.jpg' %}" class="img-fluid" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">স্বেচ্ছাসেবক প্রোগ্রামের জন্য নিবন্ধন</h5>
+                    
+                    <p class="card-text"><small class="text-muted" id = "volunteerEditor">
+
+                    </small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var quill = new Quill('#about', {
+      theme: 'snow'
+    });
+    var ourworks = new Quill('#ourworks', {
+      theme: 'snow'
+    });
+    var volunteerEditor = new Quill('#volunteerEditor', {
+      theme: 'snow'
+    });
+  </script>

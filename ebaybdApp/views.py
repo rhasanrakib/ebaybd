@@ -9,6 +9,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 import json
 from django.http import JsonResponse
+from notifications.signals import notify
+from django.contrib.auth.models import User
 
 
 def home_view(request):
@@ -19,6 +21,7 @@ def home_view(request):
     photos = Image_for_Photo_Gallery.objects.filter(show_in_homepage=True)
     quotes = Quotes.objects.all()
     fund = FundRaise.objects.filter(active=True)
+    
 
     if request.method == 'POST':
         form = ApplicationForm(request.POST)
@@ -167,14 +170,17 @@ def volunteerRegistration_view(request):
         if form.is_valid():
             form.save()
             form = VolunteerReg()
-            return redirect("home")
+            notify.send(request.user, recipient=request.user,
+                        verb="You have a new volunteer to accept")
+            messages.success(request, 'Successfully Submitted')
+            return redirect("volunteerRegistration")
         else:
             messages.warning(request, 'Submission Failed')
             form = VolunteerReg()
             return render(request, 'volunteer_form.html', {'form': form})
 
     else:
-        
+
         form = VolunteerReg()
         return render(request, 'volunteer_form.html', {'form': form})
 
@@ -215,6 +221,7 @@ def events_details_view(request, pk):
 @login_required
 def superuser_dashboard(request):
     getVolList = VolunteerRegistration.objects.filter(accepted=False)
+
     # Ajax Request
     if request.is_ajax and request.method == "POST":
         context = {}
@@ -234,7 +241,7 @@ def superuser_dashboard(request):
             action = data['action']
             value = data['value']
             if action == "delete":
-                
+
                 VolunteerRegistration.objects.filter(id=int(value)).delete()
             else:
                 b = VolunteerRegistration.objects.get(id=int(value))
@@ -242,6 +249,10 @@ def superuser_dashboard(request):
                 b.save()
             # Return the Response to the templates for volunteer
             return JsonResponse({'message': "Updated", 'value': 'tr-'+data['value']}, status=200)
+        if getKeywords == "markasread":
+            user = User.objects.get(pk=1)
+            user.notifications.mark_all_as_read()
+            return JsonResponse({'message': "Updated"}, status=200)
 
     return render(request, 'login_dashboard_superuser.html', {'volunteer': getVolList})
 

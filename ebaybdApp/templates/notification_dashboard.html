@@ -1,0 +1,36 @@
+{% load static %}
+{% load notifications_tags %}
+{% notifications_unread as unread_count %}
+{% if unread_count %}
+You have <b> {% live_notify_badge %} </b> unread notifications.
+{% live_notify_list %}
+{{ live_notify_list|safe }}
+<button class="btn btn-secondary mt-2" onclick="markAsRead()">Mark All as read</button>
+{% endif %}
+<h4>Your All Notifications</h4>
+{% for i in user.notifications.read %}
+<ul>
+    <li>{{ i|safe }}</li>
+</ul>
+
+{% endfor %}
+<script>
+    function markAsRead() {
+        let selectedData = {
+            'keywords': "markasread",
+            
+        };
+        $.ajax({
+            type: "POST",
+            url: "{% url 'dashboard' %}",
+            dataType: 'json',
+            data: {
+                'sendSelectedData': JSON.stringify(selectedData),
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function (response) {
+                window.location.reload(false); 
+            }
+        });
+    }
+</script>

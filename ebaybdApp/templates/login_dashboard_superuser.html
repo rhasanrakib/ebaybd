@@ -12,41 +12,40 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
 
         <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action bg-light" href="#!" rel="volunteer_registration">Volunteer Registration</a>
-            <a class="list-group-item list-group-item-action bg-light" href="#!" rel="week_4">Shortcuts</a>
-            <a class="list-group-item list-group-item-action bg-light" href="#!">Overview</a>
-            <a class="list-group-item list-group-item-action bg-light" href="#!">Events</a>
-            <a class="list-group-item list-group-item-action bg-light" href="#!">Profile</a>
-            <a class="list-group-item list-group-item-action bg-light" href="#!">Status</a>
+            <a class="list-group-item list-group-item-action bg-light" href="#!" rel="notification">Notification</a>
+            <a class="list-group-item list-group-item-action bg-light" href="#!" rel="volunteer_registration">Volunteer
+                Registration</a>
+            <a class="list-group-item list-group-item-action bg-light" href="#!" rel="homepage">Home Page</a>
+            
         </div>
     </div>
     <!-- Page Content-->
     <div id="page-content-wrapper">
         <button class="btn btn-secondary" id="menu-toggle"> Toggle Side </button>
+        <!--Notifications-->
+        <div class="container-fluid mt-5" id="notification">
 
+            {% include 'notification_dashboard.html' %}
+            
+
+        </div>
         <!--Volunteer Registration-->
 
-        <div class="container-fluid" id="volunteer_registration">
+        <div class="container-fluid" id="volunteer_registration" style="display: none;">
             {% include 'volunteer_reg_model_dashboard.html' %}
         </div>
-        <div class="container-fluid" id="week_4" style="display: none;">
-            
-            <p>
-                Make sure to keep all page content within the
-                <code>#page-content-wrapper</code>
-                . The top navbar is optional, and just for demonstration. Just create an element with the
-                <code>#menu-toggle</code>
-                ID which will toggle the menu when clicked.
-            </p>
+        <div class="container-fluid" id="homepage" style="display: none;">
+            <a href=" {% url 'admin:index' %} "> Goto Admin Panel</a>
         </div>
+
     </div>
 </div>
 <script>
     $('a').on('click', function () {
         var target = $(this).attr('rel');
         $("#" + target).show().siblings("div").hide();
-        
+
     });
-    
+
 </script>
 {%endblock container%}

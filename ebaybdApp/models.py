@@ -6,7 +6,6 @@ from django.urls import reverse
 from django_resized import ResizedImageField
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
-from django.db.models.signals import post_save
 
 
 class Projects(models.Model):
@@ -366,11 +365,6 @@ class VolunteerRegistration(models.Model):
         return self.First_Name
 
 
-def postVolunteerRegistration(sender, **kwargs):
-    print("Request finished!")
-
-post_save.connect(postVolunteerRegistration, sender=VolunteerRegistration)
-
 class Quotes(models.Model):
     serial = models.IntegerField(unique=True, blank=False)
     name = models.CharField(
@@ -493,3 +487,37 @@ class FundRaise(models.Model):
 
     class Meta:
         ordering = ['-created_date']
+
+
+class Misc(models.Model):
+    """Model definition for Misc."""
+
+    created_date = models.DateTimeField('date created', default=timezone.now)
+    about_us = HTMLField(help_text=' আমাদের সম্পর্কে ', blank=True)
+    our_works = HTMLField(help_text=' আমাদের কার্যক্রম সমূহ ', blank=True)
+    volunteer_context = HTMLField(
+        help_text=' স্বেচ্ছাসেবক প্রোগ্রামের জন্য নিবন্ধন', blank=True)
+    image = ResizedImageField(
+        upload_to='Quotes/', help_text='volunteer context pic', blank=True, quality=-1)
+    footer_about_us = HTMLField(help_text='আমাদের কার্যক্রম', blank=True)
+    address = HTMLField(help_text='যোগাযোগ করুন', blank=True)
+    google_map_link = models.URLField(blank=True)
+    email1 = models.EmailField(blank=True)
+    email2 = models.EmailField(blank=True)
+    email3 = models.EmailField(blank=True)
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,14}$', message="Phone number must be entered in the format: '+8801xxxxxxxxx'.")
+
+    phone1 = models.CharField(
+        validators=[phone_regex], max_length=14, blank=True)
+    phone2 = models.CharField(
+        validators=[phone_regex], max_length=14, blank=True)
+
+    class Meta:
+        """Meta definition for Misc."""
+
+        verbose_name = 'Misc'
+        verbose_name_plural = 'Miscs'
+
+    def __str__(self):
+        return "Misc"

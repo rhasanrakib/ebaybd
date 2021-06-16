@@ -106,13 +106,7 @@
 
                 <img src="{% static 'images/Final-300x300.png' %}" alt="" class="logo img-fluid">
 
-                <p>অরাজনৈতিক, অলাভজনক ও সেচ্ছাসেবী সামাজিক সংগঠন “পূর্ব বড়ুয়া তরুন সংঘ” আমরাই তরুন, আমরাই উদ্যোমি এই
-                    স্লোগান নিয়ে ১৩ এপ্রিল ২০১৭ সালে প্রতিষ্ঠিত হয়। সংগঠনটি তার প্রতিষ্ঠালগ্ন থেকে মেধাবী
-                    শিক্ষার্থীদের সংবর্ধনা,গরীব শিক্ষার্থীদের আর্থিক সহযোগিতা করা,বন্যায় ক্ষতিগ্রস্থদের সাহায্য,
-                    সম্প্রতি করোনা ভাইরাসের কর্মহীন অসহায় মানুষের মাঝে খাদ্য সামগ্রী বিতরন, অসহায় দুঃস্থদের মাঝে
-                    ইফতার সামগ্রীসহ ঈদবস্ত্র বিতরণ, শীতার্থদের মাঝে শীতবস্ত্র বিতরণ, বৃক্ষরোপণ কর্মসূচী,
-                    মাদক-সন্ত্রাস-বাল্যবিবাহ ও সামাজিক অপরাধবিরোধী সচেতনতামূলক সভা, রক্তদান কর্মসূচি
-                </p>
+                {{getMisc.about_us | safe}}
             </div>
         </div>
         <div class="col-12 col-md-6 mt-5">
@@ -278,20 +272,7 @@
         <div class="col">
             <div class="d-flex justify-content-center p-0 p-md-4">
                 <h3>আমাদের কার্যক্রম সমূহ</h3>
-                <ul class="mt-3">
-                    <li>সংগঠনটি সর্বদা অরাজনৈতিক ও সামাজিক স্বেচ্ছাসেবী সংগঠন হিসেবে কাজ করবে।</li>
-                    <li>গরীব ও মেধাবীদের মধ্যে শিক্ষা উপকরণ ও শিক্ষা সহায়তা প্রদান করা।</li>
-                    <li>অসহায় ও দুস্থদের সার্বিক সহায়তা করা।</li>
-                    <li>দুরারোগ্য ও ব্যয়বহুল চিকিৎসার রোগে আক্রান্ত রোগীকে সহায়তা প্রদান।</li>
-                    <li>গরীবদের মাঝে ইফতার সামগ্রী বিতরণ।</li>
-                    <li>যেকোনো প্রাকৃতিক দুর্যোগে ক্ষতিগ্রস্থদের পাশে দাড়ানো।</li>
-                    <li>মাদক,সন্ত্রাস,বাল্যবিবাহ রোধসহ সামাজিক অপরাধসমূহের বিরুদ্ধে সবাইকে সচেতন করা ও খেলাধুলা ও
-                        সামাজিক কাজকর্মে ছাত্র-যুবকদের অংশগ্রহণে সাহায্য করা।</li>
-                    <li>বৃক্ষরোপণ, পরিছন্ন ও পরিবেশবান্ধব কর্মকান্ডে অংশগ্রহণ করা।</li>
-                    <li>সংগঠনের সকল সদস্যদের মধ্যে ভ্রাতৃত্ববন্ধন সৃষ্টি করে ঐক্যবদ্ধভাবে সংগঠনটির লক্ষ্য ও উদ্দেশ্য
-                        বাস্তবায়ন করা এবং কল্যাণময় সবকিছুতে নিজেদের অন্তর্ভুক্ত করা।</li>
-
-                </ul>
+                {{getMisc.our_works | safe}}
             </div>
         </div>
     </div>
@@ -373,9 +354,14 @@
 </div>
 {% endif %}
 <!--All the project list start-->
-{% if projects %}
-<div class="container-fluid text-center my-3">
 
+{% if projects %}
+<div class="container-fluid text-center my-3" style="background-color: #fff;">
+    <div class="row my-2" >
+        <div class="col">
+            <p style="font-size: 30px;font-weight: 900;"><span style="color: red;">সর্বশেষ</span>  প্রকল্পসমূহ </p>
+        </div>
+    </div>
     <div class="row mx-auto my-auto">
         <div id="recipeCarousel" class="carousel slide w-100" data-interval="false">
             <div class="carousel-inner w-100" role="listbox">
@@ -385,7 +371,7 @@
                     <div class="col-md-4">
                         <a href="{{i.get_absolute_url}}">
                             <div class="card card-body">
-                                <img class="img-fluid" src="{{i.bannerImage.url}}">
+                                <img class="img-fluid" src="{{i.bannerImage.url}}" style="max-height: 200px;">
                             </div>
                         </a>
                     </div>
@@ -440,16 +426,12 @@
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="{% static 'images/20200902_155857-1536x708.jpg' %}" class="img-fluid" alt="...">
+                <img src="{{getMisc.image.url}}" class="img-fluid" alt="...">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">স্বেচ্ছাসেবক প্রোগ্রামের জন্য নিবন্ধন</h5>
-                    <p class="card-text">মানবতার সেবা</p>
-                    <p class="card-text"><small class="text-muted">একটি জাতিকে অনুপ্রাণিত করতে আমাদের স্বেচ্ছাসেবী
-                            হওয়ার সুযোগ অফিসের কাজ থেকে মাঠকর্মী পর্যায় পর্যন্ত প্রসারিত। আপনার যদি অবহেলিত
-                            সম্প্রদায়কে দেওয়ার মত সময় ও কাজ করার প্রতিশ্রুতি থাকে, তাহলে আমাদের টিমে আপনাকে
-                            স্বাগত জানাতে অপেক্ষা করছি</small></p>
+                    {{getMisc.volunteer_context | safe}}
                     <a href="{% url 'volunteerRegistration' %}" class="btn btn-primary">নিবন্ধন করুন</a>
                 </div>
             </div>

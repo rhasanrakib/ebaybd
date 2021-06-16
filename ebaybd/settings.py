@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     #'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'notifications',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ TEMPLATES = [
                 'ebaybdApp.context_processors.project',
                 'ebaybdApp.context_processors.donate',
                 'ebaybdApp.context_processors.aboutus',
+                'ebaybdApp.context_processors.getMisc',
             ],
         },
     },
@@ -151,3 +153,4 @@ TINYMCE_DEFAULT_CONFIG = {
 
 #SECURE_REFERRER_POLICY = "strict-origin"
 LOGIN_REDIRECT_URL = 'home'
+#DJANGO_NOTIFICATIONS_CONFIG = { 'SOFT_DELETE': True}
