@@ -1,0 +1,80 @@
+{% extends 'header_footer.html' %}
+{% load static %}
+
+{% block styles %}
+<title>যোগাযোগ -পূর্ব বড়ুয়া তরুন সংঘ</title>
+{% endblock styles %}
+
+{% block container %}
+<div class="bgfixedimg">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2 offset-0" style="height: 100%;">
+                <div class="subscriptionbox p-5">
+                    <h2>আমাদের একটি বার্তা দিন</h2>
+
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="alert-box {{ message.tags }} " {% endif %}> {{ message }} </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <form method="POST" action="{% url 'contactus' %}" id="application-form">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <input type="submit" value="পাঠান" class="form-control">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 p-5" style="background-color: #fff;">
+            <div class="col">
+                <iframe src="{{getMisc.google_map_link}}" width="600" height="450" frameborder="0" style="border:0;"
+                    allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+            <div class="col">
+                <h2>তথ্য</h2>
+                {{getMisc.footer_about_us|safe}}
+                <p>
+
+                    ঠিকানা<br>
+                    {{getMisc.address|safe}}
+                    
+                        {% if getMisc.email1 %}
+                        <p><strong><span class="icon-mail"><a href="mailto:{{getMisc.email1}}">
+                                        {{getMisc.email1}}</a></span></strong></p>
+                        {% endif %}
+                        {% if getMisc.email2 %}
+                        <p><strong><span class="icon-mail"><a href="mailto:{{getMisc.email2}}">
+                                        {{getMisc.email2}}</a></span></strong></p>
+                        {% endif %}
+                        {% if getMisc.email3 %}
+                        <p><strong><span class="icon-mail"><a href="mailto:{{getMisc.email3}}">
+                                        {{getMisc.email3}}</a></span></strong></p>
+        
+                        {% endif %}
+        
+                        {% if getMisc.phone1 %}
+                        <p><strong><span class="icon-phone"><a href="tel:{{getMisc.phone1}}"></a>
+                                    {{getMisc.phone1}}</span></strong>
+                        </p>
+                        {{getMisc.phone1}}</a></span></strong></p>
+                        {% endif %}
+                        {%if getMisc.phone2 %}
+                        <p><strong><span class="icon-phone"><a href="tel:{{getMisc.phone2}}">
+                                        {{getMisc.phone2}}</a></span></strong></p>
+        
+                        {% endif %}
+                    
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $('#application-form label').hide();
+</script>
+{%endblock container%}

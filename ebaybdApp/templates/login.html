@@ -1,0 +1,55 @@
+{% extends 'header_footer.html' %}
+{% load static %}
+
+
+{% block styles %}
+<style>
+    .login-form {
+        width: 330px;
+        margin: 20px;
+    }
+</style>
+<title>Login</title>
+{% endblock styles %}
+
+
+{% block container %}
+
+
+<div class="w-100 d-flex justify-content-center">
+    <div class="card login-form ">
+        <div class="card-body">
+            <h2 class="card-title text-center">Log in</h2>
+            <div class="card-text">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="alert alert-danger alert-dismissible fade show {{ message.tags }}"
+                        role="alert" {% endif %}> {{ message }} </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form name="login" method="POST">
+                    {% csrf_token %}
+                    <!-- to error: add class "has-danger" -->
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">User Name</label>
+                        <input type="text" name="username" class="form-control form-control-sm" id="exampleInputEmail1"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="password" class="form-control form-control-sm"
+                            id="exampleInputPassword1">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+    
+                    <div class="sign-up">
+                        Don't have an account? <a href="#">Create One</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock container %}

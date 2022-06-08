@@ -1,0 +1,31 @@
+{% extends 'header_footer.html' %}
+{% load static %}
+
+{% block styles %}
+<title>প্রেস বিজ্ঞপ্তি -পূর্ব বড়ুয়া তরুন সংঘ</title>
+{% endblock styles %}
+
+{% block container %}
+
+<div class="container-fluid" id="projects">
+    <div id="main_project">
+        <div id="version">
+            <div class="version-text">
+                প্রেস বিজ্ঞপ্তি
+            </div>
+            
+        </div>
+        <ul>
+            {% for i in news %}
+            <li class="m-2" style="font-size: large;color: blueviolet;"><a href="{{i.get_absolute_url}}" style="font-size: large;">{{i.title}}</a></li>
+            {% endfor %}
+        </ul>
+
+        <div id="copyright">
+            পূর্ব বড়ুয়া তরুন সংঘ © All rights reserved
+        </div>
+
+    </div>
+</div>
+
+{%endblock container%}

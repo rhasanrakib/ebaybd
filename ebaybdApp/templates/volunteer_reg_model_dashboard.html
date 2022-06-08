@@ -1,0 +1,126 @@
+{% load static %}
+<div class="text-center m-2"><strong style="font-size: 20px;">Volunteer Registration</strong></div>
+
+<div class="table-responsive" style="background-color: aliceblue;">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                
+                <th scope="col">Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Religion</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Occupation</th>
+                <th scope="col">Organization</th>
+                <th scope="col">Address</th>
+
+                <th scope="col">Photo</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody style="font-weight: 400;">
+            {% for i in volunteer %}
+
+            <tr id ="tr-{{i.id}}">
+               
+                <td>{{i.name}}</td>
+                <td>
+                    {% if i.gender == "M" %}
+                    Male
+                    {% elif i.gender == "F" %}
+                    Female
+                    {% else %}
+                    Other
+                    {% endif %}
+                </td>
+                <td>{{i.email}}</td>
+                <td>{{i.phone}}</td>
+                <td>
+                    {% if i.religion == "C" %}
+                    Christian
+                    {% elif i.gender == "H" %}
+                    Hindu
+                    {% elif i.gender == "B" %}
+                    Buddha
+                    {% else %}
+                    Islam
+                    {% endif %}
+                </td>
+                <td>{{i.date_of_birth}}</td>
+                <td>{{i.occupation}}</td>
+                <td>{{i.organization}}</td>
+                <td>{{i.address}}</td>
+
+
+                {% if i.image %}
+                <td>
+                    <img src="{{i.image.url}}" alt="Profile Pic" style="max-width: 100px;max-height: 100px;"
+                        class="img-fluid">
+                </td>
+                {%else%}
+                <td>
+                    <img src="{% static 'images/avatar-1577909_1280.png' %}" alt="Profile Pic"
+                        style="max-width: 70px;max-height: 70px;" class="img-fluid">
+                </td>
+                {% endif %}
+
+                <td>
+                    <div class="row">
+                        <div class="col mt-1">
+                            <button class="btn btn-success" id="a{{i.id}}"
+                                onclick="volunteerClick(this.id)">Accept</button>
+                        </div>
+                        <div class="col mt-1">
+                            <button class="btn btn-danger" id="r{{i.id}}"
+                                onclick="volunteerClick(this.id)">Reject</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+</div>
+<script>
+    function volunteerClick(getId) {
+        let set_actions="";
+        let set_value=""
+        if(getId[0]=== 'a')
+        {
+            set_actions = "accept"
+        }
+        else{
+            set_actions = "delete"
+        }
+        set_value=getId.substring(1);
+        
+        let selectedData = {
+            'keywords': "volunteer",
+            'action': set_actions,
+            'value':set_value,
+            
+            
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "{% url 'dashboard' %}",
+            dataType: 'json',
+            data: {
+                'sendSelectedData': JSON.stringify(selectedData),
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function (response) {
+                console.log(response)
+                let tr= response["value"];
+                
+                $("#"+tr). remove();
+            }
+        });
+    }
+</script>

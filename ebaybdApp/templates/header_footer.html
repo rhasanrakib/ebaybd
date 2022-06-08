@@ -11,10 +11,16 @@
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/all.css' %}">
+  <link rel="icon" href="{% static 'images/Final.png' %}" type="image/png" sizes="20x20">
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
+
+  
 
   {% block styles %}
 
   {% endblock styles %}
+  {% load notifications_tags %}
 
 </head>
 
@@ -22,7 +28,7 @@
   <nav class="navbar navbar-expand-md navbar-light sticky-top">
     <div class="container-fluid">
       <div class="ml-auto">
-        <a href="{% url 'home' %}"><img class="navbar-brand" style="max-height: 90px;width: auto ;"
+        <a href="{% url 'home' %}"><img class="navbar-brand" style="max-height: 80px;width: auto ;"
             src="{% static 'images/Final.png' %}"></a>
       </div>
 
@@ -34,7 +40,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdownSecond">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link underline" aria-current="page" href="#">Covid-19</a>
+            <a class="nav-link underline" aria-current="page" href="{% url 'Covid19' %}">Covid-19</a>
           </li>
           <li class="nav-item">
             <a class="nav-link underline" href="{% url 'home' %}">প্রথম পাতা</a>
@@ -45,10 +51,12 @@
               data-bs-toggle="dropdown" aria-expanded="false">
               দান
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownDonate">
-              <li><a class="dropdown-item" href="#">দান করুন</a></li>
-              <li><a class="dropdown-item" href="#">দানের তথ্য পূরন</a></li>
-              <li><a class="dropdown-item" href="#">ব্যাংকের তথ্য</a></li>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCases">
+
+              {% for i in context_donate %}
+              <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
+              {% endfor %}
+              <li><a class="dropdown-item" href="{% url 'doner_info_submit' %}">দানের তথ্য পূরণ করুন </a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -59,15 +67,15 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAboutUs">
               <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">কমিটি</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">উপদেষ্ঠা</a></li>
-                  <li><a class="dropdown-item" href="#">কার্যকরী কমিটি</a></li>
-                  <li><a class="dropdown-item" href="#">স্বেচ্ছাসেবক</a></li>
+                  <li><a class="dropdown-item" href="{% url 'committee' title='advisor' %}">উপদেষ্ঠা</a></li>
+                  <li><a class="dropdown-item" href="{% url 'committee' title='executive' %}">কার্যকরী কমিটি</a></li>
+                  <li><a class="dropdown-item" href="{% url 'committee' title='volunteer' %}">স্বেচ্ছাসেবক</a></li>
                 </ul>
               </li>
-              <li><a class="dropdown-item" href="#">আমাদের সম্পর্কে</a></li>
-              <li><a class="dropdown-item" href="#">আমাদের সাথে যোগাযোগ করুন</a></li>
-              <li><a class="dropdown-item" href="#">আমাদের অভিযান সমূহ</a></li>
-              <li><a class="dropdown-item" href="#">প্রয়োজনীয় প্রশ্ন ও উত্তর</a></li>
+              {% for i in context_aboutus %}
+              <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
+              {% endfor %}
+              <li><a class="dropdown-item" href="{% url 'contactus' %}">আমাদের সাথে যোগাযোগ করুন</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -76,9 +84,9 @@
               মিডিয়া
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMedia">
-              <li><a class="dropdown-item" href="#">প্রেস বিজ্ঞপ্তি</a></li>
-              <li><a class="dropdown-item" href="#">ফটো গ্যালারী</a></li>
-              <li><a class="dropdown-item" href="#">ভিডিও গ্যালারী</a></li>
+              <li><a class="dropdown-item" href="{% url 'recent_news' %}">প্রেস বিজ্ঞপ্তি</a></li>
+              <li><a class="dropdown-item" href="{% url 'photo_gallery' %}">ফটো গ্যালারী</a></li>
+              <li><a class="dropdown-item" href="{% url 'videos' %}">ভিডিও গ্যালারী</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -87,29 +95,52 @@
               প্রকল্প সমূহ
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCases">
-              <li><a class="dropdown-item" href="{% url 'projects' %}">বৃক্ষ রোপন কর্মসূচী</a></li>
-              <li><a class="dropdown-item" href="#">শিক্ষা সহায়তা</a></li>
-              <li><a class="dropdown-item" href="#">শীত বস্ত্র বিতরন</a></li>
-              <li><a class="dropdown-item" href="#">অসহায় মানুষেদের চিকিৎসা সেবায় সহযোগিতা প্রদান</a></li>
-              <li><a class="dropdown-item" href="#">খাদ্য সামগ্রী বিতরন</a></li>
-              <li><a class="dropdown-item" href="#">খেলা ও ধুলা</a></li>
-              <li><a class="dropdown-item" href="#">বিভিন্ন উৎসব পালন</a></li>
+
+              {% for i in context_project %}
+              <li><a class="dropdown-item" href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
+              {% endfor %}
+
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link underline" href="#">যোগাযোগ</a>
+            <a class="nav-link underline" href="{% url 'contactus' %}">যোগাযোগ</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link underline" href="#" role="button" data-bs-toggle="modal"
-              data-bs-target="#loginModal">Login</a>
+          <li class="nav-item {% if user.is_authenticated %} dropdown {% endif %}">
+            {% if user.is_authenticated %}
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUserName" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              {{user.username}}
+              {% notifications_unread as unread_count %}
+
+              {% if unread_count %}
+              <span class="badge bg-secondary">New</span>
+              {% endif %}
+
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownUserName">
+
+              {% if unread_count %}
+              {% register_notify_callbacks callbacks='fill_notification_list, fill_notification_badge,
+              my_special_notification_callback' %}
+              <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+              {% else %}
+              <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+              {% endif %}
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+
+            </ul>
+            {% else %}
+            <a class="nav-link underline" href="{% url 'login' %}">Login</a>
+            {% endif %}
           </li>
+
         </ul>
       </div>
       <div class="ms-auto d-none d-lg-block">
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <li class="nav-item" style="color: snow;font-size: 12px;">
             {{date_bd.date}} {{date_bd.month}} {{date_bd.year}} বঙ্গাব্দ {{date_bd.time}}{{date_bd.weekday}}<br>
-            <span id="time_span"></span>
+            <span id="time_span" style="color: #fff;font-size: 12px;"></span>
           </li>
           <li class="nav-item">
 
@@ -128,38 +159,38 @@
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <h6>আমাদের কার্যক্রম</h6>
-          <p class="text-justify">অরাজনৈতিক, অলাভজনক ও সেচ্ছাসেবী সামাজিক সংগঠন “পূর্ব বড়ুয়া তরুন সংঘ” আমরাই তরুন, আমরাই
-            উদ্যোমি এই স্লোগান নিয়ে ১৩ এপ্রিল ২০১৭ সালে প্রতিষ্ঠিত হয়। সংগঠনটি তার প্রতিষ্ঠালগ্ন থেকে মেধাবী
-            শিক্ষার্থীদের সংবর্ধনা,গরীব শিক্ষার্থীদের আর্থিক সহযোগিতা করা,বন্যায় ক্ষতিগ্রস্থদের সাহায্য, সম্প্রতি করোনা
-            ভাইরাসের কর্মহীন অসহায় মানুষের মাঝে খাদ্য সামগ্রী বিতরন, অসহায় দুঃস্থদের মাঝে ইফতার সামগ্রীসহ ঈদবস্ত্র
-            বিতরণ, শীতার্থদের মাঝে শীতবস্ত্র বিতরণ, বৃক্ষরোপণ কর্মসূচী, মাদক-সন্ত্রাস-বাল্যবিবাহ ও সামাজিক অপরাধবিরোধী
-            সচেতনতামূলক সভা, রক্তদান কর্মসূচি</p>
+          {{getMisc.footer_about_us |safe}}
         </div>
 
         <div class="col-xs-6 col-md-3">
           <h6>পরিদর্শন</h6>
           <ul class="footer-links">
-            <li><a href="http://scanfcode.com/category/c-language/">বৃক্ষ রোপন কর্মসূচী</a></li>
-            <li><a href="http://scanfcode.com/category/front-end-development/">চিকিৎসা সহায়তা</a></li>
-            <li><a href="http://scanfcode.com/category/back-end-development/">খাদ্য সহায়তা</a></li>
-            <li><a href="http://scanfcode.com/category/java-programming-language/">শিক্ষা সহায়তা</a></li>
-            <li><a href="http://scanfcode.com/category/android/">ফটো গ্যালারী</a></li>
-            <li><a href="http://scanfcode.com/category/templates/">ভিডিও গ্যালারী</a></li>
-            <li><a href="http://scanfcode.com/category/templates/">প্রেস বিজ্ঞপ্তি</a></li>
+
+            <li><a href="{% url 'photo_gallery' %}">ফটো গ্যালারী</a></li>
+            <li><a href="{% url 'videos' %}">ভিডিও গ্যালারী</a></li>
+            <li><a href="{% url 'recent_news' %}">প্রেস বিজ্ঞপ্তি</a></li>
           </ul>
         </div>
 
         <div class="col-xs-6 col-md-3">
           <h6>সাহায্য</h6>
           <ul class="footer-links">
-            <li><a href="http://scanfcode.com/about/">প্রতিষ্ঠানের সূচনা</a></li>
-            <li><a href="http://scanfcode.com/contact/">প্রয়োজনীয় প্রশ্ন ও উত্তর</a></li>
-            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">উপদেষ্ঠা</a></li>
-            <li><a href="http://scanfcode.com/privacy-policy/">
+
+            <li><a href="{% url 'committee' title='advisor' %}">উপদেষ্ঠা</a></li>
+            <li><a href="{% url 'committee' title='executive' %}">
                 কার্যকরী কমিটি</a></li>
-            <li><a href="http://scanfcode.com/sitemap/">দান করুন</a></li>
-            <li><a href="http://scanfcode.com/sitemap/">ব্যাংকের তথ্য</a></li>
-            <li><a href="http://scanfcode.com/sitemap/">যোগাযোগ</a></li>
+
+            {% for i in context_donate %}
+            <li><a href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
+
+            {% endfor %}
+
+            {% for i in context_aboutus %}
+            <li><a href="{{i.get_absolute_url}}">{{i.project_title}}</a></li>
+            {% endfor %}
+
+
+            <li><a href="{% url 'contactus' %}">যোগাযোগ</a></li>
           </ul>
         </div>
       </div>
@@ -169,15 +200,33 @@
       <div class="row">
         <div class="col-md-8 col-sm-6 col-xs-12">
           <span>যোগাযোগ করুন</span>
-          <p class="copyright-text">পূর্ব বড়ুয়া তরুন সংঘ<br>
-            ডাকঘর- কুলাঘাট, উপজেলা ও জেলা- লামনিরহাট।
+          {{getMisc.address | safe}}
+
+          {% if getMisc.email1 %}
+          <p><strong><span class="icon-mail"><a href="mailto:{{getMisc.email1}}">
+                  {{getMisc.email1}}</a></span></strong></p>
+          {% endif %}
+          {% if getMisc.email2 %}
+          <p><strong><span class="icon-mail"><a href="mailto:{{getMisc.email2}}">
+                  {{getMisc.email2}}</a></span></strong></p>
+          {% endif %}
+          {% if getMisc.email3 %}
+          <p><strong><span class="icon-mail"><a href="mailto:{{getMisc.email3}}">
+                  {{getMisc.email3}}</a></span></strong></p>
+
+          {% endif %}
+
+          {% if getMisc.phone1 %}
+          <p><strong><span class="icon-phone"><a href="tel:{{getMisc.phone1}}"> {{getMisc.phone1}}</a></span></strong>
           </p>
-          <p><strong><span class="icon-mail"><a href="mailto:eastbarua.youthassociation@gmail.com">
-                  eastbarua.youthassociation@gmail.com</a></span></strong></p>
-          <p><strong><span class="icon-mail"><a href="mailto:info@ebyabd.com"> info@ebyabd.com</a> </span></strong></p>
-          <p><strong><span class="icon-mail"> <a href="mailto:support@ebyabd.com">
-                  support@ebyabd.com</a></span></strong></p>
-          <p><strong><span class="icon-phone"><a href="tel:+8801744769331"></a> 01744769331</span></strong></p>
+          
+          {% endif %}
+          {%if getMisc.phone2 %}
+          <p><strong><span class="icon-phone"><a href="tel:{{getMisc.phone2}}">
+                  {{getMisc.phone2}}</a></span></strong></p>
+
+          {% endif %}
+
         </div>
 
         <div class="col-md-4 col-sm-6 col-xs-12">
@@ -197,12 +246,24 @@
       </p>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+  <script src="{% static 'js/time.js' %}"></script>
+  <script src="{% static 'js/marque.js' %}"></script>
+  <script>
+     // Add slideDown animation to Bootstrap dropdown when expanding.
+  $('.dropdown').on('show.bs.dropdown', function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+  });
+
+  // Add slideUp animation to Bootstrap dropdown when collapsing.
+  $('.dropdown').on('hide.bs.dropdown', function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+  });
+  </script>
   {% block js %}
   {% endblock js %}
-  {% include 'login_modal.html' %}
-  <script src="{% static 'js/jquery.js' %}"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/time.js' %}"></script>
 </body>
 
 </html>

@@ -1,58 +1,53 @@
 {% extends 'header_footer.html' %}
 {% load static %}
 
-{% block title %}
+{% block styles %}
+
 <title>পূর্ব বড়ুয়া তরুন সংঘ &#8211; একটি সামাজিক সেচ্ছাসেবী সংগঠন</title>
-{% endblock title %}
+
+{% endblock styles %}
 
 {% block container %}
-<!--
-<div class="w-100">
-    <marquee id='scroll_news' style="font-family:Book Antiqua; color: #FFFFFF" bgcolor="#000080">
-        <div onMouseOver="document.getElementById('scroll_news').stop();"
-            onMouseOut="document.getElementById('scroll_news').start();"><a href="#">News 1</a> News 2 News 3
-            News 4
-            .......
-            More news here </div>
-    </marquee>
-</div>
--->
+
+
+<section id="news" style="display: block;">
+    <div class="ln_wrapper">
+        <div class="ln_left">
+            <p>সর্বশেষ</p>
+        </div>
+        <div class="ln_left_arrow"></div>
+        <div class="ln_right marquee" data-duration=20000>
+            {% for i in news %}
+            <a href="{{i.get_absolute_url}}">{{i.title}}</a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 <!-----Background Image---->
 <div id="themeSlider" class="carousel slide" data-bs-ride="carousel">
 
     <ol class="carousel-indicators">
-        <li data-bs-target="#themeSlider" data-bs-slide-to="0" class="active"></li>
-        <li data-bs-target="#themeSlider" data-bs-slide-to="1"></li>
-        <li data-bs-target="#themeSlider" data-bs-slide-to="2"></li>
+        {% for p in photos %}
+        <li data-bs-target="#themeSlider" data-bs-slide-to="{{forloop.counter0}}"
+            class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+        {% endfor %}
+
     </ol>
 
     <div class="carousel-inner">
-        <div class="carousel-item active">
+        {% for p in photos %}
+        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
             <div class="imgOverlay"></div>
-            <img src="{% static 'images/20191218_104909-scaled.jpg' %}" alt="First slide">
+            <img src="{{p.image.url}}" style="max-height: 90vh;" alt="First slide">
             <div class="carousel-caption">
-                <h3>১৫০ টি পরিবারের মাঝে শীত বস্ত্র বিতরন-২০১৯
+                <h3>{{p.title}}
                 </h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                <p>{{p.subtitle}}</p>
             </div>
         </div>
-        <div class="carousel-item">
-            <div class="imgOverlay"></div>
-            <img src="{% static 'images/20201118_122803-scaled.jpg' %}" alt="Second slide">
-            <div class="carousel-caption">
-                <h3>পূর্ব বড়ুয়া তরুণ সংঘের উদ্যোগে মাস্ক বিতরণ ক্যাম্পেইন এ উপস্থিত ছিলেন
-                </h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="imgOverlay"></div>
-            <img src="{% static 'images/Bikkho-scaled.jpg' %}" alt="Third slide">
-            <div class="carousel-caption">
-                <h3>পেঁপের চারা বিতরণ </h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-        </div>
+        {% endfor %}
+
     </div>
 
     <a class="carousel-control-prev" href="#themeSlider" role="button" data-bs-slide="prev">
@@ -70,157 +65,255 @@
 
 </div>
 <!-----Background Image end----->
-
+</section>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-4 mt-3 text-center">
-            <a href="#"><img class="img-fluid" src="{% static 'images/go-1.png' %}" alt=""></a>
+            <a href="{% url 'our_causes' %}"><img class="img-fluid" src="{% static 'images/go-1.png' %}"
+                    alt="our_causes"></a>
         </div>
         <div class="col-12 col-sm-4 mt-3 text-center">
-            <a href="#"><img class="img-fluid" src="{% static 'images/go-2.png' %}" alt=""></a>
+            <a href="{% url 'volunteerRegistration' %}"><img class="img-fluid" src="{% static 'images/go-2.png' %}"
+                    alt="Join With Us"></a>
         </div>
         <div class="col-12 col-sm-4 mt-3 text-center">
-            <a href="#"><img class="img-fluid" src="{% static 'images/go-3.png' %}" alt=""></a>
+            <a href="{% url 'upcoming_events' %}"><img class="img-fluid" src="{% static 'images/go-3.png' %}"
+                    alt="get_involved"></a>
         </div>
     </div>
 </div>
 <div class="container-fluid">
+    <!--
     <div class="row">
         <div class="col-12 col-sm-4 mt-3 text-center">
-            <a href="#"><img class="img-fluid" src="{% static 'images/Untitled-2.jpg-22.jpg' %}" alt=""></a>
+            <a href="#"><img style="max-width:370px;max-height:140px" class="img-fluid"
+                    src="{% static 'images/Untitled-2.jpg-22.jpg' %}" alt="winter Clothing"></a>
         </div>
         <div class="col-12 col-sm-4 mt-3 text-center">
-            <a href="#"><img class="img-fluid" src="{% static 'images/coronavirus-cells-banner_1035-18753.jpg' %}"
-                    alt=""></a>
+            <a href="{% url 'Covid19' %}"><img style="max-width:370px;max-height:140px" class="img-fluid"
+                    src="{% static 'images/coronavirus-cells-banner_1035-18753.jpg' %}" alt="covid19"></a>
         </div>
         <div class="col-12 col-sm-4 mt-3 text-center">
-            <a href="#"><img class="img-fluid" src="{% static 'images/Donate-Blood.jpg' %}" alt=""></a>
+            <a href="{% url 'donate_blood' %}"><img style="max-width:370px;max-height:140px" class="img-fluid"
+                    src="{% static 'images/Donate-Blood.jpg' %}" alt="blood donation"></a>
         </div>
     </div>
-    <div class="row mt-5">
-        <div class="col bg-light p-4">
+    -->
+    <div class="row ">
+        <div class="col-12 col-md-6 bg-light p-0 p-md-4 mt-5">
             <h3>আমাদের সম্পর্কে</h3>
             <div class="wrapper">
 
-                <img src="{% static 'images/Final-300x300.png' %}" alt="" class="logo">
+                <img src="{% static 'images/Final-300x300.png' %}" alt="" class="logo img-fluid">
 
-                <p>অরাজনৈতিক, অলাভজনক ও সেচ্ছাসেবী সামাজিক সংগঠন “পূর্ব বড়ুয়া তরুন সংঘ” আমরাই তরুন, আমরাই উদ্যোমি এই
-                    স্লোগান নিয়ে ১৩ এপ্রিল ২০১৭ সালে প্রতিষ্ঠিত হয়। সংগঠনটি তার প্রতিষ্ঠালগ্ন থেকে মেধাবী
-                    শিক্ষার্থীদের সংবর্ধনা,গরীব শিক্ষার্থীদের আর্থিক সহযোগিতা করা,বন্যায় ক্ষতিগ্রস্থদের সাহায্য,
-                    সম্প্রতি করোনা ভাইরাসের কর্মহীন অসহায় মানুষের মাঝে খাদ্য সামগ্রী বিতরন, অসহায় দুঃস্থদের মাঝে
-                    ইফতার সামগ্রীসহ ঈদবস্ত্র বিতরণ, শীতার্থদের মাঝে শীতবস্ত্র বিতরণ, বৃক্ষরোপণ কর্মসূচী,
-                    মাদক-সন্ত্রাস-বাল্যবিবাহ ও সামাজিক অপরাধবিরোধী সচেতনতামূলক সভা, রক্তদান কর্মসূচি
-                </p>
+                {{getMisc.about_us | safe}}
             </div>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6 mt-5">
 
-            <div class="sidebar widget p-4">
+            <div class="sidebar widget p-0 p-md-4">
                 <h3>সর্বশেষ কার্যক্রম</h3>
                 <ul>
+
+                    {% for i in news %}
+
                     <li>
                         <div class="sidebar-thumb">
-                            <img class="animated rollIn"
-                                src="http://shop.spotlayer.com/demo/soft-mag/demo1/wp-content/uploads/16555399183_33b1b1bc26_o-90x75.jpg"
-                                alt="" />
+                            {% if i.image1 %}
+                            <img src="{{i.image1.url}}" style="max-height: 300px;" class="img-fluid">
+                            {% else %}
+                            <img src="{% static 'images/Final.png' %}" style="max-height: 300px;" class="img-fluid">
+
+                            {% endif %}
                         </div><!-- .Sidebar-thumb -->
                         <div class="sidebar-content">
-                            <h5 class="animated bounceInRight"><a href="#">The Complete Guide to Medium
-                                    for Marketers</a></h5>
+                            <h5 class="animated bounceInRight"><a href="{{i.get_absolute_url}}">
+                                    <h6>{{i.title}}</h6>
+                                </a></h5>
                         </div><!-- .Sidebar-thumb -->
                         <div class="sidebar-meta">
-                            <span class="time"><i class="fa fa-clock-o"></i> Aug 27, 2015</span>
+                            <span class="time"><i class="fa fa-clock-o"></i>{{i.created_date}}</span>
 
                         </div><!-- .Sidebar-meta ends here -->
                     </li><!-- .Li ends here -->
-                    <li>
-                        <div class="sidebar-thumb">
-                            <img class="animated rollIn"
-                                src="http://shop.spotlayer.com/demo/soft-mag/demo1/wp-content/uploads/8S64npOgTu2eWTZIXEfy_DSC_0955-90x75.jpg"
-                                alt="" />
-                        </div><!-- .Sidebar-thumb -->
-                        <div class="sidebar-content">
-                            <h5 class="animated bounceInRight"><a href="#">Watch Now: How to Manipulate
-                                    the Media</a></h5>
-                        </div><!-- .Sidebar-thumb -->
-                        <div class="sidebar-meta">
-                            <span class="time"><i class="fa fa-clock-o"></i> Aug 27, 2015</span>
 
-                        </div><!-- .Sidebar-meta ends here -->
-                    </li><!-- .Li ends here -->
-                    <li>
-                        <div class="sidebar-thumb">
-                            <img class="animated rollIn"
-                                src="http://shop.spotlayer.com/demo/soft-mag/demo1/wp-content/uploads/17153174816_a808becb66_o-90x75.jpg"
-                                alt="" />
-                        </div><!-- .Sidebar-thumb -->
-                        <div class="sidebar-content">
-                            <h5 class="animated bounceInRight"><a href="#">OnePlus Inks First Carrier
-                                    Partnership with Malaysia</a></h5>
-                        </div><!-- .Sidebar-thumb -->
-                        <div class="sidebar-meta">
-                            <span class="time"><i class="fa fa-clock-o"></i> Aug 27, 2015</span>
+                    {% endfor %}
 
-                        </div><!-- .Sidebar-meta ends here -->
-                    </li><!-- .Li ends here -->
 
                 </ul><!-- .Ul ends here -->
+
+                <!--Pagination Start here-->
+                <nav aria-label="Page navigation recent-news-pagination">
+                    {% if news.has_other_pages %}
+                    <ul class="pagination justify-content-center">
+                        {% if news.has_previous %}
+                        <li class="page-item"><a class="page-link"
+                                href="?page={{ news.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                        {% endif %}
+                        {% for i in news.paginator.page_range %}
+                        {% if news.number == i %}
+                        <li class="page-item active" aria-current="page"><span class="page-link">{{i}}</span></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if news.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ news.next_page_number }}">&raquo;</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </nav>
+                <!--Pagination end here-->
             </div><!-- .Widget ends here -->
+
         </div>
     </div>
 </div>
+
+
+
+<!--Fund Raise-->
+
+{% if fund %}
+
+{% for i in fund %}
+
+<div class="container-fluid my-5" style="background-color: #fff;">
+
+    <div class="row p-0" style="margin: none;">
+        <div class="col-12 col-md-6 m-0 p-0">
+            <div class="fund-image" style="background: url('{{i.image.url}}');">
+                <div style="position: relative;background-color: rgba(6, 28, 38, 0.5);height: 100%;" class="w-100">
+
+
+                    <div class="p-2 p-md-4" style="color: #fff;z-index: 2;position: relative">
+                        <div class="text-center" style="color: #fff; font-size: 1.5rem;font-weight: 900;">
+                            {{i.title}}
+                        </div>
+                        <div class="text-center mt-1" style="color: red; font-size: 1.2rem;">
+                            {{i.quote}}
+                        </div>
+
+                        <p class="mt-1">{{i.description|safe}}</p>
+                    </div>
+                    <div class="text-center w-100">
+                        <a href="{{i.url_field.get_absolute_url}}" class="btn btn-primary">দান করুন </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card border-0">
+                <div class="card-body">
+                    <div class="w-100 d-flex justify-content-center">
+                        <div class="d-flex justify-content-between" style="max-width: 20rem;">
+                            <div class="d-flex align-items-end">
+                                <p>সংগ্রহ</p>
+
+                            </div>
+
+                            <div class="progress-circle-container text-center">
+                                <div class="progress-circle progress-{{i.percentage}}">
+                                    <span
+                                        style="color: {% if i.percentage > -1 and i.percentage < 26 %}red{% endif %}{% if i.percentage > 25 and i.percentage < 51 %}#ff6673{% endif %}{% if i.percentage > 50 and i.percentage < 75 %}yellow{% endif %}{% if i.percentage > 74 %}#66b8ff{% endif %};">
+                                        <div class="d-flex justify-content-center align-items-center w-100 h-100">
+                                            {{i.percentage}}% <br>
+                                            সম্পূর্ণ
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-end">
+                                <p>লক্ষ্য </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-100 d-flex justify-content-center">
+                        <div class="d-flex justify-content-between" style="max-width: 20rem;">
+                            <div class="d-flex align-items-end">
+                                <p>{{i.raised_amount}}</p>
+
+                            </div>
+                            <div style="width: 216px;">
+
+                            </div>
+                            <div class="d-flex align-items-end">
+                                <p>{{i.targeted_amount}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center w-100 mt-3">
+                        <a href="{{i.url_field.get_absolute_url}}" class="btn btn-primary">দান করুন </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+
+<!--Our works-->
 <div class="container-fluid mt-5">
     <div class="row bg-light">
         <div class="col">
-            <div class="d-flex justify-content-center p-4">
+            <div class="d-flex justify-content-center p-0 p-md-4">
                 <h3>আমাদের কার্যক্রম সমূহ</h3>
-                <ul class="mt-3">
-                    <li>সংগঠনটি সর্বদা অরাজনৈতিক ও সামাজিক স্বেচ্ছাসেবী সংগঠন হিসেবে কাজ করবে।</li>
-                    <li>গরীব ও মেধাবীদের মধ্যে শিক্ষা উপকরণ ও শিক্ষা সহায়তা প্রদান করা।</li>
-                    <li>অসহায় ও দুস্থদের সার্বিক সহায়তা করা।</li>
-                    <li>দুরারোগ্য ও ব্যয়বহুল চিকিৎসার রোগে আক্রান্ত রোগীকে সহায়তা প্রদান।</li>
-                    <li>গরীবদের মাঝে ইফতার সামগ্রী বিতরণ।</li>
-                    <li>যেকোনো প্রাকৃতিক দুর্যোগে ক্ষতিগ্রস্থদের পাশে দাড়ানো।</li>
-                    <li>মাদক,সন্ত্রাস,বাল্যবিবাহ রোধসহ সামাজিক অপরাধসমূহের বিরুদ্ধে সবাইকে সচেতন করা ও খেলাধুলা ও
-                        সামাজিক কাজকর্মে ছাত্র-যুবকদের অংশগ্রহণে সাহায্য করা।</li>
-                    <li>বৃক্ষরোপণ, পরিছন্ন ও পরিবেশবান্ধব কর্মকান্ডে অংশগ্রহণ করা।</li>
-                    <li>সংগঠনের সকল সদস্যদের মধ্যে ভ্রাতৃত্ববন্ধন সৃষ্টি করে ঐক্যবদ্ধভাবে সংগঠনটির লক্ষ্য ও উদ্দেশ্য
-                        বাস্তবায়ন করা এবং কল্যাণময় সবকিছুতে নিজেদের অন্তর্ভুক্ত করা।</li>
-
-                </ul>
+                {{getMisc.our_works | safe}}
             </div>
         </div>
     </div>
 </div>
+
+{% for i in quotes %}
 <div class="container-fluid mt-5 bg-light">
     <div class="row">
         <div class="col-1 d-none d-md-block"></div>
         <div class="col">
-            <h3>প্রধান উপদেষ্ঠার বানী</h3>
+            <h3>{{i.designation}}র বানী</h3>
             <div class="wrapper">
 
                 <img src="{% static 'images/Final-300x300.png' %}" alt="" class="logo">
 
-                <p>আমরা ভালবাসা, আশা এবং সামাজিক ন্যায়বিচার সমবেত একটি পৃথিবীর স্বপ্ন দেখি, যেখানে মানুষ মর্যাদা ও
-                    নিরাপত্তা নিয়ে বাস করবে। সমাজের অনগ্রসর শ্রেণীকে বিশেষভাবে চরম দরিদ্র, গৃহহীন ও অনাথ শিশুদেরকে
-                    শিক্ষা, পুষ্টি ও আশ্রয় সরবরাহের মাধ্যমে তাদের জাতির জন্য সম্পদে পরিণত করা আমাদের প্রধান লক্ষ্য।
+                <p>
+                    {{i.description|safe}}
                 </p>
             </div>
         </div>
         <div class="col">
-            <h3>প্রধান উপদেষ্ঠা</h3>
+            <h3 style="margin-bottom:4rem">{{i.designation}}</h3>
             <div class="card mb-3">
                 <div class="row g-0">
+                    {% if i.image %}
                     <div class="col-md-4">
-                        <img src="{% static 'images/FB_IMG_1598079402580-243x300.jpg' %}" class="img-fluid" alt="...">
+                        <img src="{{i.image.url}}" class="img-fluid" alt="{{i.designation}}">
                     </div>
+                    {%else%}
+
+                    <div class="col-md-4">
+                        <img src="{% static 'images/avatar-1577909_1280.png' %}" class="img-fluid"
+                            alt="{{i.designation}}">
+                    </div>
+                    {% endif %}
+
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">জনাব আরমান রহমান</h5>
-                            <p class="card-text">বিভাগীয় প্রধান, ইতিহাস বিভাগ, লালমনিরহাট সরকারি কলেজ।</p>
-                            <p class="card-text"><small class="text-muted">সম্পাদক লালমনিরহাট জেলা রোভার।<br>
+                            <h5 class="card-title">{{i.name}}</h5>
+                            <p class="card-text">{{i.occupation}},<br> {{i.organization}}</p>
 
-                                    ২৯তম বিসিএস ক্যাডার কর্মকর্তা।</small></p>
                         </div>
                     </div>
                 </div>
@@ -228,63 +321,26 @@
         </div>
     </div>
 </div>
-<div class="container-fluid mt-5 bg-light">
-    <div class="row">
-        <div class="col-1 d-none d-md-block"></div>
-        <div class="col">
-            <h3>সভাপতির বানী</h3>
-            <div class="wrapper">
+{% endfor %}
 
-                <img src="{% static 'images/Final-300x300.png' %}" alt="" class="logo">
-
-                <p>সামাজিক জীব হিসেবে সমাজের জন্য,আমাদের আশেপাশের মানুষদের জন্য সামান্য কিছু করার মাঝে তৃপ্তি খুজে
-                    পাওয়ার চেতনা নিয়ে এই সংগঠনের কার্যক্রম পরিচালিত হচ্ছে,আমাদের সংগঠনের সদস্যরা বিশ্বাস করে ভোগে
-                    সুখ নেই ত্যাগেই প্রকৃত সুখ এবং দান করার জন্য ধনী হবার প্রয়োজন নেই সুন্দর ইচ্ছাশক্তিই যথেষ্ট।সবার
-                    ঐক্যবদ্ধ প্রচেষ্টায় সংগঠনটি সেবা ও মানবকল্যানমুখী কর্মকান্ডে সবসময় সক্রিয় থাকবে মর্মে আমি আশা
-                    করি
-                </p>
-            </div>
-        </div>
-        <div class="col">
-            <h3>সভাপতি</h3>
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="{% static 'images/00-300x298.jpg' %}" class="img-fluid" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">মো: সায়হান সৈকত</h5>
-                            <p class="card-text">সভাপতি</p>
-                            <p class="card-text"><small class="text-muted">পূর্ব বড়ুয়া তরুন সংঘ<br>
-
-                                    উদ্যোক্তা, কুলাঘাট ইউনিয়ন ডিজিটাল সেন্টার।</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{% if videos %}
 <div class="container-fluid mt-5" style="background-color: #ccc;">
     <h3 class="p-5">ভিডিও গ্যালারী</h3>
-    <div id="carouselVideoControls" class="carousel slide" data-bs-ride="carousel" data-interval="false">
+    <div id="carouselVideoControls" class="carousel slide" data-interval="false">
         <div class="carousel-inner">
 
-            <div class="carousel-item active">
+            {% for i in videos %}
+            <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
                 <div class="carousel-video-inner">
-                    <iframe width="681" height="383" src="https://www.youtube.com/embed/sgouNC8rUhY" frameborder="0"
+                    <iframe width="681" height="383" src="{{i.external_video_storage}}" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="carousel-video-inner">
-                    <iframe width="681" height="383" src="https://www.youtube.com/embed/sgouNC8rUhY" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-            </div>
+            {% endfor %}
+
+
+
         </div>
         <a class="carousel-control-prev" href="#carouselVideoControls" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -296,75 +352,49 @@
         </a>
     </div>
 </div>
-<div class="container-fluid">
-    <div class="row blog" style="margin-top:5rem">
-        <div class="col-md-12">
-            <div id="blogCarousel" class="carousel slide" data-bs-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-bs-target="#blogCarousel" data-bs-slide-to="0" class="active"></li>
-                    <li data-bs-target="#blogCarousel" data-bs-slide-to="1"></li>
-                </ol>
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <a href="#">
-                                    <img src="{% static 'images/123194794_405258353976011_1780211379764436847_n.jpg' %}" alt="Image" style="max-width:100%;">
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="#">
-                                    <img src="{% static 'images/123270999_347084419724907_2057958549407391501_n.jpg' %}" alt="Image" style="max-width:100%;">
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="#">
-                                    <img src="{% static 'images/123463502_3561787297215396_6934336209828262397_n.jpg' %}" alt="Image" style="max-width:100%;">
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="#">
-                                    <img src="{% static 'images/123188282_1038829403260249_2551925143377316523_n.jpg' %}" alt="Image" style="max-width:100%;">
-                                </a>
-                            </div>
-                        </div>
-                        <!--.row-->
-                    </div>
-                    <!--.item-->
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <a href="#">
-                                    <img src="{% static 'images/123178086_655225608526960_8846219585287794881_n.jpg' %}" alt="Image" style="max-width:100%;">
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="#">
-                                    <img src="{% static 'images/123194794_405258353976011_1780211379764436847_n.jpg' %}" alt="Image" style="max-width:100%;">
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="#">
-                                    <img src="{% static 'images/123270999_347084419724907_2057958549407391501_n.jpg' %}" alt="Image" style="max-width:100%;">
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="#">
-                                    <img src="{% static 'images/123188282_1038829403260249_2551925143377316523_n.jpg' %}" alt="Image" style="max-width:100%;">
-                                </a>
-                            </div>
-                        </div>
-                        <!--.row-->
-                    </div>
-                    <!--.item-->
-                </div>
-                <!--.carousel-inner-->
-            </div>
-            <!--.Carousel-->
+{% endif %}
+<!--All the project list start-->
+
+{% if projects %}
+<div class="container-fluid text-center my-3" style="background-color: #fff;">
+    <div class="row my-2" >
+        <div class="col">
+            <p style="font-size: 30px;font-weight: 900;"><span style="color: red;">সর্বশেষ</span>  প্রকল্পসমূহ </p>
         </div>
     </div>
+    <div class="row mx-auto my-auto">
+        <div id="recipeCarousel" class="carousel slide w-100" data-interval="false">
+            <div class="carousel-inner w-100" role="listbox">
+
+                {% for i in projects %}
+                <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                    <div class="col-md-4">
+                        <a href="{{i.get_absolute_url}}">
+                            <div class="card card-body">
+                                <img class="img-fluid" src="{{i.bannerImage.url}}" style="max-height: 200px;">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle"
+                    aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle"
+                    aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
 </div>
+{% endif %}
+<!--All the project list end-->
 <div class="cointainer-fluid mt-5 bg-light">
     <div class="row">
         <div class="col-12 col-sm-6 p-5" style="height: 100%;">
@@ -375,27 +405,17 @@
         <div class="col-12 col-sm-6" style="height: 100%;">
             <div class="subscriptionbox">
                 <h2>সাবস্ক্রাইব করুন</h2>
-                সাবস্ক্রাইব করুন খবর, আপডেট ও প্রচারমূলক অনুষ্ঠানের জন্য
-                <form id="feedform" method="post" target="popupwindow">
-                    <div class="mb-3">
-
-                        <input type="text" class="form-control" id="name" placeholder="আপনার নাম..">
-                    </div>
-                    <div class="mb-3">
-
-                        <input type="email" class="form-control" id="mail" placeholder="আপনার ইমেইল..">
-                    </div>
-                    <div class="mb-3">
-
-                        <input type="text" class="form-control" id="Phone" placeholder="আপনার মোবাইল..">
-                    </div>
-                    <div class="mb-3">
-
-                        <input type="text" class="form-control" id="subject" placeholder="বিষয় ..">
-                    </div>
-                    <div class="mb-3">
-                        <textarea class="form-control" id="Textarea1" rows="3" placeholder="এখানে লিখুন.."></textarea>
-                    </div>
+                সাবস্ক্রাইব করুন খবর, আপডেট ও প্রচারমূলক অনুষ্ঠানের জন্য <br>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="alert-box {{ message.tags }} " {% endif %}> {{ message }} </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form method="POST" action="{% url 'home' %}" id="application-form">
+                    {% csrf_token %}
+                    {{form.as_p}}
                     <input type="submit" value="পাঠান" class="form-control">
                 </form>
             </div>
@@ -406,17 +426,13 @@
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="{% static 'images/20200902_155857-1536x708.jpg' %}" class="img-fluid" alt="...">
+                <img src="{{getMisc.image.url}}" class="img-fluid" alt="...">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">স্বেচ্ছাসেবক প্রোগ্রামের জন্য নিবন্ধন</h5>
-                    <p class="card-text">মানবতার সেবা</p>
-                    <p class="card-text"><small class="text-muted">একটি জাতিকে অনুপ্রাণিত করতে আমাদের স্বেচ্ছাসেবী
-                            হওয়ার সুযোগ অফিসের কাজ থেকে মাঠকর্মী পর্যায় পর্যন্ত প্রসারিত। আপনার যদি অবহেলিত
-                            সম্প্রদায়কে দেওয়ার মত সময় ও কাজ করার প্রতিশ্রুতি থাকে, তাহলে আমাদের টিমে আপনাকে
-                            স্বাগত জানাতে অপেক্ষা করছি</small></p>
-                    <a href="#" class="btn btn-primary">নিবন্ধন করুন</a>
+                    {{getMisc.volunteer_context | safe}}
+                    <a href="{% url 'volunteerRegistration' %}" class="btn btn-primary">নিবন্ধন করুন</a>
                 </div>
             </div>
         </div>
@@ -424,3 +440,44 @@
 </div>
 
 {% endblock container %}
+
+{% block js %}
+<script type="text/javascript">
+
+    $('#application-form label').hide();
+
+    $('#recipeCarousel.carousel .carousel-item').each(function () {
+        var minPerSlide = 3;
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        for (var i = 0; i < minPerSlide; i++) {
+            next = next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+
+            next.children(':first-child').clone().appendTo($(this));
+        }
+    });
+
+</script>
+<script>
+
+    $('.marquee').marquee({
+        pauseOnHover: true
+    });
+
+    $(document).scroll(function () {
+        var y = $(this).scrollTop();
+        if (y <= 20) {
+            $('#news').fadeIn();
+        } else {
+            $('#news').fadeOut();
+        }
+    });
+</script>
+{% endblock js %}

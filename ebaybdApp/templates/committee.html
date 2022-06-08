@@ -1,0 +1,73 @@
+{% extends 'header_footer.html' %}
+{% load static %}
+
+{% block styles %}
+<title>{{title}} -পূর্ব বড়ুয়া তরুন সংঘ</title>
+{% endblock styles %}
+
+{% block container %}
+<div class="container-fluid" id="projects">
+    <div id="main_project">
+        <div id="version">
+            <div class="version-text">
+                {{title}}
+            </div>
+
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr style="background-color: cadetblue;">
+                        <th scope="col">ক্র: নং </th>
+                        <th scope="col">নাম</th>
+                        <th scope="col">পদবী ও পেশা</th>
+                        <th scope="col">মোবাইল নম্বর ও ঠিকানা</th>
+                        <th scope="col">ছবি</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for i in context %}
+                    <tr>
+                        
+                        {% if title == "স্বেচ্ছাসেবক" %}
+                        <th>{{forloop.counter}}
+                        </th>
+                        {% else %}
+                        <th>{{i.serial}}
+                        </th>
+                        {% endif %}
+                            
+                        
+                        <td>{{i.name}}</td>
+                        <td>{{i.designation}} <br>
+                            {{i.organization}}
+                        </td>
+                        <td>{{i.phone}} <br> {{i.address}}</td>
+                        {% if i.image %}
+                        <td>
+                            <img src="{{i.image.url}}" alt="Profile Pic" style="max-width: 100px;max-height: 100px;"
+                                class="img-fluid">
+                        </td>
+                        {%else%}
+                        <td>
+                            <img src="{% static 'images/avatar-1577909_1280.png' %}" alt="Profile Pic"
+                                style="max-width: 100px;max-height: 100px;" class="img-fluid">
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+
+
+
+                </tbody>
+            </table>
+        </div>
+        <div id="copyright">
+            পূর্ব বড়ুয়া তরুন সংঘ © All rights reserved
+        </div>
+
+    </div>
+</div>
+{% endblock container %}

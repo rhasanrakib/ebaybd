@@ -1,0 +1,70 @@
+from django import forms
+
+from . models import VolunteerRegistration, BloodDonerRegistration, Application, DonationInformation
+
+
+class VolunteerReg(forms.ModelForm):
+    class Meta:
+        model = VolunteerRegistration
+        fields = ['name', 'email', 'phone', 'occupation', 'organization',
+                  'image', 'gender', 'religion', 'date_of_birth', 'address', 'about_you']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Input your  name'}),
+            'occupation': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Occupation'}),
+            'organization': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Organization'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control required', 'Placeholder': 'Input your email'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Ex. 01xxxxxxxxx'}),
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
+            'gender': forms.Select(attrs={'class': 'form-control'}),
+            'religion': forms.Select(attrs={'class': 'form-control'}),
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'address': forms.Textarea(attrs={'class': "form-control required"}),
+            'about_you': forms.Textarea(attrs={'class': "form-control required"}),
+        }
+
+
+class BloodDonerReg(forms.ModelForm):
+    class Meta:
+        model = BloodDonerRegistration
+        fields = '__all__'
+
+        widgets = {
+            'Name': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Input your  name'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'Ex. 01xxxxxxxxx'}),
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control required', 'type': 'date'}),
+            'address': forms.Textarea(attrs={'class': "form-control required"}),
+            'bloodGroup': forms.Select(attrs={'class': 'form-control'}),
+            'lastDonationDate': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        }
+
+
+class ApplicationForm(forms.ModelForm):
+
+    class Meta:
+        model = Application
+        fields = ['Name', 'email', 'phone', 'subject', 'text']
+
+        widgets = {
+            'Name': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'আপনার নাম লিখুন '}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'Placeholder': 'আপনার ইমেইল দিন। উদাহরন example@example.com'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': '১১ ডিজিটের মোবাইল নম্বর দিন Ex. 01xxxxxxxxx'}),
+            'subject': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'কী বিষয়ে জানাতে চান তা লিখুন '}),
+            'text': forms.Textarea(attrs={'class': "form-control required", 'Placeholder': 'এখানে লিখুন '}),
+
+        }
+
+
+class DonationInfoForm(forms.ModelForm):
+
+    class Meta:
+        model = DonationInformation
+        fields = ['name', 'account_number', 'donar_address', 'phone']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control required', 'Placeholder': 'আপনার নাম লিখুন '}),
+            'account_number': forms.TextInput(attrs={'class': 'form-control', 'Placeholder': 'যে একাউন্ট থেকে টাকা পাঠানো হয়েছে তা লিখুন '}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'Placeholder': '১১ ডিজিটের মোবাইল নম্বর দিন Ex. 01xxxxxxxxx'}),
+            'donar_address': forms.Textarea(attrs={'class': "form-control", 'Placeholder': 'ঠিকানা লিখুন'}),
+
+        }

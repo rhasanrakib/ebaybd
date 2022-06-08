@@ -2,31 +2,91 @@
 {% load static %}
 
 {% block styles %}
-<title>A</title>
+<title>{{context.project_title}} -পূর্ব বড়ুয়া তরুন সংঘ</title>
 {% endblock styles %}
 
 {% block container %}
+
 <div class="container-fluid" id="projects">
     <div id="main_project">
         <div id="version">
-            চিকিৎসা সহায়তা
+            <div class="version-text">
+                {{context.project_title}}
+            </div>
+            
         </div>
         <div>
-            <h1>চিকিৎসা সহায়তা</h1>
-            <p>সচ্ছতা ও জবাব দিহিতার মাধ্যমে বিতরন করা হচ্ছে।
-
-                চাইলে আপনি আমাদের মাধ্যমে এই সামাজিক কাজ গুলোর সাথে অংশগ্রহন করতে পারেন
-
-                আমাদের কে সহযোগিতার মাধ্যম গুলো নিম্নে দেওয়া হল</p>
-
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-                rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            <!--
+            <h1>{{context.project_title}}</h1>
+            -->
+            {{context.description|safe}}
 
         </div>
+        
+        {% if photos %}
+            
+        <div id="carouselProjectsIndicators" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+
+                {% for p in photos %}
+                <li data-bs-target="#carouselProjectsIndicators" data-bs-slide-to="{{forloop.counter0}}"
+                    class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+                {% endfor %}
+
+            </ol>
+            <div class="carousel-inner">
+                {% for p in photos %}
+                <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                    <img src="{{p.image.url}}" style="max-height: 450px;" class="d-block w-100" alt="slide images">
+                </div>
+                {% endfor %}
+
+            </div>
+            <a class="carousel-control-prev" href="#carouselProjectsIndicators" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselProjectsIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+        {% endif %}
+        {% if  videos %}
+            
+        
+            
+        <div id="carouselVideoControls" class="carousel slide"  data-interval="false">
+            
+            <div class="carousel-inner">
+                <div class="carousel-video-inner">
+                    {% for v in videos %}
+                    <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                        <iframe width="681" height="383" src="{{v.external_video_storage}}" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+            
+            
+            <a class="carousel-control-prev" href="#carouselVideoControls" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselVideoControls" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+            
+                
+            
+        </div>
+        {% endif %}
 
         <div id="copyright">
             পূর্ব বড়ুয়া তরুন সংঘ © All rights reserved
@@ -34,4 +94,5 @@
 
     </div>
 </div>
+
 {%endblock container%}
